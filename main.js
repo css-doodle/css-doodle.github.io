@@ -268,22 +268,25 @@
   [].forEach.call(document.querySelectorAll('.cover nav a'), function(el) {
     let doodle = document.createElement('css-doodle');
     doodle.innerHTML = `
-      :doodle { @grid: 1x50 / 100%; }
-      @size: @rand(2px);
+      :doodle { @grid: 1x40 / 100%; }
+      @size: @pick(1px, 2px);
       @place-cell: center;
       border-radius: 50%;
       background: hsla(@rand(360), 70%, 70%, @rand(.9));
-      animation: r 1s linear;
+      animation: explode 1s linear, fade 1s linear;
       animation-fill-mode: both;
       animation-delay: calc(@rand(600ms) * -1);
-      @keyframes r { to {
-        opacity: 0;
+      @keyframes explode { to {
         transform: translate3d(
           @rand(-5em, 5em),
           @rand(-5em, 5em),
           0
         );
       } }
+      @keyframes fade {
+        80% { opacity: 1 }
+        100% { opacity: 0 }
+      }
     `;
     el.appendChild(doodle);
   });
