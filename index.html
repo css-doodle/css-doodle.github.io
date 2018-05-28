@@ -599,37 +599,37 @@
                 margin: .5px;
               </css-doodle>
             </textarea>
-						 <style>
-							:root {
-								--my-rule: (
-									:doodle { @grid: 5 / 7em; }
-									background: #60569e;
-								);
-							}
-						</style>
+             <style>
+              :root {
+                --my-rule: (
+                  :doodle { @grid: 5 / 7em; }
+                  background: #60569e;
+                );
+              }
+            </style>
             <css-doodle grid="5">
               @use: var(--my-rule);
               margin: .5px;
             </css-doodle>
           </p>
 
-					<p>
-						You can add multiple rules in a natural way:
-					</p>
- 					<p>
+          <p>
+            You can add multiple rules in a natural way:
+          </p>
+           <p>
             <textarea code>
-							<css-doodle>
-								@use: var(--my-rule), var(--another-rule);
-								@use: var(--and-another-one);
-							</css-doodle>
-						</textarea>
-					</p>
-					<p>Or define it in the <code>use</code> attribute on the element.
- 					<p>
+              <css-doodle>
+                @use: var(--my-rule), var(--another-rule);
+                @use: var(--and-another-one);
+              </css-doodle>
+            </textarea>
+          </p>
+          <p>Or define it in the <code>use</code> attribute on the element.
+           <p>
             <textarea code>
-							<css-doodle use="var(--my-rule)"></css-doodle>
-						</textarea>
-					</p>
+              <css-doodle use="var(--my-rule)"></css-doodle>
+            </textarea>
+          </p>
         </section>
 
         <section>
