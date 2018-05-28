@@ -216,6 +216,27 @@ textarea[code] {
       transition: all .2s;
       border: 1px solid currentColor;
       position: relative;
+      --spark: (
+        :doodle { @grid: 1x40 / 100%; }
+        @size: @pick(1px, 2px);
+        @place-cell: center;
+        border-radius: 50%;
+        background: hsla(@rand(360), 70%, 70%, @rand(.9));
+        animation: explode 1s linear, fade 1s linear;
+        animation-fill-mode: both;
+        animation-delay: calc(@rand(600ms) * -1);
+        @keyframes explode { to {
+          transform: translate3d(
+            @rand(-5em, 5em),
+            @rand(-5em, 5em),
+            0
+          );
+        } }
+        @keyframes fade {
+          80% { opacity: 1 }
+          100% { opacity: 0 }
+        }
+      );
     }
       .cover nav a:hover {
         color: rgba(174, 172, 251, .9);

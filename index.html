@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="lib/codemirror/style.css">
   <link rel="stylesheet" href="style.css?21e7d75f882d95bf8ea4122a3852a9e8">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.2.3/css-doodle.min.js"></script>
+  <script src="lib/css-doodle-0.3.0.min.js"></script>
 </head>
 <body>
 
@@ -40,9 +40,9 @@
       <h1>&lt; <em>css-doodle</em> /&gt; </h1>
       <p>A web component for drawing patterns with CSS</p>
       <nav>
-        <a href="#usage">Usage</a>
-        <a href="https://codepen.io/collection/XyVkpQ/">Codepen</a>
-        <a href="https://github.com/css-doodle/css-doodle">Github</a>
+        <a href="#usage">Usage<css-doodle use="var(--spark)"></css-doodle></a>
+        <a href="https://codepen.io/collection/XyVkpQ/">Codepen<css-doodle use="var(--spark)"></css-doodle></a>
+        <a href="https://github.com/css-doodle/css-doodle">Github<css-doodle use="var(--spark)"></css-doodle></a>
       </nav>
     </header>
     <div class="wrap">
@@ -80,7 +80,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.2.3/css-doodle.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.3.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -123,6 +123,7 @@
             <a href="#properties">Properties</a>
             <ul>
               <li> <a href="#property-@grid">@grid</a></li>
+              <li> <a href="#property-@use">@use</a></li>
               <li> <a href="#property-@size">@size</a></li>
               <li> <a href="#property-@size">@min-size</a></li>
               <li> <a href="#property-@size">@max-size</a></li>
@@ -151,6 +152,7 @@
             <a href="#js-api">JS API</a>
             <ul>
               <li> <a href="#js-api-grid">grid</a></li>
+               <li> <a href="#js-api-use">use</a></li>
               <li> <a href="#js-api-update">update</a></li>
             </ul>
           </li>
@@ -575,6 +577,59 @@
               margin: .5px 0;
             </css-doodle>
           </p>
+        </section>
+
+         <section>
+          <h4><a name="property-@use"></a>@use</h4>
+          <p>Import styles from custom properties. It let you write styles from normal css files.</p>
+          <p class="has-preview">
+            <textarea code>
+              <style>
+                :root {
+                  --my-rule: (
+                    :doodle { @grid: 5 / 7em; }
+                    background: #60569e;
+                  );
+                }
+              </style>
+
+              <css-doodle>
+                @use: var(--my-rule);
+                /* then other styles  */
+                margin: .5px;
+              </css-doodle>
+            </textarea>
+						 <style>
+							:root {
+								--my-rule: (
+									:doodle { @grid: 5 / 7em; }
+									background: #60569e;
+								);
+							}
+						</style>
+            <css-doodle grid="5">
+              @use: var(--my-rule);
+              margin: .5px;
+            </css-doodle>
+          </p>
+
+					<p>
+						You can add multiple rules in a natural way:
+					</p>
+ 					<p>
+            <textarea code>
+							<css-doodle>
+								@use: var(--my-rule), var(--another-rule);
+								@use: var(--and-another-one);
+							</css-doodle>
+						</textarea>
+					</p>
+					<p>Or define it in the <code>use</code> attribute on the element.
+ 					<p>
+            <textarea code>
+							<css-doodle use="var(--my-rule)"></css-doodle>
+						</textarea>
+					</p>
         </section>
 
         <section>
@@ -1116,7 +1171,7 @@
         <h3><a name="js-api"></a>JS API </h3>
         <section>
           <h4><a name="js-api-grid"></a>grid</h4>
-          <p>Getter/setter for the grid attribute on the element. </p>
+          <p>Getter/setter for the <code>grid</code> attribute on the element. </p>
           <p>
             <textarea code>
               const doodle = document.querySelector('css-doodle');
@@ -1128,6 +1183,19 @@
 
               console.log(doodle.grid);
               /* { x: 5, y: 5, size: 25 } */
+            </textarea>
+          </p>
+        </section>
+         <section>
+          <h4><a name="js-api-use"></a>use</h4>
+          <p>Getter/setter for the <code>use</code> attribute on the element. </p>
+          <p>
+            <textarea code>
+              const doodle = document.querySelector('css-doodle');
+              doodle.use = "var(--my-rule);
+
+              console.log(doodle.use);
+              /* var(--my-rule) */
             </textarea>
           </p>
         </section>
