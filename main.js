@@ -103,26 +103,24 @@
       );
     `),
     circles: indent(`
-      :doodle { @grid: 1x50 / 50% }
-
-      @place-cell: center;
-      @size: calc(@index() * 3.4%);
-
-      --h: calc(100 + 5 * @index());
-      --d: calc(@index() * .3s);
-      --f: @rand(360deg);
-      --t: calc(var(--f) + 1turn);
-
-      border-radius: 50%;
-      border: 1px solid transparent;
-      border-top-color: hsl(var(--h),70%,68%);
-      will-change: transform;
-      animation: spin var(--d) linear infinite;
-
-      @keyframes spin {
-        from { transform: rotate(var(--f)) }
-        to   { transform: rotate(var(--t)) }
+      :doodle {
+        @grid: 10 / 85%
       }
+
+      transition: @rand(500ms) ease;
+      margin: -.2px;
+
+      background: hsl(
+        calc(200 + 2 * @row() * @col()),
+        70%, 70%
+      );
+
+      clip-path: polygon(@pick(
+        '0 0, 100% 0, 100% 100%',
+        '0 0, 100% 0, 0 100%',
+        '0 0, 100% 100%, 0 100%',
+        '100% 0, 100% 100%, 0 100%'
+      ));
     `),
     dashed: indent(`
       :doodle {
