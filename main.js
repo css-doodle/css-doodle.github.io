@@ -139,6 +139,26 @@
       );
 
       transform: rotate(@rand(360deg));
+    `),
+    flow: indent(`
+      :doodle {
+        @grid: 100x1 / 100%;
+      }
+
+      :container {
+        @size: 120%;
+        transform:
+          scale(8) translate(10%, 7%)
+          rotate(45deg)
+      }
+
+      @place-cell: center;
+      @size: calc(100% - @row() * 1%) 20%;
+
+      border-radius: 50%;
+      background: @pick(
+        #f9ed69, #f08a5d, #b83b5e, #6a2c70
+      );
     `)
   }
 
