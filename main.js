@@ -155,6 +155,7 @@
       @place-cell: center;
       @size: calc(100% - @row() * 1%) 20%;
 
+      transition: .2s @rand(300ms);
       border-radius: 50%;
       background: @pick(
         #f9ed69, #f08a5d, #b83b5e, #6a2c70
