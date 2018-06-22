@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="lib/codemirror/style.css">
   <link rel="stylesheet" href="style.css?f0c554548c1582bfc436b23b5d0577d0">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="lib/css-doodle-0.3.1.min.js"></script>
+  <script src="lib/css-doodle-0.3.2.min.js"></script>
 </head>
 <body>
 
@@ -80,19 +80,19 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.3.0/css-doodle.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.3.2/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
           </css-doodle>
         </textarea>
       </p>
-			<p>If cdnjs is not ready, just use:</p>
-			<p>
+      <p>If cdnjs is not ready, just use:</p>
+      <p>
         <textarea code>
-					<script src="https://css-doodle.com/lib/css-doodle-0.3.0.min.js"></script>
-				</textarea>
-			</p>
+          <script src="https://css-doodle.com/lib/css-doodle-0.3.2.min.js"></script>
+        </textarea>
+      </p>
       <p>You can also install it from <a href="http://npmjs.org/package/css-doodle">npm</a> and import the module in javascript:
       <p>
         <textarea code>
@@ -149,6 +149,7 @@
               <li> <a href="#function-@pick">@pick</a></li>
               <li> <a href="#function-@rand">@rand</a></li>
               <li> <a href="#function-@repeat">@repeat</a></li>
+              <li> <a href="#function-@svg">@svg</a></li>
               <li> <a href="#function-@Math">@&lt;Math&gt;</a></li>
               <li> <a href="#function-@calc">@calc</a></li>
               <li> <a href="#function-@hex">@hex</a></li>
@@ -1034,6 +1035,45 @@
                 @size: 5px;
                 border-radius: 50%;
                 background: #@repeat(6, @pick(@rand(0, 9), @rand(a, f)));
+              }
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="function-@svg"></a>@svg(svg)</h4>
+          <p>
+            Use svg directly as background image.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: @svg(
+                <svg width='28' height='50' viewBox="0 0 56 100">
+                  <rect width='56' height='100' fill='#60569e'/>
+                  <path
+                    fill='none'
+                    stroke='#fff'
+                    stroke-width='1'
+                    d='M28 66L0 50L0 16L28 0L56
+                      16L56 50L28 66L28 100'
+                  />
+                </svg>
+              );
+            </textarea>
+            <css-doodle grid="1" class="click-to-update">
+              :doodle {
+                @size: 7em;
+                background: @svg(
+                  <svg width='28' height='50' viewBox="0 0 56 100">
+                    <rect width='56' height='100' fill='#60569e'/>
+                    <path
+                      d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100'
+                      fill='none'
+                      stroke='#fff'
+                      stroke-width='1'
+                    />
+                  </svg>
+                );
               }
             </css-doodle>
           </p>
