@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="lib/codemirror/style.css">
   <link rel="stylesheet" href="style.css?f0c554548c1582bfc436b23b5d0577d0">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="lib/css-doodle-0.3.2.min.js"></script>
+  <script src="lib/css-doodle-0.4.0.min.js"></script>
 </head>
 <body>
 
@@ -80,7 +80,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.3.2/css-doodle.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -90,7 +90,7 @@
       <p>If cdnjs is not ready, just use:</p>
       <p>
         <textarea code>
-          <script src="https://css-doodle.com/lib/css-doodle-0.3.2.min.js"></script>
+          <script src="https://css-doodle.com/lib/css-doodle-0.4.0.min.js"></script>
         </textarea>
       </p>
       <p>You can also install it from <a href="http://npmjs.org/package/css-doodle">npm</a> and import the module in javascript:
@@ -116,6 +116,7 @@
             <a href="#selectors">Selectors</a>
             <ul>
               <li> <a href="#selector-:doodle">:doodle</a></li>
+              <li> <a href="#selector-:container">:container</a></li>
               <li> <a href="#selector-@even">@even</a></li>
               <li> <a href="#selector-@odd">@odd</a></li>
               <li> <a href="#selector-@nth">@nth</a></li>
@@ -147,11 +148,16 @@
               <li> <a href="#function-@max-col">@max-col</a></li>
               <li> <a href="#function-@size">@size</a></li>
               <li> <a href="#function-@pick">@pick</a></li>
+              <li> <a href="#function-@pick-by-turn">@pick-by-turn</a></li>
               <li> <a href="#function-@rand">@rand</a></li>
+              <li> <a href="#function-@last">@last-pick</a></li>
+              <li> <a href="#function-@last">@last-rand</a></li>
               <li> <a href="#function-@repeat">@repeat</a></li>
+              <li> <a href="#function-@multiple">@multiple</a></li>
               <li> <a href="#function-@svg">@svg</a></li>
               <li> <a href="#function-@Math">@&lt;Math&gt;</a></li>
               <li> <a href="#function-@calc">@calc</a></li>
+              <li> <a href="#function-@var">@var</a></li>
               <li> <a href="#function-@hex">@hex</a></li>
             </ul>
           </li>
@@ -270,6 +276,38 @@
               transform-origin: 50% 50%;
               background: #60569e;
               margin: .5px;
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="selector-:container"></a>:container</h4>
+          <p>
+            The <code>:container</code>
+            is the container element that holds all the cells. It's styled using the Grid Layout.
+            And you may want to set <code>grid-gap</code> inside it.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              :doodle {
+                @grid: 8 / 7em;
+                overflow: hidden;
+              }
+              :container {
+                grid-gap: 1px;
+                transform: rotate(45deg) scale(1.5);
+              }
+            </textarea>
+            <css-doodle>
+              :doodle {
+                @grid: 8 / 7em;
+                overflow: hidden;
+              }
+              :container {
+                grid-gap: 1px;
+                transform: rotate(45deg) scale(1.5);
+              }
+              background: #60569e;
             </css-doodle>
           </p>
         </section>
@@ -680,8 +718,8 @@
           <p class="has-preview">
             <textarea code>
               @size: 1.6em;
-              @nth(1) { @place-cell: 0; }
-              @nth(2) { @place-cell: 100% 25%; }
+              @nth(1) { @place-cell: 0 top; }
+              @nth(2) { @place-cell: right 25%; }
               @nth(3) { @place-cell: center; }
               @nth(4) { @place-cell: .8em calc(100% - .8em); }
               @nth(5) { @place-cell: 75% 80%; }
@@ -694,8 +732,8 @@
               }
               @size: 1.6em;
               background: rgba(72, 74, 142, .8);
-              @nth(1) { @place-cell: 0; }
-              @nth(2) { @place-cell: 100% 25%; }
+              @nth(1) { @place-cell: 0 top; }
+              @nth(2) { @place-cell: right 25%; }
               @nth(3) { @place-cell: center; }
               @nth(4) { @place-cell: .8em calc(100% - .8em); }
               @nth(5) { @place-cell: 75% 80%; }
@@ -949,16 +987,44 @@
           </p>
           <p class="has-preview">
             <textarea code>
+              opacity: @pick(1, .6, .3, .1);
               :after {
-                content: '@pick(+, *, -, #)';
-                color: @pick(#60569e, #2196f3);
+                content: '@pick(1, 2, 3, 4)';
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle { @size: 7em; }
+              opacity: @pick(1, .6, .3, .1);
+              background: #60569e;
               :after {
-                content: '@pick(+, *, -, #)';
-                color: @pick(#60569e, #2196f3);
+                content: '@pick(1, 2, 3, 4)';
+                color: #fff;
+                font-size: .7em;
+              }
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="function-@pick-by-turn"></a>@pick-by-turn(v1, v2,...)</h4>
+          <p>
+            Pick a value from the given list on by one.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              opacity: @pick-by-turn(1, .6, .3, .1);
+              :after {
+                content: '@pick-by-turn(1, 2, 3, 4)';
+              }
+            </textarea>
+            <css-doodle grid="5" class="click-to-update">
+              :doodle { @size: 7em; }
+              opacity: @pick-by-turn(1, .6, .3, .1);
+              background: #60569e;
+              :after {
+                content: '@pick-by-turn(1, 2, 3, 4)';
+                color: #fff;
+                font-size: .7em;
               }
             </css-doodle>
           </p>
@@ -1011,6 +1077,31 @@
         </section>
 
         <section>
+          <h4><a name="function-@last"></a>@last-pick, @last-rand</h4>
+          <p>
+            Returns the last value of <code>@pick</code> or <code>@pick-by-turn</code> and <code>@rand</code>.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: linear-gradient(
+                @rand(360deg),
+                @pick(#60569e, #e6437d), @last-pick(),
+                @pick(#60569e, #e6437d), @last-pick()
+              );
+            </textarea>
+            <css-doodle grid="5" class="click-to-update">
+              :doodle { @size: 7em; }
+              margin: .5px;
+              background: linear-gradient(
+                @rand(360deg),
+                @pick(#60569e, #e6437d), @last-pick(),
+                @pick(#60569e, #e6437d), @last-pick()
+              );
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
           <h4><a name="function-@repeat"></a>@repeat(times, value)</h4>
           <p>
             Duplicate the given value:
@@ -1018,24 +1109,43 @@
           </p>
           <p class="has-preview">
             <textarea code>
-              /* little circles */
-              background: #@repeat(6,
-                @pick(@rand(0, 9), @rand(a, f))
-              );
+              border-radius:
+                  @repeat(4, @rand(20%, 100%))
+                / @repeat(4, @rand(20%, 100%));
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle { @size: 7em; }
               background: #60569e;
               margin: .5px;
-              :after {
-                content: '';
-                position: absolute;
-                left: @rand(20%, 80%);
-                top: @rand(20%, 80%);
-                @size: 5px;
-                border-radius: 50%;
-                background: #@repeat(6, @pick(@rand(0, 9), @rand(a, f)));
+              border-radius:
+                  @repeat(4, @rand(20%, 100%))
+                / @repeat(4, @rand(20%, 100%));
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="function-@multiple"></a>@multiple(times, value)</h4>
+          <p>
+            Compose the given value multiple times, seperated with comma.
+            <br/><span class="tip">(try to click the doodle)</span>
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: linear-gradient(
+                @rand(360deg),
+                @multiple(50, @pick(#e6437d, #60569e, #fff))
+              );
+            </textarea>
+            <css-doodle grid="5" class="click-to-update">
+              :doodle {
+                @size: 7em;
               }
+              margin: .5px;
+              background: linear-gradient(
+                @rand(360deg),
+                @multiple(50, @pick(#e6437d, #60569e, #fff))
+              );
             </css-doodle>
           </p>
         </section>
@@ -1043,39 +1153,54 @@
         <section>
           <h4><a name="function-@svg"></a>@svg(svg)</h4>
           <p>
-            Use svg directly as background image.
+            Use SVG directly as background image.
+            The recommended way to use SVG is through with the <code>@use</code> property.
           </p>
           <p class="has-preview">
             <textarea code>
-              background: @svg(
-                <svg width='28' height='50' viewBox="0 0 56 100">
-                  <rect width='56' height='100' fill='#60569e'/>
-                  <path
-                    fill='none'
-                    stroke='#fff'
-                    stroke-width='1'
-                    d='M28 66L0 50L0 16L28 0L56
-                      16L56 50L28 66L28 100'
-                  />
-                </svg>
-              );
+              <style>
+                :root {
+                  --svg-example: (
+                    /* ... */
+                    background-image: @svg(
+                      <svg viewBox="0 0 100 100">
+                        @repeat(50, <line
+                          stroke="@pick(#60569e, #e6437d)"
+                          x1="0" x2="@rand(100)"
+                          y1="0" y2="@rand(100)"
+                        />)
+                      </svg>
+                    );
+                  );
+                }
+              </style>
+
+              <css-doodle use="var(--svg-example)"></css-doodle>
             </textarea>
-            <css-doodle grid="1" class="click-to-update">
-              :doodle {
-                @size: 7em;
-                background: @svg(
-                  <svg width='28' height='50' viewBox="0 0 56 100">
-                    <rect width='56' height='100' fill='#60569e'/>
-                    <path
-                      d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100'
-                      fill='none'
-                      stroke='#fff'
-                      stroke-width='1'
-                    />
-                  </svg>
-                );
-              }
-            </css-doodle>
+            <style>
+              :root {
+                --svg-example: (
+                :doodle {
+                  @grid: 5 / 7em;
+                  border: 1px solid #eee;
+                  background-size: 100%;
+                  transform: rotate(@pick(0, 90deg, 180deg, 270deg));
+                  background-repeat: no-repeat;
+                  background-image: @svg(
+                    <svg viewBox="0 0 100 100">
+                      @repeat(50,
+                        <line
+                          stroke="@pick(#60569e, #e6437d)"
+                          x1="0" x2="@rand(100)"
+                          y1="0" y2="@rand(100)"
+                        />
+                      )
+                    </svg>
+                  );
+                }
+              );
+            </style>
+            <css-doodle class="click-to-update" use="var(--svg-example)"></css-doodle>
           </p>
         </section>
 
@@ -1165,6 +1290,28 @@
               @odd {
                 transform: scale(.75);
               }
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="function-@var"></a>@var(expr)</h4>
+          <p>
+            Same as <code>var()</code>. Used to prevent the browser to evaluate the value inside nested vars. Use <code>@var()</code>
+            instead of the default <code>var()</code> whenever possible.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              --bg: #60569e;
+              background: @var(--bg);
+            </textarea>
+            <css-doodle>
+              :doodle {
+                @grid: 5 / 7em;
+              }
+              --bg: #60569e;
+              background: @var(--bg);
+              margin: .5px;
             </css-doodle>
           </p>
         </section>
