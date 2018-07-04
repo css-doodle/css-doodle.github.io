@@ -171,6 +171,12 @@ textarea[code] {
   .cm-s-3024-day span.cm-number {
     color: #2196f3;
   }
+  .cm-s-3024-day span.cm-error {
+    background: none;
+  }
+  .cm-s-3024-day span.cm-attribute, .cm-s-3024-day span.cm-property {
+    color: #E91E63;
+  }
 
 
 .cover {

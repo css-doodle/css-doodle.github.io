@@ -7,9 +7,9 @@
   <meta name="description" content="A web component for drawing patterns with css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?f0c554548c1582bfc436b23b5d0577d0">
+  <link rel="stylesheet" href="style.css?1548875faf671b7a4d023221e22d6614">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="lib/css-doodle-0.4.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -1085,18 +1085,25 @@
             <textarea code>
               background: linear-gradient(
                 @rand(360deg),
-                @pick(#60569e, #e6437d), @last-pick(),
-                @pick(#60569e, #e6437d), @last-pick()
+                @pick(#60569e, #e6437d, #ebbf4d) 0,
+                @last-pick() 33.33%,
+                @pick(#60569e, #e6437d, #ebbf4d) 33.33%,
+                @last-pick() 66.66%,
+                @pick(#60569e, #e6437d, #ebbf4d) 66.66%,
+                @last-pick() 100%
               );
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle { @size: 7em; }
               margin: .5px;
-              background: linear-gradient(
-                @rand(360deg),
-                @pick(#60569e, #e6437d), @last-pick(),
-                @pick(#60569e, #e6437d), @last-pick()
-              );
+              background:
+                linear-gradient(
+                  @rand(360deg),
+                  @pick(#60569e, #e6437d, #ebbf4d) 0, @last-pick() 33.33%,
+                  @pick(#60569e, #e6437d, #ebbf4d) 33.33%, @last-pick() 66.66%,
+                  @pick(#60569e, #e6437d, #ebbf4d) 66.66%, @last-pick() 100%
+                );
+              background-repeat: no-repeat;
             </css-doodle>
           </p>
         </section>
@@ -1112,6 +1119,13 @@
               border-radius:
                   @repeat(4, @rand(20%, 100%))
                 / @repeat(4, @rand(20%, 100%));
+
+              /* dots */
+              :after {
+                background: #@repeat(6,
+                  @pick(@rand(0, 9), @rand(a, f))
+                );
+              }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle { @size: 7em; }
@@ -1120,6 +1134,15 @@
               border-radius:
                   @repeat(4, @rand(20%, 100%))
                 / @repeat(4, @rand(20%, 100%));
+              :after {
+                content: '';
+                position: absolute;
+                left: @rand(20%, 80%);
+                top: @rand(20%, 80%);
+                @size: 5px;
+                border-radius: 50%;
+                background: #@repeat(6, @pick(@rand(0, 9), @rand(a, f)));
+              }
             </css-doodle>
           </p>
         </section>
@@ -1182,9 +1205,7 @@
                 --svg-example: (
                 :doodle {
                   @grid: 5 / 7em;
-                  border: 1px solid #eee;
                   background-size: 100%;
-                  transform: rotate(@pick(0, 90deg, 180deg, 270deg));
                   background-repeat: no-repeat;
                   background-image: @svg(
                     <svg viewBox="0 0 100 100">
