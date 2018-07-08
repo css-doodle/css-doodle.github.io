@@ -7,9 +7,9 @@
   <meta name="description" content="A web component for drawing patterns with css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?1548875faf671b7a4d023221e22d6614">
+  <link rel="stylesheet" href="style.css?590530f0031544b658345065822a097e">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.0/css-doodle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.1/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -80,7 +80,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.0/css-doodle.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.1/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -90,7 +90,7 @@
       <p>If cdnjs is not ready, just use:</p>
       <p>
         <textarea code>
-          <script src="https://css-doodle.com/lib/css-doodle-0.4.0.min.js"></script>
+          <script src="https://css-doodle.com/lib/css-doodle-0.4.1.min.js"></script>
         </textarea>
       </p>
       <p>You can also install it from <a href="http://npmjs.org/package/css-doodle">npm</a> and import the module in javascript:
@@ -154,6 +154,7 @@
               <li> <a href="#function-@last">@last-rand</a></li>
               <li> <a href="#function-@repeat">@repeat</a></li>
               <li> <a href="#function-@multiple">@multiple</a></li>
+              <li> <a href="#function-@n">@n</a></li>
               <li> <a href="#function-@svg">@svg</a></li>
               <li> <a href="#function-@Math">@&lt;Math&gt;</a></li>
               <li> <a href="#function-@calc">@calc</a></li>
@@ -1028,6 +1029,9 @@
               }
             </css-doodle>
           </p>
+          <p class="alias">
+            Alias: <code>@pick-n</code> or <code>@pn</code>
+          </p>
         </section>
 
         <section>
@@ -1074,6 +1078,9 @@
               }
             </css-doodle>
           </p>
+          <p class="alias">
+            Alias: <code>@r</code>
+          </p>
         </section>
 
         <section>
@@ -1106,12 +1113,15 @@
               background-repeat: no-repeat;
             </css-doodle>
           </p>
+          <p class="alias">
+            Alias: <code>@lp</code> and <code>@lr</code>, respectively
+          </p>
         </section>
 
         <section>
           <h4><a name="function-@repeat"></a>@repeat(times, value)</h4>
           <p>
-            Duplicate the given value:
+            Compose the given value multiple times.
             <br/><span class="tip">(try to click the doodle)</span>
           </p>
           <p class="has-preview">
@@ -1148,16 +1158,45 @@
         </section>
 
         <section>
+          <h4><a name="function-@n"></a>@n()</h4>
+          <p>
+            Used only inside <code>@repeat</code> and <code>@multiple</code> to indicate the
+            current repeating time.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: #60569e;
+              margin: 20%;
+              box-shadow: @multiple(5, (
+                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+              ));
+            </textarea>
+            <css-doodle grid="5" class="click-to-update">
+              :doodle { @size: 7em; }
+              background: #60569e;
+              margin: 20%;
+              box-shadow: @multiple(5, (
+                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+              ));
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
           <h4><a name="function-@multiple"></a>@multiple(times, value)</h4>
           <p>
-            Compose the given value multiple times, seperated with comma.
-            <br/><span class="tip">(try to click the doodle)</span>
+            Same as <code>@repeat()</code>, but seperated with comma.
           </p>
           <p class="has-preview">
             <textarea code>
               background: linear-gradient(
                 @rand(360deg),
-                @multiple(50, @pick(#e6437d, #60569e, #fff))
+                @multiple(3, (
+                  @pick-n(#60569e, #e6437d, #ebbf4d)
+                    calc((@n() - 1) * 100% / 3),
+                  @lp()
+                    calc(@n() * 100% / 3)
+                ))
               );
             </textarea>
             <css-doodle grid="5" class="click-to-update">
@@ -1167,9 +1206,16 @@
               margin: .5px;
               background: linear-gradient(
                 @rand(360deg),
-                @multiple(50, @pick(#e6437d, #60569e, #fff))
+                @multiple(3, (
+                  @pick-n(#60569e, #e6437d, #ebbf4d)
+                    calc((@n() - 1) * 100% / 3),
+                  @lp() calc(@n() * 100% / 3)
+                ))
               );
             </css-doodle>
+          </p>
+          <p class="alias">
+            Alias: <code>@multi</code>
           </p>
         </section>
 
@@ -1186,11 +1232,11 @@
                   --svg-example: (
                     /* ... */
                     background-image: @svg(
-                      <svg viewBox="0 0 100 100">
-                        @repeat(50, <line
+                      <svg viewBox="0 0 100 200">
+                        @repeat(50, <path
+                          fill="none"
                           stroke="@pick(#60569e, #e6437d)"
-                          x1="0" x2="@rand(100)"
-                          y1="0" y2="@rand(100)"
+                          d="M0, 0 L@rand(100), @rand(200)"
                         />)
                       </svg>
                     );
@@ -1204,18 +1250,19 @@
               :root {
                 --svg-example: (
                 :doodle {
-                  @grid: 5 / 7em;
+                  @grid: 1 / 7em  14em;
                   background-size: 100%;
                   background-repeat: no-repeat;
                   background-image: @svg(
-                    <svg viewBox="0 0 100 100">
-                      @repeat(50,
-                        <line
-                          stroke="@pick(#60569e, #e6437d)"
-                          x1="0" x2="@rand(100)"
-                          y1="0" y2="@rand(100)"
-                        />
-                      )
+                    <svg viewBox="0 0 100 200">
+                      @repeat(50, <path
+                        fill="none"
+                        stroke="@pick(#60569e, #e6437d)"
+                        d=`
+                          M0, 0,
+                          L@rand(100), @rand(200)
+                        `
+                      />)
                     </svg>
                   );
                 }
@@ -1318,8 +1365,7 @@
         <section>
           <h4><a name="function-@var"></a>@var(expr)</h4>
           <p>
-            Same as <code>var()</code>. Used to prevent the browser to evaluate the value inside nested vars. Use <code>@var()</code>
-            instead of the default <code>var()</code> whenever possible.
+            Same as <code>var()</code>. Used to prevent the browser from evaluating the value inside nested vars.
           </p>
           <p class="has-preview">
             <textarea code>

@@ -367,6 +367,11 @@ textarea[code] {
       font-family: monospace;
       margin: 0 2px;
     }
+    .docs p.alias code {
+      border: 1px solid #dee9e3;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
     .docs p .tip {
       font-size: .8em;
       color: #aaa;
@@ -394,14 +399,14 @@ textarea[code] {
         }
       }
     .docs > section {
-      margin-bottom: 4em;
+      margin-bottom: 5em;
     }
     .docs article {
-      margin-bottom: 4em;
+      margin-bottom: 5em;
     }
 
     .docs article > section {
-      margin-bottom: 3.6em;
+      margin-bottom: 4em;
     }
   .docs .list-items {
     padding-left: 1em;
