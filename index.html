@@ -1161,31 +1161,6 @@
         </section>
 
         <section>
-          <h4><a name="function-@n"></a>@n()</h4>
-          <p>
-            Used only inside <code>@repeat</code> and <code>@multiple</code> to indicate the
-            current repeating count.
-          </p>
-          <p class="has-preview">
-            <textarea code>
-              background: #60569e;
-              margin: 20%;
-              box-shadow: @multiple(5, (
-                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
-              ));
-            </textarea>
-            <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
-              background: #60569e;
-              margin: 20%;
-              box-shadow: @multiple(5, (
-                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
-              ));
-            </css-doodle>
-          </p>
-        </section>
-
-        <section>
           <h4><a name="function-@multiple"></a>@multiple(times, value)</h4>
           <p>
             Same as <code>@repeat()</code>, but seperated with comma.
