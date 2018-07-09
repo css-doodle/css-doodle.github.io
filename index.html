@@ -1012,7 +1012,7 @@
         <section>
           <h4><a name="function-@pick-by-turn"></a>@pick-by-turn(v1, v2,...)</h4>
           <p>
-            Pick a value from the given list on by one.
+            Pick a value from the given list one by one.
           </p>
           <p class="has-preview">
             <textarea code>
@@ -1219,6 +1219,31 @@
           </p>
           <p class="alias">
             Alias: <code>@multi</code>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="function-@n"></a>@n()</h4>
+          <p>
+            Used only inside <code>@repeat</code> and <code>@multiple</code> functions to indicate the
+            current repeating count.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: #60569e;
+              margin: 20%;
+              box-shadow: @multiple(5, (
+                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+              ));
+            </textarea>
+            <css-doodle grid="5" class="click-to-update">
+              :doodle { @size: 7em; }
+              background: #60569e;
+              margin: 20%;
+              box-shadow: @multiple(5, (
+                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+              ));
+            </css-doodle>
           </p>
         </section>
 
