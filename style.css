@@ -377,7 +377,8 @@ textarea[code] {
         .docs .has-preview {
           display: block;
         }
-        .docs .has-preview .code-sample {
+        .docs .has-preview .code-sample,
+        .docs .no-preview .code-sample {
           width: 100%;
         }
         .docs .has-preview css-doodle {
