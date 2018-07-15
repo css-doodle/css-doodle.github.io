@@ -102,26 +102,6 @@
         60%, 68%, var(--n)
       );
     `),
-    circles: indent(`
-      :doodle {
-        @grid: 10 / 85%
-      }
-
-      transition: @rand(500ms) ease;
-      margin: -.2px;
-
-      background: hsl(
-        calc(200 + 2 * @row() * @col()),
-        70%, 70%
-      );
-
-      clip-path: polygon(@pick(
-        '0 0, 100% 0, 100% 100%',
-        '0 0, 100% 0, 0 100%',
-        '0 0, 100% 100%, 0 100%',
-        '100% 0, 100% 100%, 0 100%'
-      ));
-    `),
     dashed: indent(`
       :doodle {
         @grid: 1x10 / 85%;

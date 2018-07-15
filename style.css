@@ -65,13 +65,9 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
+    "Open Sans",
     "Helvetica Neue",
-    Helvetica,
-    Arial,
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol";
+    sans-serif;
 }
 
 .oldie body:after {
@@ -96,42 +92,59 @@ body {
 }
 
 .wrap {
-  max-width: 53.125em;
+  max-width: 54em;
   margin: 0 auto;
   padding: 0 2em;
 }
 
 css-doodle {
-  color: transparent;
+  --flags: (
+    :doodle { @grid: 1x28; }
+    clip-path: polygon(0 0, 100% 0, 50% 1%);
+    background-color: hsla(
+      calc(3.5 * @i() + 180), 80%, 70%, @r(.8)
+    );
+    animation: ani 1s cubic-bezier(.175, .885, .32, 1.275);
+    animation-delay: @r(.1s, 1.5s);
+    animation-fill-mode: forwards;
+    @keyframes ani {
+      to {
+        clip-path: polygon(
+          0 0, 100% 0,
+          @repeat(2, @r(20%, 80%, .1))
+        );
+      }
+    }
+  )
 }
-  css-doodle:not(:defined) {
-    visibility: hidden;
-  }
-  css-doodle[flags] {
-    display: block;
-    width: 100%;
-    height: 20vh;
-    max-height: 10em;
-    overflow: hidden;
-    min-width: 900px;
-    margin: 0 auto;
-  }
-  css-doodle[docs-bg] {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    width: 100vw;
-    height: 100%;
-  }
-  css-doodle.click-to-update {
-    cursor: pointer;
-  }
+
+css-doodle:not(:defined) {
+  visibility: hidden;
+}
+css-doodle[use*="flags"] {
+  display: block;
+  width: 100%;
+  height: 20vh;
+  max-height: 10em;
+  overflow: hidden;
+  min-width: 900px;
+  margin: 0 auto;
+}
+css-doodle[docs-bg] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100%;
+}
+css-doodle.click-to-update {
+  cursor: pointer;
+}
 
 textarea[code] {
   width: 100%;
   font-size: 1em;
-  font-family: monospace;
   resize: none;
   border: none;
 }
@@ -140,6 +153,10 @@ textarea[code] {
   letter-spacing: -1.5px;
 }
 
+.CodeMirror {
+  font-family: "Operator Mono SSm A","Operator Mono SSm B", monospace;
+  font-size: 16px;
+}
 .code-sample .CodeMirror {
   height: auto;
   padding: 1em;
@@ -221,36 +238,15 @@ textarea[code] {
       padding: 8px 12px;
       position: relative;
       transition: all .2s;
-      border: 1px solid currentColor;
+      border: 1px solid #6C6DA2;
       position: relative;
-      --spark: (
-        :doodle { @grid: 1x40 / 100%; }
-        @size: @pick(1px, 2px);
-        @place-cell: center;
-        border-radius: 50%;
-        background: hsla(@rand(360), 70%, 70%, @rand(.9));
-        animation: explode 1s linear, fade 1s linear;
-        animation-fill-mode: both;
-        animation-delay: calc(@rand(600ms) * -1);
-        @keyframes explode { to {
-          transform: translate3d(
-            @rand(-5em, 5em),
-            @rand(-5em, 5em),
-            0
-          );
-        } }
-        @keyframes fade {
-          80% { opacity: 1 }
-          100% { opacity: 0 }
-        }
-      );
     }
       .cover nav a:hover {
-        color: rgba(174, 172, 251, .9);
-        background: rgba(174, 172, 251, .09);
+        color: rgba(174, 172, 251, 1);
+        background: rgba(174, 172, 251, .1);
       }
       .cover nav a + a {
-        border-left: none;
+        margin-left: -1px;
       }
       .cover nav a:first-child {
         border-radius: 4px 0 0 4px;
@@ -258,20 +254,12 @@ textarea[code] {
       .cover nav a:last-child {
         border-radius: 0 4px 4px 0;
       }
-        .cover nav css-doodle {
-          position: absolute;
-          left: 0; top: 0;
-          display: none;
-        }
-        .cover nav a:hover css-doodle {
-          display: block;
-        }
 
   @media (max-width: 30.125em) {
     .cover h1 {
       font-size: 2.2em;
     }
-    css-doodle[flags] {
+    css-doodle[use*="flags"] {
       transform: translateX(-40%);
     }
   }
@@ -284,7 +272,7 @@ textarea[code] {
   margin: 6em auto;
   display: flex;
   align-items: center;
-  height: 420px;
+  height: 425px;
 }
   .playground .doodle {
     overflow: hidden;
@@ -317,7 +305,6 @@ textarea[code] {
         content: none;
       }
     .playground .source .CodeMirror {
-      font-size: 120%;
       line-height: 1.2;
       padding: .5em 1em;
       width: 100%;
@@ -359,19 +346,17 @@ textarea[code] {
     z-index: 2;
   }
   .docs p  {
-    font-size: 120%;
+    font-size: 1.2em;
     line-height: 1.6;
     color: #6c6079;
     margin-bottom: 1em;
   }
     .docs p code {
       font-family: monospace;
-      margin: 0 2px;
-    }
-    .docs p.alias code {
-      border: 1px solid #dee9e3;
       padding: 2px 5px;
+      border: 1px solid #dee9e3;
       border-radius: 3px;
+      margin: 0 2px;
     }
     .docs p .tip {
       font-size: .8em;
@@ -380,8 +365,9 @@ textarea[code] {
     .docs .has-preview {
       display: flex;
     }
-      .docs .has-preview .code-sample {
-        width: 61.8%;
+      .docs .has-preview .code-sample,
+      .docs .no-preview .code-sample {
+        width: calc(100% - 10em);
       }
       .docs .has-preview css-doodle {
         margin-left: 1.4em;
@@ -659,7 +645,6 @@ textarea[code] {
     max-width: 90%;
     transform: translate3d(-50%, -50%, 0);
     line-height: 1.4;
-    font-size: 1.2em;
     overflow: hidden;
   }
     .source:after,

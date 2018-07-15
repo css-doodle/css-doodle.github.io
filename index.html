@@ -7,35 +7,14 @@
   <meta name="description" content="A web component for drawing patterns with CSS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?590530f0031544b658345065822a097e">
+  <link rel="stylesheet" href="style.css?2d7247039d0896fcfe14d0409de7799b">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.2/css-doodle.min.js"></script>
 </head>
 <body>
 
   <div class="cover">
-    <css-doodle grid="1x28" flags>
-      clip-path: polygon(
-        0 0, 100% 0, 50% 1%
-      );
-      background-color: hsla(
-        calc(3.5 * @index() + 180), 80%, 70%,
-        @rand(.8)
-      );
-      animation: ani 1s cubic-bezier(.175, .885, 0.32, 1.275);
-      animation-delay: @rand(.1s, 1.5s);
-      animation-fill-mode: forwards;
-      @keyframes ani {
-        to {
-          clip-path: polygon(
-            0 0,
-            100% 0,
-            @rand(20%, 80%, .1) @rand(20%, 100%, .1)
-          );
-        }
-      }
-    </css-doodle>
-
+    <css-doodle use="var(--flags)"></css-doodle>
     <header>
       <h1>&lt; <em>css-doodle</em> /&gt; </h1>
       <p>A web component for drawing patterns with CSS</p>
@@ -178,20 +157,19 @@
         <div class="container">
           <css-doodle>
             :doodle {
-              @grid: 11 / 100vmax;
+              @grid: 18 / 100vmax;
               background: #0a0c27;
             }
-            --n: calc(
-                @abs(@abs(@row() - 6)
-              + @abs(@col() - 6) - 11) / 11
+            background: hsl(
+              calc(180 + 1.5 * @row() * @col()), 50%, 70%
             );
-            margin: -10%;
-            transform: rotate(45deg);
-            border: 1px solid;
-            border-color: hsla(
-              calc(var(--n) * 280 + 120), 60%, 68%,
-              var(--n)
-            );
+            margin: -.5px;
+            clip-path: polygon(@pick(
+              '0 0, 100% 0, 100% 100%',
+              '0 0, 100% 0, 0 100%',
+              '0 0, 100% 100%, 0 100%',
+              '100% 0, 100% 100%, 0 100%'
+            ));
           </css-doodle>
         </div>
         <textarea code></textarea>
@@ -201,7 +179,7 @@
         <h3><a name="grid"></a>Grid</h3>
 
         <p>
-          The number of rows and columns in the grid is defined by the <em>"grid"</em> attribute on the element,
+          The number of rows and columns in the grid is defined by the <code>grid</code> attribute on the element,
           ranged from <em>1</em> to <em>32</em>. It's default to be <em>1x1</em> when no value or 0 is given,
         </p>
 
@@ -214,7 +192,7 @@
           </textarea>
           <css-doodle grid="5">
             :doodle {
-              @size: 7em;
+              @size: 8em;
             }
             background: #60569e;
             margin: .5px;
@@ -222,7 +200,7 @@
         </p>
 
         <p>
-           The following formats of <em>"grid"</em> value are recognizable:
+           The following formats of <code>grid</code> value are recognizable:
         </p>
         <div class="list-items">
           <ul>
@@ -263,8 +241,9 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @grid: 5 / 7em;
+                @grid: 5 / 8em;
                 --s: 0;
+                grid-gap: 1px;
               }
               :doodle(:hover) {
                 --s: 1;
@@ -276,7 +255,6 @@
 
               transform-origin: 50% 50%;
               background: #60569e;
-              margin: .5px;
             </css-doodle>
           </p>
         </section>
@@ -285,13 +263,13 @@
           <h4><a name="selector-:container"></a>:container</h4>
           <p>
             The <code>:container</code>
-            is the container element that holds all the cells. It's styled using the Grid Layout.
+            is the container element that holds all the cells. It's styled using Grid Layout.
             And you may want to set <code>grid-gap</code> inside it.
           </p>
           <p class="has-preview">
             <textarea code>
               :doodle {
-                @grid: 8 / 7em;
+                @grid: 8 / 8em;
                 overflow: hidden;
               }
               :container {
@@ -301,7 +279,7 @@
             </textarea>
             <css-doodle>
               :doodle {
-                @grid: 8 / 7em;
+                @grid: 8 / 8em;
                 overflow: hidden;
               }
               :container {
@@ -310,6 +288,16 @@
               }
               background: #60569e;
             </css-doodle>
+          </p>
+          <p>
+            It inherits all the grid properties from <code>:doodle</code> so the following code also works:
+          </p>
+          <p class="no-preview">
+            <textarea code>
+              :doodle {
+                grid-gap: 1px;
+              }
+            </textarea>
           </p>
         </section>
 
@@ -324,13 +312,13 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               @even {
                 background: #60569e;
                 :after {
                   content: '@index()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -349,13 +337,13 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               @odd {
                 background: #60569e;
                 :after {
                   content: '@index()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -374,7 +362,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #f5f5f5;
               margin: .5px;
@@ -382,7 +370,7 @@
                 background: #60569e;
                 :after {
                   content: '@index()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -401,7 +389,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #f5f5f5;
               margin: .5px;
@@ -428,7 +416,7 @@
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #f5f5f5;
               transition: .2s;
@@ -436,11 +424,47 @@
                 background: #60569e;
                 :after {
                   content: '@index()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
               margin: .5px;
+            </css-doodle>
+          </p>
+          <p>The selector can be applyied multiple times.</p>
+          <p class="has-preview">
+            <textarea code>
+              @random {
+                border-top: 1px solid #60569e;
+              }
+              @random {
+                border-left: 1px solid #60569e;
+              }
+              @random {
+                :after {
+                  content: '';
+                  background: @pick(#60569e, #e6437d, #ebbf4d);
+                  @size: 2px;
+                }
+              }
+            </textarea>
+            <css-doodle class="click-to-update">
+              :doodle {
+                @grid: 20 / 8em;
+              }
+              @random {
+                border-top: 1px solid #60569e;
+              }
+              @random {
+                border-left: 1px solid #60569e;
+              }
+              @random {
+                :after {
+                  content: '';
+                  background: @pick(#60569e, #e6437d, #ebbf4d);
+                  @size: 2px;
+                }
+              }
             </css-doodle>
           </p>
         </section>
@@ -456,7 +480,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #f5f5f5;
               margin: .5px;
@@ -464,7 +488,7 @@
                 background: #60569e;
                 :after {
                   content: '@row()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -481,7 +505,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #f5f5f5;
               margin: .5px;
@@ -489,14 +513,14 @@
                 background: #60569e;
                 :after {
                   content: '@row()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
               @row(even) {
                 :after {
                   content: '@row()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -515,7 +539,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #f5f5f5;
               margin: .5px;
@@ -523,7 +547,7 @@
                 background: #60569e;
                 :after {
                   content: '@col()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -540,7 +564,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #f5f5f5;
               margin: .5px;
@@ -548,7 +572,7 @@
                 background: #60569e;
                 :after {
                   content: '@col()';
-                  font-size: .7em;
+                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -574,7 +598,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @grid: 3 / 7em;
+                @grid: 3 / 8em;
               }
               background: #60569e;
               margin: .5px;
@@ -586,16 +610,16 @@
             <textarea code>
               <css-doodle>
                 :doodle {
-                  @grid: 8 / 7em;
+                  @grid: 8 / 8em;
                 }
               </css-doodle>
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @grid: 8 / 7em;
+                @grid: 8 / 8em;
+                grid-gap: 1px;
               }
               background: #60569e;
-              margin: .5px;
             </css-doodle>
           </p>
 
@@ -604,23 +628,23 @@
             <textarea code>
               <css-doodle>
                 :doodle {
-                  @grid: 30x1 / 7em 12em;
+                  @grid: 30x1 / 8em 12em;
+                  grid-row-gap: 1px;
                 }
                 background: #60569e;
                 width: @rand(5%, 100%);
-                margin: .5px 0;
               </css-doodle>
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle {
-                @grid: 30x1 / 7em 12em;
+                @grid: 30x1 / 8em 12em;
+                grid-row-gap: 1px;
               }
               transition: .2s ease;
               transition-delay: @rand(500ms);
               background: #60569e;
               will-change: width;
               width: @rand(5%, 100%);
-              margin: .5px 0;
             </css-doodle>
           </p>
         </section>
@@ -633,8 +657,9 @@
               <style>
                 :root {
                   --my-rule: (
-                    :doodle { @grid: 5 / 7em; }
+                    :doodle { @grid: 5 / 8em; }
                     background: #60569e;
+                    clip-path: circle(100% at 0 0);
                   );
                 }
               </style>
@@ -642,27 +667,26 @@
               <css-doodle>
                 @use: var(--my-rule);
                 /* other styles  */
-                margin: .5px;
               </css-doodle>
             </textarea>
              <style>
               :root {
                 --my-rule: (
-                  :doodle { @grid: 5 / 7em; }
+                  :doodle { @grid: 5 / 8em; }
                   background: #60569e;
+                  clip-path: circle(100% at 0 0);
                 );
               }
             </style>
             <css-doodle grid="5">
               @use: var(--my-rule);
-              margin: .5px;
             </css-doodle>
           </p>
 
           <p>
             You can add multiple rules in a natural way:
           </p>
-           <p>
+           <p class="no-preview">
             <textarea code>
               <css-doodle>
                 @use: var(--my-rule), var(--another-rule);
@@ -671,7 +695,7 @@
             </textarea>
           </p>
           <p>Or define it in the <code>use</code> attribute on the element.
-           <p>
+           <p class="no-preview">
             <textarea code>
               <css-doodle use="var(--my-rule)"></css-doodle>
             </textarea>
@@ -689,25 +713,25 @@
               @size: 4em 5em;
               /* width: 4em; height: 5em; */
 
-              @min-size: 7em;
-              /* min-width: 7em; min-height: 7em; */
+              @min-size: 8em;
+              /* min-width: 8em; min-height: 8em; */
 
-              @max-size: 7em;
-              /* max-width: 7em; max-height: 7em; */
+              @max-size: 8em;
+              /* max-width: 8em; max-height: 8em; */
             </textarea>
             <css-doodle>
               :doodle {
-                @grid: 1 / 7em;
+                @grid: 1 / 8em;
               }
               @size: 10em;
               @size: 4em 5em;
-              @min-size: 7em;
-              @max-size: 7em;
+              @min-size: 8em;
+              @max-size: 8em;
               background: #60569e;
               :after {
-                content: '7em x 7em';
+                content: '8em x 8em';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -728,7 +752,7 @@
 
             <css-doodle>
               :doodle {
-                @grid: 1x5 / 7em;
+                @grid: 1x5 / 8em;
                 border: 1px solid #60569e;
               }
               @size: 1.6em;
@@ -741,7 +765,7 @@
               :after {
                 content: '@index()';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -753,7 +777,7 @@
           <p class="has-preview">
             <textarea code>
               :doodle {
-                @grid: 7 / 7em;
+                @grid: 7 / 8em;
                 @shape: circle;
               }
               @even {
@@ -764,7 +788,7 @@
             </textarea>
             <css-doodle>
               :doodle {
-                @grid: 7 / 7em;
+                @grid: 7 / 8em;
                 @shape: circle;
               }
               @even {
@@ -790,17 +814,13 @@
               @grid: 7 / 100vmax;
               background: #0a0c27;
             }
-
             @shape: clover 5;
             background: hsla(
-              calc(360 - @index() * 4),
-              70%, 68%, @rand(.8)
+              calc(360 - @i() * 4), 70%, 68%, @r(.8)
             );
             transform:
-              scale(@rand(.2, 1.5))
-              translate(
-                @rand(-50%, 50%), @rand(-50%, 50%)
-              );
+              scale(@r(.2, 1.5))
+              translate(@multi(2, @r(-50%, 50%)));
           </css-doodle>
         </div>
         <textarea code></textarea>
@@ -819,14 +839,14 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #60569e;
               margin: .5px;
               :after {
                 content: '@index()';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -846,14 +866,14 @@
             </textarea>
             <css-doodle grid="5">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               background: #60569e;
               margin: .5px;
               :after {
                 content: '@row()';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -865,7 +885,7 @@
           <p class="has-preview">
             <textarea code>
               :doodle {
-                @grid: 4x2 / 7em 9em;
+                @grid: 4x2 / 8em 9em;
               }
               :after {
                 content: '@row() / @max-row()';
@@ -873,14 +893,14 @@
             </textarea>
             <css-doodle>
               :doodle {
-                @grid: 4x2 / 7em 9em;
+                @grid: 4x2 / 8em 9em;
               }
               background: #60569e;
               margin: .5px;
               :after {
                 content: '@row() / @max-row()';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -896,13 +916,13 @@
               }
             </textarea>
             <css-doodle grid="5">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               background: #60569e;
               margin: .5px;
               :after {
                 content: '@col()';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -914,7 +934,7 @@
           <p class="has-preview">
             <textarea code>
               :doodle {
-                @grid: 2x4 / 7em 9em;
+                @grid: 2x4 / 8em 9em;
               }
               :after {
                 content: '@col()/@max-col()';
@@ -922,14 +942,14 @@
             </textarea>
             <css-doodle>
               :doodle {
-                @grid: 2x4 / 7em 9em;
+                @grid: 2x4 / 8em 9em;
               }
               background: #60569e;
               margin: .5px;
               :after {
                 content: '@col()/@max-col()';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -941,7 +961,7 @@
           <p class="has-preview">
             <textarea code>
               :doodle {
-                @grid: 3 / 7em;
+                @grid: 3 / 8em;
               }
               :after {
                 content: '@index() / @size()';
@@ -949,14 +969,14 @@
             </textarea>
             <css-doodle>
               :doodle {
-                @grid: 3 / 7em;
+                @grid: 3 / 8em;
               }
               background: #60569e;
               margin: .5px;
               :after {
                 content: '@index() / @size()';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -971,13 +991,13 @@
               );
             </textarea>
             <css-doodle grid="5">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               --alpha: calc(@row() * @col() / @size());
               background: rgba(96, 86, 158, var(--alpha));
               :after {
                 content: '@calc(@row() * @col())';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -997,13 +1017,13 @@
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               opacity: @pick(1, .6, .3, .1);
               background: #60569e;
               :after {
                 content: '@pick(1, 2, 3, 4)';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -1025,13 +1045,13 @@
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               opacity: @pick-by-turn(1, .6, .3, .1);
               background: #60569e;
               :after {
                 content: '@pick-by-turn(1, 2, 3, 4)';
                 color: #fff;
-                font-size: .7em;
+                font-size: .8em;
               }
             </css-doodle>
           </p>
@@ -1056,7 +1076,7 @@
               );
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               background: rgba(96, 86, 158, @rand(.9));
               transition: .2s ease @rand(200ms);
               will-change: transform;
@@ -1074,11 +1094,11 @@
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               background: #60569e;
               margin: .5px;
               :after {
-                font-size: .7em;
+                font-size: .8em;
                 content: '@rand(a, z)';
                 color: #fff;
               }
@@ -1107,7 +1127,7 @@
               );
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               margin: .5px;
               background:
                 linear-gradient(
@@ -1120,7 +1140,7 @@
             </css-doodle>
           </p>
           <p class="alias">
-            Alias: <code>@lp</code> and <code>@lr</code>, respectively
+            Alias: <code>@lp</code> and <code>@lr</code>, respectively.
           </p>
         </section>
 
@@ -1144,7 +1164,7 @@
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               background: #60569e;
               margin: .5px;
               border-radius:
@@ -1182,7 +1202,7 @@
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle {
-                @size: 7em;
+                @size: 8em;
               }
               margin: .5px;
               background: linear-gradient(
@@ -1215,7 +1235,7 @@
               ));
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               background: #60569e;
               margin: 20%;
               box-shadow: @multiple(5, (
@@ -1256,7 +1276,7 @@
               :root {
                 --svg-example: (
                 :doodle {
-                  @grid: 1 / 7em  14em;
+                  @grid: 1 / 8em  14em;
                   background-size: 100%;
                   background-repeat: no-repeat;
                   background-image: @svg(
@@ -1295,7 +1315,7 @@
               );
             </textarea>
             <css-doodle grid="5">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               --num: @abs(@abs(@row() - 3) + @abs(@col() - 3) - 5);
               background: rgba(
                 96, 86, 158, calc(var(--num) / 5)
@@ -1307,35 +1327,28 @@
 
           <p class="has-preview">
             <textarea code>
-              :doodle { @grid: 60x1 / 7em 15em; }
-              @size: 75.8% 1px;
-              justify-self: center;
-
-              background: rgba(
-                96, 86, 158, calc(1 - @index() / @size())
-              );
-
-              transform:
-                rotate(15deg)
-                translateX(
-                  calc(@sin(@index() / 4) * @PI() * 10px)
-                );
-            </textarea>
-            <css-doodle>
               :doodle {
-                @grid: 60x1 / 7em 15em;
+                @grid: 60x1 / 8em 15em;
               }
               @size: 75.8% 1px;
               justify-self: center;
-              background: rgba(
-                96, 86, 158, calc(1 - @index() / 60)
-              );
-              will-change: transform;
+              background: #e6437d;
+              opacity: calc(1 - @i() / @size());
               transform:
                 rotate(-15deg)
-                translateX(
-                  calc(@sin(@index() / 4) * @PI() * 10px)
-                );
+                translateX(calc(@sin(@i() / 4) * @PI() * 10px));
+            </textarea>
+            <css-doodle>
+              :doodle {
+                @grid: 60x1 / 8em 15em;
+              }
+              @size: 75.8% 1px;
+              justify-self: center;
+              background: #60569e;
+              opacity: calc(1 - @i() / @size());
+              transform:
+                rotate(-15deg)
+                translateX(calc(@sin(@i() / 4) * @PI() * 10px));
             </css-doodle>
           </p>
         </section>
@@ -1353,7 +1366,7 @@
             </textarea>
             <css-doodle>
               :doodle {
-                @grid: 5 / 7em;
+                @grid: 5 / 8em;
               }
               background: #60569e;
               :after {
@@ -1376,15 +1389,20 @@
           <p class="has-preview">
             <textarea code>
               --bg: #60569e;
-              background: @var(--bg);
+              background: linear-gradient(
+                @rand(360deg),
+                @var(--bg) 50%, transparent 50%
+              );
             </textarea>
-            <css-doodle>
+            <css-doodle class="click-to-update">
               :doodle {
-                @grid: 5 / 7em;
+                @grid: 5 / 8em;
               }
               --bg: #60569e;
-              background: @var(--bg);
-              margin: .5px;
+              background: linear-gradient(
+                @r(360deg),
+                @var(--bg) 50%, transparent 50%
+              );
             </css-doodle>
           </p>
         </section>
@@ -1401,7 +1419,7 @@
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
-              :doodle { @size: 7em; }
+              :doodle { @size: 8em; }
               margin: .5px;
               :after {
                 content: '\@hex(@rand(9632, 9687))';
@@ -1474,7 +1492,7 @@
 
               /* update styles and refresh */
               doodle.update(`
-                :doodle { @grid: 6 / 7em }
+                :doodle { @grid: 6 / 8em }
                 background: rebeccapurple;
                 margin: .5px;
               `);
@@ -1538,7 +1556,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?fbc3b0e37dba249a17c176eb974e97e0"></script>
+  <script src="main.js?7ea17a6a3769dba6edabd8c48d7e8c72"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119113443-1"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-119113443-1');</script>
