@@ -66,11 +66,11 @@
     `),
     lines: indent(`
       :doodle {
-        @grid: 7 / 100%;
+        @grid: 50x1 / 80%;
       }
 
       @place-cell: center;
-      @size: calc(@index() * 1.55%);
+      @size: calc(100% / @size() * @i());
 
       transition: .2s ease;
       transform: rotate(calc(@index() * 5deg));
@@ -127,9 +127,8 @@
 
       :container {
         @size: 120%;
-        transform:
-          scale(8) translate(10%, 7%)
-          rotate(45deg)
+        transform: scale(8)
+          translate(10%, 7%) rotate(45deg)
       }
 
       @place-cell: center;
@@ -138,7 +137,7 @@
       transition: .2s @rand(300ms);
       border-radius: 50%;
       background: @pick(
-        #f9ed69, #f08a5d, #b83b5e, #6a2c70
+        #2fc5cc, #6df1cc, #e3ffc3, #29252c
       );
     `)
   }
@@ -206,8 +205,11 @@
     }, 500);
   });
 
-  document.querySelector('.docs').addEventListener('click', function(e) {
+  document.addEventListener('click', function(e) {
     if (e.target.matches('css-doodle.click-to-update')) {
+      e.target.update();
+    }
+    if (e.target.update && e.target.closest('.example')) {
       e.target.update();
     }
   });

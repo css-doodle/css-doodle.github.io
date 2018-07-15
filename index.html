@@ -160,10 +160,10 @@
               @grid: 18 / 100vmax;
               background: #0a0c27;
             }
-            background: hsl(
-              calc(180 + 1.5 * @row() * @col()), 50%, 70%
-            );
+            --hue: calc(180 + 1.5 * @row() * @col());
+            background: hsl(var(--hue), 50%, 70%);
             margin: -.5px;
+            transition: @r(500ms) ease;
             clip-path: polygon(@pick(
               '0 0, 100% 0, 100% 100%',
               '0 0, 100% 0, 0 100%',
@@ -1152,24 +1152,19 @@
           </p>
           <p class="has-preview">
             <textarea code>
-              border-radius:
-                  @repeat(4, @rand(20%, 100%))
-                / @repeat(4, @rand(20%, 100%));
+              border-radius: @repeat(4, @rand(20%, 100%));
 
               /* dots */
               :after {
-                background: #@repeat(6,
-                  @pick(@rand(0, 9), @rand(a, f))
-                );
+                background: #@repeat(6, @p(@r(0, 9), @r(a, f)));
+                /* ... */
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle { @size: 8em; }
               background: #60569e;
               margin: .5px;
-              border-radius:
-                  @repeat(4, @rand(20%, 100%))
-                / @repeat(4, @rand(20%, 100%));
+              border-radius: @repeat(4, @rand(20%, 100%));
               :after {
                 content: '';
                 position: absolute;
@@ -1361,7 +1356,7 @@
           <p class="has-preview">
             <textarea code>
               :after {
-                content: '@calc(@index() * @index())';
+                content: '@calc(@i() * @i())';
               }
             </textarea>
             <css-doodle>
@@ -1370,7 +1365,7 @@
               }
               background: #60569e;
               :after {
-                content: '@calc(@index() * @index())';
+                content: '@calc(@i() * @i())';
                 color: #fff;
                 font-size: .5em;
               }
@@ -1435,16 +1430,13 @@
           <css-doodle>
             :doodle {
               @grid: 20 / 100vmax;
-              background: #12152f;
+              background: #0a0c27;
               font-family: sans-serif;
             }
             :after {
               content: '\@hex(@rand(0x2500, 0x257f))';
+              color: hsla(@r(360), 70%, 70%, @r(.9));
               font-size: 5vmax;
-              color: hsla(
-                @rand(360), 70%, 70%,
-                @rand(.9)
-              );
             }
           </css-doodle>
         </div>
@@ -1556,7 +1548,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?7ea17a6a3769dba6edabd8c48d7e8c72"></script>
+  <script src="main.js?d985a06102d6a0a9c6fb00b5bbb23dda"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119113443-1"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-119113443-1');</script>
