@@ -858,6 +858,7 @@
             <textarea code>
               :after {
                 content: '@index()';
+                color: #fff;
               }
             </textarea>
             <css-doodle grid="5">
@@ -1067,7 +1068,7 @@
                 content: '@pick-by-turn(1, 2, 3, 4)';
               }
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5">
               :doodle { @size: 8em; }
               opacity: @pick-by-turn(1, .6, .3, .1);
               background: #60569e;
@@ -1114,6 +1115,7 @@
             <textarea code>
               :after {
                 content: '@rand(a, z)';
+                font-size: @r(.4em, 1.2em, .01);
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
@@ -1121,7 +1123,7 @@
               background: #60569e;
               margin: .5px;
               :after {
-                font-size: .8em;
+                font-size: @r(.4em, 1.2em, .01);
                 content: '@rand(a, z)';
                 color: #fff;
               }
@@ -1252,7 +1254,7 @@
                 calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
               ));
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5">
               :doodle { @size: 8em; }
               background: #60569e;
               margin: 20%;
