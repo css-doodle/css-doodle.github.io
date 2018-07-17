@@ -401,6 +401,7 @@ textarea[code] {
     font-size: 1em;
     line-height: 1.4;
     color: #666;
+    margin-bottom: 1.5em;
   }
     .docs .list-items li {
       padding: 2px 5px;

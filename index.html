@@ -7,7 +7,7 @@
   <meta name="description" content="A web component for drawing patterns with CSS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?772e8c69dff4943f6a05697e6fb31d95">
+  <link rel="stylesheet" href="style.css?bf5af24e5ecd928612a23e5265d4531c">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.2/css-doodle.min.js"></script>
 </head>
@@ -180,22 +180,49 @@
 
         <p>
           The number of rows and columns in the grid is defined by the <code>grid</code> attribute on the element,
-          ranged from <em>1</em> to <em>32</em>. It's default to be <em>1x1</em> when no value or 0 is given,
+          ranged from <em>1</em> to <em>32</em>. It's default to be <em>1x1</em> when no value or 0 is given.
         </p>
 
         <p class="has-preview">
           <textarea code>
             <css-doodle grid="5">
+              :doodle {
+                grid-gap: 1px;
+                width: 8em; height; 8em;
+              }
               background: #60569e;
-              margin: .5px;
             </css-doodle>
           </textarea>
           <css-doodle grid="5">
             :doodle {
+              grid-gap: 1px;
               @size: 8em;
             }
             background: #60569e;
-            margin: .5px;
+          </css-doodle>
+        </p>
+
+        <p>The row or column is limited up to <em>1024</em> only when the grid is 1-dimensional: </p>
+        <p class="has-preview">
+          <textarea code>
+            <css-doodle grid="35x1">
+              :doodle {
+                grid-row-gap: 1px;
+                @size: 8em; /* width: 8em; height: 8em; */
+              }
+              background: #60569e;
+              width: @rand(5%, 100%); /* from 5% to 100% by random */
+            </css-doodle>
+          </textarea>
+          <css-doodle grid="35x1" class="click-to-update">
+            :doodle {
+              grid-row-gap: 1px;
+              @size: 8em 12em;
+            }
+            transition: .2s ease @rand(500ms);
+            background: #60569e;
+            will-change: width;
+            width: @rand(5%, 100%);
           </css-doodle>
         </p>
 
@@ -209,10 +236,33 @@
             <li><code>grid = "20"</code></li>
             <li><code>grid = "5x7"</code></li>
             <li><code>grid = "5 x 7"</code></li>
-            <li><code>grid = "5，7"</code></li>
+            <li><code /></li>
             <li><code>grid = "5,7"</code></li>
           </ul>
         </div>
+
+        <p>
+          There's an alternative way to set up the <code>grid</code> by using the <a href="#property-@grid">@grid</a> property.
+        </p>
+        <p class="has-preview">
+          <textarea code>
+            <css-doodle>
+              :doodle {
+                @grid: 5 / 8em;
+              }
+              background: #60569e;
+              transform: scale(@rand(.2, .9));
+            </css-doodle>
+          </textarea>
+          <css-doodle grid="5" class="click-to-update">
+            :doodle {
+              @grid: 5;
+              @size: 8em;
+            }
+            background: #60569e;
+            transform: scale(@r(.2, .9));
+          </css-doodle>
+        </p>
         <div class="sep"></div>
       </article>
 
@@ -232,12 +282,9 @@
               :doodle { --s: 0 }
               :doodle(:hover) { --s: 1 }
 
-              --offset: calc(var(--s) * 100%);
-              transform: translateY(var(--offset));
-
-              transition:
-                .5s cubic-bezier(.175, .885, .32, 1.275)
-                @rand(500ms);
+              transition: .5s cubic-bezier(.175, .885, .32, 1.275);
+              transition-delay: @rand(500ms);
+              transform: translateY(calc(var(--s) * 100%));
             </textarea>
             <css-doodle grid="5">
               :doodle {
@@ -251,7 +298,8 @@
               --offset: calc(var(--s) * 100%);
               transform: translateY(var(--offset));
               will-change: transform;
-              transition: .5s cubic-bezier(.175, .885, .32, 1.275) @rand(500ms);
+              transition: .5s cubic-bezier(.175, .885, .32, 1.275);
+              transition-delay: @rand(500ms);
 
               transform-origin: 50% 50%;
               background: #60569e;
@@ -289,7 +337,7 @@
             </css-doodle>
           </p>
           <p>
-            It inherits all the grid properties from <code>:doodle</code> so the following code also works:
+            It inherits all the grid properties from <code>:doodle</code> so it's why this also works:
           </p>
           <p class="no-preview">
             <textarea code>
@@ -442,7 +490,7 @@
               @random {
                 :after {
                   content: '';
-                  background: @pick(#60569e, #e6437d, #ebbf4d);
+                  background: hsl(@rand(360), 60%, 70%);
                   @size: 2px;
                 }
               }
@@ -460,7 +508,7 @@
               @random {
                 :after {
                   content: '';
-                  background: @pick(#60569e, #e6437d, #ebbf4d);
+                  background: hsl(@rand(360), 60%, 70%);
                   @size: 2px;
                 }
               }
@@ -586,12 +634,13 @@
 
         <section>
           <h4><a name="property-@grid"></a>@grid</h4>
-          <p>Another way to set the <em>"grid"</em> attribute and the rule has higher priority.</p>
+          <p>Another way to set the <code>grid</code> attribute and the rule has higher priority.</p>
           <p class="has-preview">
             <textarea code>
-              <css-doodle>
+              <css-doodle grid="5">
                 :doodle {
                   @grid: 3x3;
+                  @size: 8em;
                 }
               </css-doodle>
             </textarea>
@@ -619,31 +668,6 @@
                 grid-gap: 1px;
               }
               background: #60569e;
-            </css-doodle>
-          </p>
-
-          <p>The row or column is limited up to <em>1024</em> only when the grid is 1-dimensional: </p>
-          <p class="has-preview">
-            <textarea code>
-              <css-doodle>
-                :doodle {
-                  @grid: 30x1 / 8em 12em;
-                  grid-row-gap: 1px;
-                }
-                background: #60569e;
-                width: @rand(5%, 100%);
-              </css-doodle>
-            </textarea>
-            <css-doodle grid="5" class="click-to-update">
-              :doodle {
-                @grid: 30x1 / 8em 12em;
-                grid-row-gap: 1px;
-              }
-              transition: .2s ease;
-              transition-delay: @rand(500ms);
-              background: #60569e;
-              will-change: width;
-              width: @rand(5%, 100%);
             </css-doodle>
           </p>
         </section>
