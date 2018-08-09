@@ -52,16 +52,15 @@
         @shape: circle;
       }
 
-      transition: .2s @rand(.6s);
+      transition: .2s @r(.6s);
       border-radius: @pick(100% 0, 0 100%);
 
       will-change: transform;
-      transform: scale(@rand(.25, 1.25));
+      transform: scale(@r(.25, 1.25));
 
       background: hsla(
         calc(240 - 6 * @row() * @col()),
-        70%, 68%,
-        @rand(.8)
+        70%, 68%, @r(.8)
       );
     `),
     lines: indent(`
@@ -72,13 +71,12 @@
       @place-cell: center;
       @size: calc(100% / @size() * @i());
 
-      transition: .2s ease;
-      transform: rotate(calc(@index() * 5deg));
+      transition: transform .2s ease;
+      transform: rotate(calc(@i() * 5deg));
 
       border-radius: 30%;
       border: 1px solid hsla(
-        calc(10 + 4 * @index()), 70%, 68%,
-        @rand(.8)
+        calc(10 + 4 * @i()), 70%, 68%, @r(.8)
       );
     `),
     triangles: indent(`
@@ -88,8 +86,8 @@
       }
 
       will-change: transform;
-      transition: .4s @rand(.6s);
-      transform: rotate(@rand(360deg));
+      transition: .4s @r(.6s);
+      transform: rotate(@r(360deg));
       @shape: triangle;
 
       --n: calc(
@@ -108,37 +106,17 @@
       }
 
       @place-cell: center;
-      @size: calc(@index() * 10%);
+      @size: calc(@i() * 10%);
 
       border-radius: 50%;
       border-style: dashed;
-      border-width: calc(@index() * 4px);
+      border-width: calc(@i() * 4px);
       border-color: hsla(
-        calc(20 * @index()), 70%, 68%,
-        calc(3 / @index() * .8)
+        calc(20 * @i()), 70%, 68%,
+        calc(3 / @i() * .8)
       );
 
-      transform: rotate(@rand(360deg));
-    `),
-    flow: indent(`
-      :doodle {
-        @grid: 100x1 / 100%;
-      }
-
-      :container {
-        @size: 120%;
-        transform: scale(8)
-          translate(10%, 7%) rotate(45deg)
-      }
-
-      @place-cell: center;
-      @size: calc(100% - @row() * 1%) 20%;
-
-      transition: .2s @rand(300ms);
-      border-radius: 50%;
-      background: @pick(
-        #2fc5cc, #6df1cc, #e3ffc3, #29252c
-      );
+      transform: rotate(@r(360deg));
     `)
   }
 

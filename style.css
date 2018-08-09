@@ -19,23 +19,23 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size:  100%;
+  font-size: 100%;
   font: inherit;
-  vertical-align:  baseline;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display:  block;
+  display: block;
 }
 body {
-  line-height:  1;
+  line-height: 1;
 }
 ol, ul {
-  list-style:  none;
+  list-style: none;
 }
 blockquote, q {
-  quotes:  none;
+  quotes: none;
 }
 blockquote:before,
 blockquote:after,
@@ -235,7 +235,7 @@ textarea[code] {
       text-decoration: none;
       min-width: 5em;
       display: inline-block;
-      padding: 8px 12px;
+      padding: .8em 1em;
       position: relative;
       transition: all .2s;
       border: 1px solid #6C6DA2;
@@ -557,19 +557,18 @@ textarea[code] {
       margin-bottom: 0;
     }
     .basic-shapes .shapes {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
     }
     .basic-shapes .shape {
-      text-align: center;
       display: flex;
+      text-align: center;
       align-items: center;
-      width: 25%;
       margin-bottom: .5em;
     }
       @media (max-width: 695px) {
-        .basic-shapes .shape {
-          width: 33.33%;
+        .basic-shapes .shapes {
+          grid-template-columns: repeat(3, 1fr);
         }
         .basic-shapes .shape:last-child {
           display: none;
