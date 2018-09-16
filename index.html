@@ -889,6 +889,33 @@
               }
             </css-doodle>
           </p>
+          <p class="has-preview">
+            <textarea code>
+              :doodle {
+                @grid: 5x1 / 8em;
+              }
+              @place-cell: center;
+              @size: calc(100% / 5 * @index());
+              opacity: calc(1.1 - 1 / 5 * @index());
+              z-index: calc(5 - @index());
+              background: #60569e;
+            </textarea>
+            <css-doodle grid="5">
+              :doodle { @grid: 5x1 / 8em; }
+              @place-cell: center;
+              @size: calc(100% / @size() * @index());
+              z-index: calc(@size() - @i());
+              opacity: calc(1.1 - 1 / @size() * @index());
+              background: #60569e;
+              :after {
+                content: @index();
+                position: absolute;
+                top: .2em; right: .2em;
+                color: #fff;
+                font-size: .6em;
+              }
+            </css-doodle>
+          </p>
           <p class="alias">
             Alias: <code>@i</code>
           </p>
