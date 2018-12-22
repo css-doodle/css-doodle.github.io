@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="lib/codemirror/style.css">
   <link rel="stylesheet" href="style.css?257432db52f6eb97971896348a77bbb9">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.11/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.5.1/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -59,7 +59,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.11/css-doodle.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.5.1/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -69,7 +69,7 @@
       <p>If cdnjs is not ready, just use:</p>
       <p>
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.4.11/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.5.1/css-doodle.min.js"></script>
         </textarea>
       </p>
       <p>You can also install it from <a href="http://npmjs.org/package/css-doodle">npm</a> and import the module in JavaScript:
@@ -352,7 +352,7 @@
         </section>
 
         <section>
-          <h4><a name="selector-@nth"></a>@nth(n)</h4>
+          <h4><a name="selector-@nth"></a>@nth(n, ...)</h4>
           <p> Select the nth cell like <code> :nth-child(n)</code>.</p>
           <p class="has-preview">
             <textarea code>
@@ -361,6 +361,13 @@
               }
               @nth(3n + 8) {
                 background: #e6437d;
+              }
+              @nth(5, 3n + 8) {
+                :after {
+                  content: @index();
+                  font-size: .8em;
+                  color: #fff;
+                }
               }
             </textarea>
             <css-doodle grid="5">
@@ -371,14 +378,11 @@
               margin: .5px;
               @nth(5) {
                 background: #60569e;
-                :after {
-                  content: @index();
-                  font-size: .8em;
-                  color: #fff;
-                }
               }
               @nth(3n + 8) {
                 background: #e6437d;
+              }
+              @nth(5, 3n + 8) {
                 :after {
                   content: @index();
                   font-size: .8em;
@@ -532,7 +536,7 @@
         </section>
 
         <section>
-          <h4><a name="selector-@row"></a>@row(n)</h4>
+          <h4><a name="selector-@row"></a>@row(n, ...)</h4>
           <p> Select the nth row of the grid.</p>
           <p class="has-preview">
             <textarea code>
@@ -591,7 +595,7 @@
         </section>
 
         <section>
-          <h4><a name="selector-@col"></a>@col(n)</h4>
+          <h4><a name="selector-@col"></a>@col(n, ...)</h4>
           <p> Select the nth column of the grid.</p>
           <p class="has-preview">
             <textarea code>
@@ -690,47 +694,67 @@
          <section>
           <h4><a name="property-@use"></a>@use</h4>
           <p>Import styles from custom properties. It lets you write styles from normal css files.</p>
-          <p class="has-preview">
+          <p class="no-preview">
             <textarea code>
               <style>
                 :root {
-                  --my-rule: (
+                  --rule-a: (
                     :doodle { @grid: 5 / 8em; }
-                    background: #60569e;
                     clip-path: circle(100% at 0 0);
+                    background: #60569e;
+                  );
+                  --rule-b: (
+                    background-image: radial-gradient(#fff 50%, transparent 50%);
+                    background-position: -25% -25%;
+                    background-size: @r(40%, 80%) @lr();
+                    background-repeat: no-repeat;
                   );
                 }
               </style>
-
-              <css-doodle>
-                @use: var(--my-rule);
-                /* other styles  */
-              </css-doodle>
             </textarea>
-             <style>
+            <style>
               :root {
-                --my-rule: (
+                --rule-a: (
                   :doodle { @grid: 5 / 8em; }
-                  background: #60569e;
                   clip-path: circle(100% at 0 0);
+                  background: #60569e;
+                );
+                --rule-b: (
+                  background-image: radial-gradient(#fff 50%, transparent 50%);
+                  background-position: -25% -25%;
+                  background-size: @r(40%, 80%) @lr();
+                  background-repeat: no-repeat;
                 );
               }
             </style>
-            <css-doodle grid="5">
-              @use: var(--my-rule);
+          </p>
+
+          <p class="has-preview">
+            <textarea code>
+              <css-doodle>
+                @use: var(--rule-a);
+              </css-doodle>
+            </textarea>
+            <css-doodle>
+              @use: var(--rule-a);
             </css-doodle>
           </p>
 
           <p>
             You can add multiple rules in a natural way:
           </p>
-           <p class="no-preview">
+           <p class="has-preview">
             <textarea code>
               <css-doodle>
-                @use: var(--my-rule), var(--another-rule);
-                @use: var(--and-another-one);
+                @use: var(--rule-a), var(--rule-b);
+                /* or */
+                @use: var(--rule-a);
+                @use: var(--rule-b);
               </css-doodle>
             </textarea>
+            <css-doodle>
+              @use: var(--rule-a), var(--rule-b);
+            </css-doodle>
           </p>
           <p>Or define it in the <code>use</code> attribute on the element.
            <p class="no-preview">
@@ -1175,9 +1199,9 @@
         </section>
 
         <section>
-          <h4><a name="function-@rand"></a>@rand(start [,stop] [,step])</h4>
+          <h4><a name="function-@rand"></a>@rand(start [,end])</h4>
           <p>
-            Returns a random value from the range of numbers.
+            Returns a random value between two numbers.
             <br/><span class="tip">(try to click the doodle)</span>
           </p>
           <p class="has-preview">
@@ -1205,7 +1229,7 @@
             <textarea code>
               :after {
                 content: @rand(a, z);
-                font-size: @rand(.4em, 1.2em, .01);
+                font-size: @rand(.4em, 1.2em);
               }
             </textarea>
             <css-doodle grid="5" class="click-to-update">
@@ -1213,7 +1237,7 @@
               background: #60569e;
               margin: .5px;
               :after {
-                font-size: @rand(.4em, 1.2em, .01);
+                font-size: @rand(.4em, 1.2em);
                 content: @rand(a, z);
                 color: #fff;
               }
@@ -1227,31 +1251,26 @@
         <section>
           <h4><a name="function-@last"></a>@last-pick, @last-rand</h4>
           <p>
-            Returns the last value of <code>@pick</code> or <code>@pick-n</code> and <code>@rand</code>.
+            Returns the last value of <code>@pick</code>, <code>@pick-n</code>, <code>@pick-d</code> and <code>@rand</code>.
           </p>
           <p class="has-preview">
             <textarea code>
               background: linear-gradient(
-                @rand(360deg),
-                @pick(#60569e, #e6437d, #ebbf4d) 0,
-                @last-pick() 33.33%,
-                @pick(#60569e, #e6437d, #ebbf4d) 33.33%,
-                @last-pick() 66.66%,
-                @pick(#60569e, #e6437d, #ebbf4d) 66.66%,
-                @last-pick() 100%
+                @r(360deg),
+                @pick(#60569e, #e6437d, #ebbf4d),
+                transparent,
+                @last-pick()
               );
             </textarea>
             <css-doodle grid="5" class="click-to-update">
               :doodle { @size: 8em; }
               margin: .5px;
-              background:
-                linear-gradient(
-                  @rand(360deg),
-                  @pick(#60569e, #e6437d, #ebbf4d) 0, @last-pick() 33.33%,
-                  @pick(#60569e, #e6437d, #ebbf4d) 33.33%, @last-pick() 66.66%,
-                  @pick(#60569e, #e6437d, #ebbf4d) 66.66%, @last-pick() 100%
-                );
-              background-repeat: no-repeat;
+              background: linear-gradient(
+                @r(360deg),
+                @pick(#60569e, #e6437d, #ebbf4d),
+                transparent,
+                @last-pick()
+              );
             </css-doodle>
           </p>
           <p class="alias">
@@ -1267,7 +1286,7 @@
           </p>
           <p class="has-preview">
             <textarea code>
-              border-radius: @repeat(4, @rand(20%, 100%));
+              border-radius: @repeat(4, @rand(40%, 60%));
 
               /* dots */
               :after {
@@ -1279,10 +1298,12 @@
               :doodle { @size: 8em; }
               background: #60569e;
               margin: .5px;
-              border-radius: @repeat(4, @rand(20%, 100%));
+              transition: .2s;
+              border-radius: @repeat(4, @rand(40%, 60%));
               :after {
                 content: '';
                 position: absolute;
+                transition: .2s;
                 left: @rand(20%, 80%);
                 top: @rand(20%, 80%);
                 @size: 5px;
