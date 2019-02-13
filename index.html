@@ -7,7 +7,7 @@
   <meta name="description" content="A web component for drawing patterns with CSS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?257432db52f6eb97971896348a77bbb9">
+  <link rel="stylesheet" href="style.css?db1b9b8bbbf388b6b4877eaae6cc6c19">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.5.1/css-doodle.min.js"></script>
 </head>
@@ -505,17 +505,14 @@
                 :after {
                   content: '';
                   background: hsl(@rand(360), 60%, 70%);
-                  @size: 2px;
+                  @size: @rand(3px);
                 }
               }
             </textarea>
             <css-doodle class="click-to-update">
               :doodle {
-                @grid: 20 / 8em;
+                @grid: 16 / 8em;
                 overflow: hidden;
-              }
-              :container {
-                transform: scale(1.4) rotate(45deg);
               }
               margin: -.5px;
               @random {
@@ -528,7 +525,7 @@
                 :after {
                   content: '';
                   background: hsl(@rand(360), 60%, 70%);
-                  @size: 2px;
+                  @size: @rand(3px);
                 }
               }
             </css-doodle>
@@ -1681,7 +1678,7 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?8983dcb48f2c7a497e060fa949c00916"></script>
+  <script src="main.js?8a0bd3c5580863abe9ae1f3869777de2"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119113443-1"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-119113443-1');</script>

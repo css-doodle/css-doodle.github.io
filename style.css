@@ -353,7 +353,8 @@ textarea[code] {
   }
     .docs p code {
       font-family: monospace;
-      padding: 2px 5px;
+      display: inline-block;
+      padding: 0 5px;
       border: 1px solid #dee9e3;
       border-radius: 3px;
       margin: 0 2px;
