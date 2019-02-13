@@ -47,18 +47,16 @@
 
   const doodles = {
     tiled: indent(`
-			/* Tiled Lines */
+      /* Tiled Lines */
 
-			:doodle {
-				@grid: 16 / 320px;
-			}
+      :doodle {
+        @grid: 16 / 320px;
+      }
 
-			:after {
-				content: '';
-				@size: 1px calc(100% * @sqrt(2) + 1px);
-				transform: rotate(@p(45deg, -45deg));
-				background: #AEACFB;
-			}
+      @size: 1px calc(100% * @sqrt(2) + 1px);
+      transform: rotate(@p(45deg, -45deg));
+      background: #AEACFB;
+      margin: auto;
     `),
     leaves: indent(`
       :doodle {
