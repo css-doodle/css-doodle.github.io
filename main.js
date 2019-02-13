@@ -46,6 +46,20 @@
   });
 
   const doodles = {
+    tiled: indent(`
+			/* Tiled Lines */
+
+			:doodle {
+				@grid: 16 / 320px;
+			}
+
+			:after {
+				content: '';
+				@size: 1px calc(100% * @sqrt(2) + 1px);
+				transform: rotate(@p(45deg, -45deg));
+				background: #AEACFB;
+			}
+    `),
     leaves: indent(`
       :doodle {
         @grid: 8 / 90%;
