@@ -7,9 +7,9 @@
   <meta name="description" content="A web component for drawing patterns with CSS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?db1b9b8bbbf388b6b4877eaae6cc6c19">
+  <link rel="stylesheet" href="style.css?e34c5ce67318483f1d5b98a4f198c4c3">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.6.1/css-doodle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.6.2/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -1646,22 +1646,23 @@
   <footer>
     <css-doodle class="footer-bg">
       :doodle {
-        @grid: 6 / 100%;
+        @grid: 1 / 100%;
+        position: absolute;
+        transform: scale(2);
+        background: @m200(
+          linear-gradient(
+            @p(to top, to bottom),
+            @p(#FFE7B8, #FEF6F0, #D0EEDA),
+            @p(@lp(), rgba(255, 255, 255, 0))
+          )
+          @r(0, 100%) @r(0, 100%) / @r(2px) @r(50px)
+          no-repeat
+        );
       }
-      @size: .8em;
-      background: hsla(calc(10 * @index()), 60%, 60%, .2);
-      clip-path: polygon( 50% 0, 100% 100%, 0 100%);
-      transform:
-        rotate(@rand(360deg))
-        scale(@rand(.6, 1, .1))
-        translate(
-          @rand(-10em, 10em),
-          @rand(-10em, 10em)
-        )
     </css-doodle>
     <div class="about wrap">
       <p>
-        Made with
+        Handcrafted with
         <css-doodle>
           :doodle {
             vertical-align: middle;

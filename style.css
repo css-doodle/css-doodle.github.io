@@ -692,7 +692,7 @@ textarea[code] {
     }
 
 footer {
-  padding: 3em 0;
+  padding: 9em 0 3em;
   position: relative;
   overflow: hidden;
 }
