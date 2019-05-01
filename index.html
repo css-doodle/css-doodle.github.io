@@ -879,7 +879,7 @@
             );
             transform:
               scale(@r(.2, 1.5))
-              translate(@multi(2, @r(-50%, 50%)));
+              translate(@m2(@r(-50%, 50%)));
           </css-doodle>
         </div>
         <textarea code></textarea>
@@ -1358,7 +1358,7 @@
             <textarea code>
               background: #60569e;
               margin: 20%;
-              box-shadow: @multiple(5, (
+              box-shadow: @m(5, (
                 calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
               ));
             </textarea>
@@ -1371,6 +1371,16 @@
               ));
             </css-doodle>
           </p>
+
+          <p>
+            Since <code>0.6.2</code>, the number following the function name will be treated as the first
+            parameter, so this will make the code much cleaner:
+          </p>
+          <textarea code>
+            box-shadow: @m5(
+              calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+            );
+          </textarea>
         </section>
 
         <section>
@@ -1565,7 +1575,7 @@
               font-family: sans-serif;
             }
             :after {
-              content: \@hex(@rand(0x2500, 0x257f));
+              content: \@hex(@r(0x2500, 0x257f));
               color: hsla(@r(360), 70%, 70%, @r(.9));
               font-size: 5vmax;
             }
