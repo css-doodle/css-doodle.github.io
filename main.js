@@ -83,7 +83,6 @@
       @place-cell: center;
       @size: calc(100% / @size() * @i());
 
-      transition: transform .2s ease;
       transform: rotate(calc(@i() * 5deg));
 
       border-radius: 30%;

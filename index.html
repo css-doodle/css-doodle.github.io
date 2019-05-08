@@ -1397,12 +1397,14 @@
                     /* ... */
                     background-image: @svg(
                       <svg viewBox="0 0 100 175">
-                        @repeat(50, <path
-                          fill="none"
-                          stroke-width="@r(.5)"
-                          stroke="@p(#60569e, #e6437d)"
-                          d="M0, 0 L@r(100), @r(175)"
-                        />)
+                        @repeat50(
+                          <path
+                            fill="none"
+                            stroke-width="@r(.5)"
+                            stroke="@p(#60569e, #e6437d)"
+                            d="M0, 0 L@r(100), @r(175)"
+                          />
+                        )
                       </svg>
                     );
                   );
@@ -1420,7 +1422,7 @@
                   background-repeat: no-repeat;
                   background-image: @svg(
                     <svg viewBox="0 0 100 175">
-                      @repeat(50, <path
+                      @repeat50(<path
                         fill="none"
                         stroke-width="@r(.5)"
                         stroke="@pick(#60569e, #e6437d)"
@@ -1689,7 +1691,7 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?8a0bd3c5580863abe9ae1f3869777de2"></script>
+  <script src="main.js?63e59eec068bc1648d51224aa2eb4033"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119113443-1"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-119113443-1');</script>
