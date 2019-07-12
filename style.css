@@ -115,6 +115,15 @@ css-doodle {
         );
       }
     }
+  );
+  --heart: (
+    :doodle {
+      vertical-align: middle;
+      display: inline-block;l
+      @size: .8em;
+      background: rgba(255, 87, 34, .6);
+      @shape: heart;
+    }
   )
 }
 

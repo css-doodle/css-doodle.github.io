@@ -7,7 +7,7 @@
   <meta name="description" content="A web component for drawing patterns with CSS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?62f6235183895c2b5a9c9ca8a4c43e6b">
+  <link rel="stylesheet" href="style.css?440d810200028a031b8f199b6d2d302c">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.2/css-doodle.min.js"></script>
 </head>
@@ -48,6 +48,19 @@
         The component will generate a grid of divs by the rules (plain CSS) inside it.
         You can easily manipulate those cells using CSS to come up with a graphic pattern or an animated graph.
         The limit is the limit of CSS itself.
+      </p>
+    </section>
+
+    <!-- support -->
+    <section class="support wrap">
+      <h2>
+        <a name="support"></a>
+        Support
+        <css-doodle use="var(--heart)"></css-doodle>
+      </h2>
+      <p>
+        Support us by becoming a <a href="https://opencollective.com/css-doodle#backer">Backer</a>
+        or <a href="https://opencollective.com/css-doodle#sponsors">Sponsor</a> on <a href="https://opencollective.com/css-doodle">open collective</a>.
       </p>
     </section>
 
@@ -1675,15 +1688,7 @@
     <div class="about wrap">
       <p>
         Handcrafted with
-        <css-doodle>
-          :doodle {
-            vertical-align: middle;
-            display: inline-block;
-            @size: .8em;
-            background: rgba(255, 87, 34, 0.6);
-            @shape: heart;
-          }
-        </css-doodle>
+        <css-doodle use="var(--heart)"></css-doodle>
         by <a href="https://yuanchuan.dev">yuanchuan</a>. <br />
         MIT Licensed.
       </p>
