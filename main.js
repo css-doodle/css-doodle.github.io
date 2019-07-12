@@ -195,9 +195,6 @@
   });
 
   document.addEventListener('click', function(e) {
-    if (e.target.matches('css-doodle.click-to-update')) {
-      e.target.update();
-    }
     if (e.target.update && e.target.closest('.example')) {
       e.target.update();
     }

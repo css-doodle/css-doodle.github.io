@@ -7,9 +7,9 @@
   <meta name="description" content="A web component for drawing patterns with CSS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?e34c5ce67318483f1d5b98a4f198c4c3">
+  <link rel="stylesheet" href="style.css?62f6235183895c2b5a9c9ca8a4c43e6b">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.1/css-doodle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.2/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -59,7 +59,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.1/css-doodle.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.2/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -69,7 +69,7 @@
       <p>If cdnjs is not ready, just use:</p>
       <p>
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.7.1/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.7.2/css-doodle.min.js"></script>
         </textarea>
       </p>
       <p>You can also install it from <a href="http://npmjs.org/package/css-doodle">npm</a> and import the module in JavaScript:
@@ -218,7 +218,7 @@
               width: @rand(5%, 100%); /* from 5% to 100% by random */
             </css-doodle>
           </textarea>
-          <css-doodle grid="35x1" class="click-to-update">
+          <css-doodle grid="35x1" click-to-update>
             :doodle {
               grid-row-gap: 1px;
               @size: 8em 12em;
@@ -257,7 +257,7 @@
               transform: scale(@rand(.2, .9));
             </css-doodle>
           </textarea>
-          <css-doodle grid="5" class="click-to-update">
+          <css-doodle grid="5" click-to-update>
             :doodle {
               @grid: 5;
               @size: 8em;
@@ -479,7 +479,7 @@
                 background: #60569e;
               }
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle {
                 @size: 8em;
               }
@@ -509,7 +509,7 @@
                 }
               }
             </textarea>
-            <css-doodle class="click-to-update">
+            <css-doodle click-to-update>
               :doodle {
                 @grid: 16 / 8em;
                 overflow: hidden;
@@ -1103,7 +1103,7 @@
                 content: @pick(1, 2, 3, 4);
               }
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle { @size: 8em; }
               opacity: @pick(1, .6, .3, .1);
               background: #60569e;
@@ -1124,7 +1124,7 @@
                 content: @pick([a-z]);
               }
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle { @size: 8em; }
               opacity: @pick(1, .6, .3, .1);
               background: #60569e;
@@ -1179,7 +1179,7 @@
                 content: @pick-d([a-z]);
               }
             </textarea>
-            <css-doodle class="click-to-update" grid="5">
+            <css-doodle click-to-update grid="5">
               :doodle { @size: 8em; }
               opacity: @pick-d(1, .6, .3, .1);
               background: #60569e;
@@ -1210,7 +1210,7 @@
                 @rand(100%) 0, 100% @rand(100%), 0 @rand(100%)
               );
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle { @size: 8em; }
               background: rgba(96, 86, 158, @rand(.9));
               transition: .2s ease @rand(200ms);
@@ -1229,7 +1229,7 @@
                 font-size: @rand(.4em, 1.2em);
               }
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle { @size: 8em; }
               background: #60569e;
               margin: .5px;
@@ -1259,7 +1259,7 @@
                 @last-pick()
               );
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle { @size: 8em; }
               margin: .5px;
               background: linear-gradient(
@@ -1291,7 +1291,7 @@
                 /* ... */
               }
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle { @size: 8em; }
               background: #60569e;
               margin: .5px;
@@ -1328,7 +1328,7 @@
                 ))
               );
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle {
                 @size: 8em;
               }
@@ -1433,7 +1433,7 @@
                 }
               );
             </style>
-            <css-doodle class="click-to-update" use="var(--svg-example)"></css-doodle>
+            <css-doodle click-to-update use="var(--svg-example)"></css-doodle>
           </p>
         </section>
 
@@ -1532,7 +1532,7 @@
                 @var(--bg) 50%, transparent 50%
               );
             </textarea>
-            <css-doodle class="click-to-update">
+            <css-doodle click-to-update>
               :doodle {
                 @grid: 5 / 8em;
               }
@@ -1556,7 +1556,7 @@
                 content: \@hex(@rand(9632, 9687));
               }
             </textarea>
-            <css-doodle grid="5" class="click-to-update">
+            <css-doodle grid="5" click-to-update>
               :doodle { @size: 8em; }
               margin: .5px;
               :after {
@@ -1691,7 +1691,7 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?63e59eec068bc1648d51224aa2eb4033"></script>
+  <script src="main.js?e9dba1b2219f244a5b8f26ed2d29a227"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119113443-1"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-119113443-1');</script>
