@@ -162,6 +162,7 @@
 
   let doodle = document.createElement('css-doodle');
   doodle.title = 'Click to update';
+  doodle.setAttribute('click-to-update', true);
   if (doodle.update) {
     doodle.update(config.value);
   }
@@ -171,12 +172,6 @@
 
   let container = document.querySelector('.playground .doodle')
   container.appendChild(doodle);
-  container.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (e.target.matches('css-doodle')) {
-      doodle.update();
-    }
-  });
 
   let editor = CodeMirror(source, config);
   let old = removeSpaces(editor.getValue());
