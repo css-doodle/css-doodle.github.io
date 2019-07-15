@@ -119,7 +119,7 @@ css-doodle {
   --heart: (
     :doodle {
       vertical-align: middle;
-      display: inline-block;l
+      display: inline-block;
       @size: .8em;
       background: rgba(255, 87, 34, .6);
       @shape: heart;
@@ -638,6 +638,27 @@ textarea[code] {
           height: 20em;
         }
       }
+
+  .support {
+    background: #f7fffe;
+    border: 1px solid rgba(0, 150, 136, 0.09);
+    position: relative;
+    padding: 1em;
+    margin-top: 2em;
+  }
+    .support p {
+      margin: 0;
+      padding-top: 1.5em;
+    }
+
+    .support header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 150, 136, 0.09);
+      padding: 5px 10px;
+      color: #e91e63;
+    }
 
 
 .example {
