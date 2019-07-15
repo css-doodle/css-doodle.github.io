@@ -121,8 +121,8 @@ css-doodle {
       vertical-align: middle;
       display: inline-block;
       @size: .8em;
-      background: rgba(255, 87, 34, .6);
       @shape: heart;
+      background: #e91e63;
     }
   )
 }
