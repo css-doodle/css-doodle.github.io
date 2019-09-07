@@ -740,9 +740,9 @@ footer {
   line-height: 1.5;
   font-size: 14px;
   max-width: 130px;
-	float: right;
-	padding-top: 0;
-	color: #6c6079;
+  float: right;
+  padding-top: 0;
+  color: #6c6079;
 }
 
 #carbonads a {
@@ -752,12 +752,12 @@ footer {
 
 #carbonads a,
 #carbonads a:visited {
-	border-bottom: none;
+  border-bottom: none;
 }
 
 #carbonads a:hover {
   color: inherit;
-	background: none;
+  background: none;
 }
 
 #carbonads span {
@@ -774,7 +774,7 @@ footer {
 .carbon-text {
   display: block;
   margin-bottom: 8px;
-	color: #6c6079;
+  color: #6c6079;
 }
 
 .carbon-poweredby {
@@ -783,7 +783,7 @@ footer {
   font-size: 10px;
   letter-spacing: 1px;
   line-height: 1;
-	color: #c5cdd0 !important;
+  color: #c5cdd0 !important;
 }
 
 @media screen and (max-width: 46.25em) {
@@ -794,51 +794,41 @@ footer {
   #carbonads {
     float: none;
     order: 2;
-		display: block;
-		overflow: hidden;
-		padding: 10px;
-		box-shadow: 0 1px 3px hsla(0, 0%, 0%, .05);
-		border-radius: 4px;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		line-height: 1.5;
-		max-width: 300px;
-		font-size: 12px;
-		background-color: #fff;
-		padding-top: 1em;
+    padding: 10px;
+    box-shadow: 0 1px 3px hsla(0, 0%, 0%, .05);
+    border-radius: 4px;
+    max-width: 300px;
+    font-size: 12px;
+    background-color: #fff;
   }
-	#carbonads span {
-		position: relative;
-		display: block;
-		overflow: hidden;
-	}
-
-	#carbonads a {
-		margin-bottom: 0;
-	}
-
-	.carbon-img {
-		float: left;
-		margin-right: 1em;
-	}
-
-	.carbon-img img {
-		display: block;
-	}
-
-	.carbon-text {
-		float: left;
-		max-width: calc(100% - 130px - 1em);
-		text-align: left;
-	}
-
-	.carbon-poweredby {
-		position: absolute;
-		left: 142px;
-		bottom: 0;
-		font-size: 8px;
-		font-weight: 500;
-		text-transform: uppercase;
-		line-height: 1;
-		letter-spacing: 1px;
-	}
+  #carbonads span {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+  #carbonads a {
+    margin-bottom: 0;
+  }
+  .carbon-img {
+    float: left;
+    margin-right: 1em;
+  }
+  .carbon-img img {
+    display: block;
+  }
+  .carbon-text {
+    float: left;
+    max-width: calc(100% - 130px - 1em);
+    text-align: left;
+  }
+  .carbon-poweredby {
+    position: absolute;
+    left: 142px;
+    bottom: 0;
+    font-size: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
 }
