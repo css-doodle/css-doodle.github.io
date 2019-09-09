@@ -31,9 +31,8 @@
     </header>
     <div class="wrap">
       <div class="playground">
-        <div class="doodle" front><!-- insert dynamicly --></div>
-        <div class="source"><!--insert dynamicly --></div>
-        </div>
+        <div class="doodle" front></div>
+        <div class="source"></div>
       </div>
     </div>
   </div>
@@ -335,8 +334,8 @@
           <h4><a name="selector-:container"></a>:container</h4>
           <p>
             The <code>:container</code>
-            is the container element that holds all the cells. It's styled using Grid Layout.
-            And you may want to set <code>grid-gap</code> inside it.
+            is the container element that holds all the cells, which is using <a href="https://www.w3.org/TR/css-grid-1/">Grid Layout</a>.
+            You may want to set <code>grid-gap</code> inside it.
           </p>
           <p class="has-preview">
             <textarea code>
@@ -361,7 +360,7 @@
             </css-doodle>
           </p>
           <p>
-            It inherits all the grid properties from <code>:doodle</code> so it's why this also works:
+            It inherits all the grid properties from <code>:doodle</code> so that's why this also works:
           </p>
           <p class="no-preview">
             <textarea code>
@@ -374,19 +373,23 @@
 
         <section>
           <h4><a name="selector-@nth"></a>@nth(n, ...)</h4>
-          <p> Select the nth cell like <code> :nth-child(n)</code>.</p>
+          <p> Select the nth cell like <code> :nth-child(n)</code> does.</p>
           <p class="has-preview">
             <textarea code>
+              /* :nth-child is still valid though */
+              :nth-child(1) {
+                background: #60569e;
+              }
               @nth(5) {
                 background: #60569e;
               }
               @nth(3n + 8) {
                 background: #e6437d;
               }
-              @nth(5, 3n + 8) {
+
+              @nth(1, 5, 3n + 8) {
                 :after {
                   content: @index();
-                  font-size: .8em;
                   color: #fff;
                 }
               }
@@ -397,13 +400,16 @@
               }
               background: #f5f5f5;
               margin: .5px;
+              :nth-child(1) {
+                background: #60569e;
+              }
               @nth(5) {
                 background: #60569e;
               }
               @nth(3n + 8) {
                 background: #e6437d;
               }
-              @nth(5, 3n + 8) {
+              @nth(1, 5, 3n + 8) {
                 :after {
                   content: @index();
                   font-size: .8em;
@@ -671,11 +677,12 @@
 
         <section>
           <h4><a name="property-@grid"></a>@grid</h4>
-          <p>Another way to set the <code>grid</code> attribute and the rule has higher priority.</p>
+          <p>This is another way to define the <code>grid</code> value and the it has higher priority.</p>
           <p class="has-preview">
             <textarea code>
               <css-doodle grid="5">
                 :doodle {
+                  /* will be 3x3 instead of 5x5 */
                   @grid: 3x3;
                   @size: 8em;
                 }
