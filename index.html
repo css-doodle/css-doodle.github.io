@@ -54,7 +54,7 @@
           <p>
             The component will generate a grid of divs by the rules (plain CSS) inside it.
             You can easily manipulate those cells using CSS to come up with a graphic pattern or an animated graph.
-            The limit is the limit of CSS itself.
+            <strong>The limit is the limit of CSS itself</strong>.
           </p>
         </article>
       </div>
@@ -297,7 +297,7 @@
           <p>
             The <code>:doodle</code>
             is a special selector indicates to the component element itself.
-            Note that the styles would be over-written by your normal css files outside.
+            Note that the styles would be over-written by your normal CSS files outside.
             <span class="tip">(try to hover on the doodle)</span>
           </p>
           <p class="has-preview">
@@ -677,7 +677,7 @@
 
         <section>
           <h4><a name="property-@grid"></a>@grid</h4>
-          <p>This is another way to define the <code>grid</code> value and the it has higher priority.</p>
+          <p>This is another way to define the <code>grid</code> value and it has higher priority.</p>
           <p class="has-preview">
             <textarea code>
               <css-doodle grid="5">
@@ -860,7 +860,7 @@
 
         <section>
           <h4><a name="property-@shape"></a>@shape</h4>
-          <p>Return a css shape which generated with <code>clip-path</code> and <code>polygon()</code>.</p>
+          <p>Turns the element into a shape which is generated with <code>clip-path</code> and <code>polygon()</code>.</p>
           <p class="has-preview">
             <textarea code>
               :doodle {
@@ -917,7 +917,7 @@
         <h3><a name="functions"></a>Functions</h3>
         <section>
           <h4><a name="function-@index"></a>@index</h4>
-          <p> Returns the current index value of the cell.</p>
+          <p>Returns the current index value of the cell.</p>
           <p class="has-preview">
             <textarea code>
               :after {
@@ -972,7 +972,7 @@
 
         <section>
           <h4><a name="function-@row"></a>@row</h4>
-          <p> Returns the current row number of the cell.</p>
+          <p>Returns the current row number of the cell.</p>
           <p class="has-preview">
             <textarea code>
               :after {
@@ -1072,7 +1072,7 @@
 
         <section>
           <h4><a name="function-@size"></a>@size</h4>
-          <p> Returns the total cells number of the grid.</p>
+          <p>Returns the total cells count of the grid.</p>
           <p class="has-preview">
             <textarea code>
               :doodle {
@@ -1397,8 +1397,8 @@
           </p>
 
           <p>
-            Since <code>0.6.2</code>, the number following the function name will be treated as the first
-            parameter, so this will make the code much cleaner:
+            Since <code>0.6.2</code>, the number that is followed the function name will be treated as the first
+            parameter to the function, which will make the code much cleaner:
           </p>
           <textarea code>
             box-shadow: @m5(
@@ -1569,7 +1569,7 @@
         <section>
           <h4><a name="function-@hex"></a>@hex(num)</h4>
           <p>
-            Transform a number to the hex format.
+            Transform a number into hex format.
           </p>
           <p class="has-preview">
             <textarea code>
