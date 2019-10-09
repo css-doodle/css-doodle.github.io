@@ -907,7 +907,7 @@
             );
             transform:
               scale(@r(.2, 1.5))
-              translate(@m2(@r(-50%, 50%)));
+              translate(@m2(@r(±50%)));
           </css-doodle>
         </div>
         <textarea code></textarea>
@@ -1663,14 +1663,11 @@
     <css-doodle grid="16" docs-bg>
       @size: .8em;
       background: hsla(calc(360 / 60 * @index()), 80%, 80%, .4);
-      clip-path: polygon( 50% 0, 100% 100%, 0 100%);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
       transform:
         rotate(@rand(360deg))
         scale(@rand(.6, 1, .1))
-        translate(
-          @rand(-10em, 10em),
-          @rand(-10em, 10em)
-        )
+        translate(@m2(@r(±10em)));
     </css-doodle>
 
   </div>
@@ -1687,7 +1684,7 @@
             @p(#FFE7B8, #FEF6F0, #D0EEDA),
             @p(@lp(), rgba(255, 255, 255, 0))
           )
-          @r(0, 100%) @r(0, 100%) / @r(2px) @r(50px)
+          @ms2(@r(0, 100%)) / @r(2px) @r(50px)
           no-repeat
         );
       }
