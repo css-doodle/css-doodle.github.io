@@ -53,8 +53,8 @@
         @grid: 16 / 320px;
       }
 
-      @size: 1px calc(100% * @sqrt(2) + 1px);
-      transform: rotate(@p(45deg, -45deg));
+      @size: 1px calc(141.4% + 1px);
+      transform: rotate(@p(±45deg));
       background: #AEACFB;
       margin: auto;
     `),
