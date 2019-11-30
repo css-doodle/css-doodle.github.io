@@ -384,7 +384,7 @@
 
               @nth(1, 5, 3n + 8) {
                 :after {
-                  content: @index();
+                  content: @index;
                   color: #fff;
                 }
               }
@@ -406,7 +406,7 @@
               }
               @nth(1, 5, 3n + 8) {
                 :after {
-                  content: @index();
+                  content: @index;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -431,7 +431,7 @@
               @even {
                 background: #60569e;
                 :after {
-                  content: @index();
+                  content: @index;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -456,7 +456,7 @@
               @odd {
                 background: #60569e;
                 :after {
-                  content: @index();
+                  content: @index;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -511,7 +511,7 @@
               @random {
                 background: #60569e;
                 :after {
-                  content: @index();
+                  content: @index;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -572,7 +572,7 @@
               @row(3) {
                 background: #60569e;
                 :after {
-                  content: @row();
+                  content: @row;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -597,14 +597,14 @@
               @row(even) {
                 background: #60569e;
                 :after {
-                  content: @row();
+                  content: @row;
                   font-size: .8em;
                   color: #fff;
                 }
               }
               @row(even) {
                 :after {
-                  content: @row();
+                  content: @row;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -845,7 +845,7 @@
               @nth(4) { @place-cell: .8em calc(100% - .8em); }
               @nth(5) { @place-cell: 75% 80%; }
               :after {
-                content: @index();
+                content: @index;
                 color: #fff;
                 font-size: .8em;
               }
@@ -916,7 +916,7 @@
           <p class="has-preview">
             <textarea code>
               :after {
-                content: @index();
+                content: @index;
                 color: #fff;
               }
             </textarea>
@@ -998,7 +998,7 @@
           <p class="has-preview">
             <textarea code>
               :after {
-                content: @col();
+                content: @col;
               }
             </textarea>
             <css-doodle grid="5">
@@ -1006,7 +1006,7 @@
               background: #60569e;
               margin: .5px;
               :after {
-                content: @col();
+                content: @col;
                 color: #fff;
                 font-size: .8em;
               }
@@ -1507,10 +1507,10 @@
               @size: 75.8% 1px;
               justify-self: center;
               background: #60569e;
-              opacity: calc(1 - @i() / @size());
+              opacity: calc(1 - @i / @size());
               transform:
                 rotate(-15deg)
-                translateX(calc(@sin(@i() / 4) * π * 10px));
+                translateX(calc(@sin(@i / 4) * π * 10px));
             </css-doodle>
           </p>
         </section>
@@ -1665,7 +1665,7 @@
 
     <css-doodle grid="16" docs-bg>
       @size: .8em;
-      background: hsla(calc(360 / 60 * @index()), 80%, 80%, .4);
+      background: hsla(calc(360 / 60 * @index), 80%, 80%, .4);
       clip-path: polygon(50% 0, 100% 100%, 0 100%);
       transform:
         rotate(@r(360deg))
