@@ -15,7 +15,7 @@
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.7.4/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.7.5/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -76,11 +76,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.7.4/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.7.5/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.7.4/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.7.5/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -179,7 +179,7 @@
               @grid: 18 / 100vmax;
               background: #0a0c27;
             }
-            --hue: calc(180 + 1.5 * @row() * @col());
+            --hue: calc(180 + 1.5 * @row * @col);
             background: hsl(var(--hue), 50%, 70%);
             margin: -.5px;
             transition: @r(.5s) ease;
@@ -483,7 +483,7 @@
               @at(4, 2) {
                 background: #60569e;
                 :after {
-                  content: @row(), @col();
+                  content: @row, @col;
                   font-size: .5em;
                   color: #fff;
                 }
@@ -631,7 +631,7 @@
               @col(3) {
                 background: #60569e;
                 :after {
-                  content: @col();
+                  content: @col;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -656,7 +656,7 @@
               @col(odd) {
                 background: #60569e;
                 :after {
-                  content: @col();
+                  content: @col;
                   font-size: .8em;
                   color: #fff;
                 }
@@ -898,7 +898,7 @@
             }
             @shape: clover 5;
             background: hsla(
-              calc(360 - @i() * 4), 70%, 68%, @r(.8)
+              calc(360 - @i * 4), 70%, 68%, @r.8
             );
             transform:
               scale(@r(.2, 1.5))
@@ -927,11 +927,14 @@
               background: #60569e;
               margin: .5px;
               :after {
-                content: @index();
+                content: @index;
                 color: #fff;
                 font-size: .8em;
               }
             </css-doodle>
+          </p>
+          <p>
+            The parentheses can be omitted if the function has no parameter (since <code>0.7.5</code>).
           </p>
           <p class="has-preview">
             <textarea code>
@@ -939,17 +942,17 @@
                 @grid: 5x1 / 8em;
               }
               @place-cell: center;
-              @size: calc(100% / 5 * @index());
-              opacity: calc(1.1 - 1 / 5 * @index());
-              z-index: calc(5 - @index());
+              @size: calc(100% / 5 * @index);
+              opacity: calc(1.1 - 1 / 5 * @index);
+              z-index: calc(5 - @index);
               background: #60569e;
             </textarea>
             <css-doodle grid="5">
               :doodle { @grid: 5x1 / 8em; }
               @place-cell: center;
-              @size: calc(100% / @size() * @index());
-              z-index: calc(@size() - @i());
-              opacity: calc(1.1 - 1 / @size() * @index());
+              @size: calc(100% / @size() * @i);
+              z-index: calc(@size - @i);
+              opacity: calc(1.1 - 1 / @size * @i);
               background: #60569e;
               :after {
                 content: @index();
@@ -971,7 +974,7 @@
           <p class="has-preview">
             <textarea code>
               :after {
-                content: @row();
+                content: @row;
               }
             </textarea>
             <css-doodle grid="5">
@@ -981,7 +984,7 @@
               background: #60569e;
               margin: .5px;
               :after {
-                content: @row();
+                content: @row;
                 color: #fff;
                 font-size: .8em;
               }
@@ -1020,7 +1023,7 @@
                 @grid: 4x2 / 8em 9em;
               }
               :after {
-                content: @row() / @size-row();
+                content: @row / @size-row;
               }
             </textarea>
             <css-doodle>
@@ -1030,7 +1033,7 @@
               background: #60569e;
               margin: .5px;
               :after {
-                content: @row() / @size-row();
+                content: @row / @size-row;
                 color: #fff;
                 font-size: .8em;
               }
@@ -1047,7 +1050,7 @@
                 @grid: 2x4 / 8em 9em;
               }
               :after {
-                content: @col() / @size-col();
+                content: @col / @size-col;
               }
             </textarea>
             <css-doodle>
@@ -1057,7 +1060,7 @@
               background: #60569e;
               margin: .5px;
               :after {
-                content: @col()/@size-col();
+                content: @col/@size-col;
                 color: #fff;
                 font-size: .8em;
               }
@@ -1074,7 +1077,7 @@
                 @grid: 3 / 8em;
               }
               :after {
-                content: @index() / @size();
+                content: @i / @size;
               }
             </textarea>
             <css-doodle>
@@ -1084,7 +1087,7 @@
               background: #60569e;
               margin: .5px;
               :after {
-                content: @index() / @size();
+                content: @i / @size;
                 color: #fff;
                 font-size: .8em;
               }
@@ -1097,15 +1100,15 @@
             <textarea code>
               background: rgba(
                 96, 86, 158,
-                calc(@row() * @col() / @size())
+                calc(@row * @col / @size)
               );
             </textarea>
             <css-doodle grid="5">
               :doodle { @size: 8em; }
-              --alpha: calc(@row() * @col() / @size());
+              --alpha: calc(@row * @col / @size);
               background: rgba(96, 86, 158, var(--alpha));
               :after {
-                content: @calc(@row() * @col());
+                content: @calc(@row * @col);
                 color: #fff;
                 font-size: .8em;
               }
@@ -1329,6 +1332,9 @@
               }
             </css-doodle>
           </p>
+          <p class="alias">
+            Alias: <code>@rep</code>.
+          </p>
         </section>
 
         <section>
@@ -1342,9 +1348,9 @@
                 @rand(360deg),
                 @multiple(3, (
                   @pick-n(#60569e, #e6437d, #ebbf4d)
-                    calc((@n() - 1) * 100% / 3),
+                    calc((@n - 1) * 100% / 3),
                   @lp()
-                    calc(@n() * 100% / 3)
+                    calc(@n * 100% / 3)
                 ))
               );
             </textarea>
@@ -1356,8 +1362,8 @@
                 @rand(360deg),
                 @multiple(3, (
                   @pick-n(#60569e, #e6437d, #ebbf4d)
-                    calc((@n() - 1) * 100% / 3),
-                  @lp() calc(@n() * 100% / 3)
+                    calc((@n - 1) * 100% / 3),
+                  @lp() calc(@n * 100% / 3)
                 ))
               );
             </css-doodle>
@@ -1378,7 +1384,7 @@
               background: #60569e;
               margin: 20%;
               box-shadow: @m(5, (
-                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+                calc(@n * 2px) calc(@n * 2px) 0 0 #e6437d
               ));
             </textarea>
             <css-doodle grid="5">
@@ -1386,7 +1392,7 @@
               background: #60569e;
               margin: 20%;
               box-shadow: @multiple(5, (
-                calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+                calc(@n() * 2px) calc(@n * 2px) 0 0 #e6437d
               ));
             </css-doodle>
           </p>
@@ -1397,7 +1403,7 @@
           </p>
           <textarea code>
             box-shadow: @m5(
-              calc(@n() * 2px) calc(@n() * 2px) 0 0 #e6437d
+              calc(@n * 2px) calc(@n * 2px) 0 0 #e6437d
             );
           </textarea>
         </section>
@@ -1417,9 +1423,9 @@
                     background-image: @svg(
                       <svg viewBox="0 0 100 175">
                         @repeat50(<path
-                          stroke-width="@r(.5)"
+                          stroke-width="@r.5"
                           stroke="@p(#60569e, #e6437d)"
-                          d="M0, 0 L@r(100), @r(175)"
+                          d="M0, 0 L@r100, @r175"
                         />)
                       </svg>
                     );
@@ -1440,9 +1446,9 @@
                     <svg viewBox="0 0 100 175">
                       @repeat50(<path
                         fill="none"
-                        stroke-width="@r(.5)"
+                        stroke-width="@r.5"
                         stroke="@pick(#60569e, #e6437d)"
-                        d="M 0 0 L@r(100) @r(175)"
+                        d="M 0 0 L@r100 @r175"
                       />)
                     </svg>
                   );
@@ -1461,7 +1467,7 @@
           <p class="has-preview">
             <textarea code>
               --num: calc(
-                @abs(@abs(@row() - 3) + @abs(@col() - 3) - 5) / 5
+                @abs(@abs(@row - 3) + @abs(@col - 3) - 5) / 5
               );
 
               background: rgba(
@@ -1470,7 +1476,7 @@
             </textarea>
             <css-doodle grid="5">
               :doodle { @size: 8em; }
-              --num: @abs(@abs(@row() - 3) + @abs(@col() - 3) - 5);
+              --num: @abs(@abs(@row - 3) + @abs(@col - 3) - 5);
               background: rgba(
                 96, 86, 158, calc(var(--num) / 5)
               );
@@ -1478,6 +1484,8 @@
               transform: rotate(15deg) scale(calc(var(--num) / 5));
             </css-doodle>
           </p>
+
+          <p>You can also use <code>π</code> directly.</p>
 
           <p class="has-preview">
             <textarea code>
@@ -1487,10 +1495,10 @@
               @size: 75.8% 1px;
               justify-self: center;
               background: #e6437d;
-              opacity: calc(1 - @i() / @size());
+              opacity: calc(1 - @i / @size);
               transform:
                 rotate(-15deg)
-                translateX(calc(@sin(@i() / 4) * @PI() * 10px));
+                translateX(calc(@sin(@i / 4) * π * 10px));
             </textarea>
             <css-doodle>
               :doodle {
@@ -1502,7 +1510,7 @@
               opacity: calc(1 - @i() / @size());
               transform:
                 rotate(-15deg)
-                translateX(calc(@sin(@i() / 4) * @PI() * 10px));
+                translateX(calc(@sin(@i() / 4) * π * 10px));
             </css-doodle>
           </p>
         </section>
@@ -1515,7 +1523,7 @@
           <p class="has-preview">
             <textarea code>
               :after {
-                content: @calc(@i() * @i());
+                content: @calc(@i * @i);
               }
             </textarea>
             <css-doodle>
@@ -1524,7 +1532,7 @@
               }
               background: #60569e;
               :after {
-                content: @calc(@i() * @i());
+                content: @calc(@i * @i);
                 color: #fff;
                 font-size: .5em;
               }
@@ -1593,7 +1601,7 @@
             }
             :after {
               content: \@hex(@r(0x2500, 0x257f));
-              color: hsla(@r(360), 70%, 70%, @r(.9));
+              color: hsla(@r360, 70%, 70%, @r.9);
               font-size: 5vmax;
             }
           </css-doodle>
@@ -1660,8 +1668,8 @@
       background: hsla(calc(360 / 60 * @index()), 80%, 80%, .4);
       clip-path: polygon(50% 0, 100% 100%, 0 100%);
       transform:
-        rotate(@rand(360deg))
-        scale(@rand(.6, 1, .1))
+        rotate(@r(360deg))
+        scale(@r(.6, 1))
         translate(@m2(@r(±10em)));
     </css-doodle>
 
@@ -1695,7 +1703,7 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?1f0389a9e75ee9491e50a5778876934b"></script>
+  <script src="main.js?7f1bdb862db57bfd259f3c195c5fbb9c"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119113443-1"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-119113443-1');</script>

@@ -71,8 +71,8 @@
       transform: scale(@r(.25, 1.25));
 
       background: hsla(
-        calc(240 - 6 * @row() * @col()),
-        70%, 68%, @r(.8)
+        calc(240 - 6 * @row * @col),
+        70%, 68%, @r.8
       );
     `),
     lines: indent(`
@@ -81,13 +81,13 @@
       }
 
       @place-cell: center;
-      @size: calc(100% / @size() * @i());
+      @size: calc(100% / @size * @i);
 
-      transform: rotate(calc(@i() * 5deg));
+      transform: rotate(calc(@i * 5deg));
 
       border-radius: 30%;
       border: 1px solid hsla(
-        calc(10 + 4 * @i()), 70%, 68%, @r(.8)
+        calc(10 + 4 * @i), 70%, 68%, @r.8
       );
     `),
     triangles: indent(`
@@ -102,8 +102,8 @@
       @shape: triangle;
 
       --n: calc(
-          @abs(@abs(@row() - 5)
-        + @abs(@col() - 5) - 9) / 9
+          @abs(@abs(@row - 5)
+        + @abs(@col - 5) - 9) / 9
       );
 
       background: hsla(
@@ -117,14 +117,14 @@
       }
 
       @place-cell: center;
-      @size: calc(@i() * 10%);
+      @size: calc(@i * 10%);
 
       border-radius: 50%;
       border-style: dashed;
       border-width: calc(@i() * 4px);
       border-color: hsla(
-        calc(20 * @i()), 70%, 68%,
-        calc(3 / @i() * .8)
+        calc(20 * @i), 70%, 68%,
+        calc(3 / @i * .8)
       );
 
       transform: rotate(@r(360deg));
