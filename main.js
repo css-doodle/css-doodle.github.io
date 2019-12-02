@@ -121,7 +121,7 @@
 
       border-radius: 50%;
       border-style: dashed;
-      border-width: calc(@i() * 4px);
+      border-width: calc(@i * 4px);
       border-color: hsla(
         calc(20 * @i), 70%, 68%,
         calc(3 / @i * .8)
