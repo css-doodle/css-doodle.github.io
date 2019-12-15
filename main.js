@@ -200,7 +200,7 @@
     'circle',        'triangle',      'rhombus',       'pentagon',
     'hexagon',       'heptagon',      'octagon',       'cross',
     'star',          'diamond',       'infinity',      'heart',
-    'fish',          'whale',         'pear',          'bean',
+    'fish',          'whale',         'drop',          'bean',
     'hypocycloid:3', 'hypocycloid:4', 'hypocycloid:5', 'hypocycloid:6',
     'bicorn',        'clover:3',      'clover:4',      'clover:5',
     'bud:3',         'bud:4',         'bud:5',         'bud:10'
