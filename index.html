@@ -152,7 +152,7 @@
               <li> <a href="#function-@last">@last-rand</a></li>
               <li> <a href="#function-@repeat">@repeat</a></li>
               <li> <a href="#function-@multiple">@multiple</a></li>
-              <li> <a href="#function-@n">@n</a></li>
+              <li> <a href="#function-@n">@n,N</a></li>
               <li> <a href="#function-@svg">@svg</a></li>
               <li> <a href="#function-@Math">@&lt;Math&gt;</a></li>
               <li> <a href="#function-@calc">@calc</a></li>
@@ -1349,7 +1349,7 @@
                 @multiple(3, (
                   @pick-n(#60569e, #e6437d, #ebbf4d)
                     calc((@n - 1) * 100% / 3),
-                  @lp()
+                  @lp
                     calc(@n * 100% / 3)
                 ))
               );
@@ -1363,7 +1363,7 @@
                 @multiple(3, (
                   @pick-n(#60569e, #e6437d, #ebbf4d)
                     calc((@n - 1) * 100% / 3),
-                  @lp() calc(@n * 100% / 3)
+                  @lp calc(@n * 100% / 3)
                 ))
               );
             </css-doodle>
@@ -1374,26 +1374,34 @@
         </section>
 
         <section>
-          <h4><a name="function-@n"></a>@n()</h4>
+          <h4><a name="function-@n"></a>@n, @N</h4>
           <p>
-            Used only inside <code>@repeat</code> and <code>@multiple</code> functions to indicate the
-            current repeating count.
+            Used only inside <code>@repeat</code> and <code>@multiple</code> to indicate the
+            current repeating count: <code>@n</code> and the max count value: <code>@N</code>.
           </p>
+
           <p class="has-preview">
             <textarea code>
-              background: #60569e;
-              margin: 20%;
-              box-shadow: @m(5, (
-                calc(@n * 2px) calc(@n * 2px) 0 0 #e6437d
-              ));
+              background: radial-gradient(
+                circle at @r(100%) @r(100%),
+                @m(20, (
+                  @p(#60569e, #e6437d) calc((@n - 1) * 100% / @N),
+                  @lp calc(@n * 100% / @N)
+                ))
+              );
             </textarea>
-            <css-doodle grid="5">
-              :doodle { @size: 8em; }
-              background: #60569e;
-              margin: 20%;
-              box-shadow: @multiple(5, (
-                calc(@n() * 2px) calc(@n * 2px) 0 0 #e6437d
-              ));
+            <css-doodle grid="1" click-to-update>
+              :doodle {
+                @size: 8em;
+              }
+              background: radial-gradient(
+                circle at @r(100%) @r(100%),
+                @m(20, (
+                  @p(#60569e, #ebbf4d)
+                    calc((@n - 1) * 100% / @N),
+                  @lp calc(@n * 100% / @N)
+                ))
+              );
             </css-doodle>
           </p>
 
@@ -1401,11 +1409,21 @@
             Since <code>0.6.2</code>, the number that is followed the function name will be treated as the first
             parameter to the function, which will make the code much cleaner:
           </p>
-          <textarea code>
-            box-shadow: @m5(
-              calc(@n * 2px) calc(@n * 2px) 0 0 #e6437d
-            );
-          </textarea>
+          <p class="has-preview">
+            <textarea code>
+              box-shadow: @m5(
+                calc(@n * 2px) calc(@n * 2px) 0 0 #e6437d
+              );
+            </textarea>
+            <css-doodle grid="5">
+              :doodle { @size: 8em; }
+              background: #60569e;
+              margin: 20%;
+              box-shadow: @m5(
+                calc(@n() * 2px) calc(@n * 2px) 0 0 #e6437d
+              );
+            </css-doodle>
+          </p>
         </section>
 
         <section>
