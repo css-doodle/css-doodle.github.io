@@ -1484,22 +1484,19 @@
           </p>
           <p class="has-preview">
             <textarea code>
-              --num: calc(
+              --alpha: calc(
                 @abs(@abs(@row - 3) + @abs(@col - 3) - 5) / 5
               );
-
-              background: rgba(
-                96, 86, 158, calc(var(--num) / 5)
-              );
+              background: rgba(96, 86, 158, var(--alpha));
             </textarea>
             <css-doodle grid="5">
               :doodle { @size: 8em; }
-              --num: @abs(@abs(@row - 3) + @abs(@col - 3) - 5);
+              --alpha: calc(@abs(@abs(@row - 3) + @abs(@col - 3) - 5) / 5);
               background: rgba(
-                96, 86, 158, calc(var(--num) / 5)
+                96, 86, 158, var(--alpha)
               );
               will-change: transform;
-              transform: rotate(15deg) scale(calc(var(--num) / 5));
+              transform: rotate(15deg) scale(var(--alpha));
             </css-doodle>
           </p>
 
