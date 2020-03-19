@@ -15,7 +15,7 @@
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.7.7/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.8.1/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -76,11 +76,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.7.7/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.8.1/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.7.7/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.8.1/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -153,6 +153,7 @@
               <li> <a href="#function-@repeat">@repeat</a></li>
               <li> <a href="#function-@multiple">@multiple</a></li>
               <li> <a href="#function-@n">@n,N</a></li>
+              <li> <a href="#function-@stripe">@stripe</a></li>
               <li> <a href="#function-@svg">@svg</a></li>
               <li> <a href="#function-@Math">@&lt;Math&gt;</a></li>
               <li> <a href="#function-@calc">@calc</a></li>
@@ -199,7 +200,7 @@
 
         <p>
           The number of rows and columns in the grid is defined by the <code>grid</code> attribute on the element,
-          ranged from <em>1</em> to <em>32</em>. It's default to be <em>1x1</em> when no value or 0 is given.
+          ranged from <em>1</em> to <em>64</em>. It's default to be <em>1x1</em> when no value or 0 is given.
         </p>
 
         <p class="has-preview">
@@ -221,7 +222,7 @@
           </css-doodle>
         </p>
 
-        <p>The row or column is limited up to <em>1024</em> only when the grid is 1-dimensional: </p>
+        <p>The row or column is limited up to <em>4096</em> only when the grid is 1-dimensional: </p>
         <p class="has-preview">
           <textarea code>
             <css-doodle grid="35x1">
@@ -709,6 +710,17 @@
               background: #60569e;
             </css-doodle>
           </p>
+
+          <p>The <code>:doodle</code> selector can be ommited if there's no other rules for it.
+          <p class="has-preview">
+            <textarea code>
+              <css-doodle>
+                @grid: 8 / 8em;
+                background: #60569e;
+              </css-doodle>
+            </textarea>
+          </p>
+
         </section>
 
          <section>
@@ -719,7 +731,7 @@
               <style>
                 :root {
                   --rule-a: (
-                    :doodle { @grid: 5 / 8em; }
+                    @grid: 5 / 8em;
                     clip-path: circle(100% at 0 0);
                     background: #60569e;
                   );
@@ -735,7 +747,7 @@
             <style>
               :root {
                 --rule-a: (
-                  :doodle { @grid: 5 / 8em; }
+                  @grid: 5 / 8em;
                   clip-path: circle(100% at 0 0);
                   background: #60569e;
                 );
@@ -802,9 +814,7 @@
               /* max-width: 8em; max-height: 8em; */
             </textarea>
             <css-doodle>
-              :doodle {
-                @grid: 1 / 8em;
-              }
+              @grid: 1 / 8em;
               @size: 10em;
               @size: 4em 5em;
               @min-size: 8em;
@@ -938,9 +948,7 @@
           </p>
           <p class="has-preview">
             <textarea code>
-              :doodle {
-                @grid: 5x1 / 8em;
-              }
+              @grid: 5x1 / 8em;
               @place-cell: center;
               @size: calc(100% / 5 * @index);
               opacity: calc(1.1 - 1 / 5 * @index);
@@ -948,7 +956,7 @@
               background: #60569e;
             </textarea>
             <css-doodle grid="5">
-              :doodle { @grid: 5x1 / 8em; }
+              @grid: 5x1 / 8em;
               @place-cell: center;
               @size: calc(100% / @size() * @i);
               z-index: calc(@size - @i);
@@ -1019,17 +1027,13 @@
           <p> Returns the max row number of the grid.</p>
           <p class="has-preview">
             <textarea code>
-              :doodle {
-                @grid: 4x2 / 8em 9em;
-              }
+              @grid: 4x2 / 8em 9em;
               :after {
                 content: @row / @size-row;
               }
             </textarea>
             <css-doodle>
-              :doodle {
-                @grid: 4x2 / 8em 9em;
-              }
+              @grid: 4x2 / 8em 9em;
               background: #60569e;
               margin: .5px;
               :after {
@@ -1046,17 +1050,13 @@
           <p> Returns the max column number of the grid.</p>
           <p class="has-preview">
             <textarea code>
-              :doodle {
-                @grid: 2x4 / 8em 9em;
-              }
+              @grid: 2x4 / 8em 9em;
               :after {
                 content: @col / @size-col;
               }
             </textarea>
             <css-doodle>
-              :doodle {
-                @grid: 2x4 / 8em 9em;
-              }
+              @grid: 2x4 / 8em 9em;
               background: #60569e;
               margin: .5px;
               :after {
@@ -1073,17 +1073,13 @@
           <p>Returns the total cells count of the grid.</p>
           <p class="has-preview">
             <textarea code>
-              :doodle {
-                @grid: 3 / 8em;
-              }
+              @grid: 3 / 8em;
               :after {
                 content: @i / @size;
               }
             </textarea>
             <css-doodle>
-              :doodle {
-                @grid: 3 / 8em;
-              }
+              @grid: 3 / 8em;
               background: #60569e;
               margin: .5px;
               :after {
@@ -1104,7 +1100,7 @@
               );
             </textarea>
             <css-doodle grid="5">
-              :doodle { @size: 8em; }
+              @grid: 5/8em;
               --alpha: calc(@row * @col / @size);
               background: rgba(96, 86, 158, var(--alpha));
               :after {
@@ -1427,6 +1423,88 @@
         </section>
 
         <section>
+          <h4><a name="function-@stripe"></a>@stripe(color [size], ...)</h4>
+          <p>
+            Make stripe with gradients.
+          </p>
+
+          <p class="has-preview">
+            <textarea code>
+              @grid: 5 / 8em;
+              background: linear-gradient(
+                @rand(360deg),
+                @stripe(#60569e, #e6437d, #ebbf4d)
+              );
+            </textarea>
+            <css-doodle grid="1" click-to-update>
+              @grid: 5 / 8em;
+              background: linear-gradient(
+                @r(360deg),
+                @stripe(
+                  #60569e, #e6437d, #ebbf4d
+                )
+              );
+            </css-doodle>
+          </p>
+
+          <p>
+            The size for each step is optional.
+          </p>
+
+          <p class="has-preview">
+            <textarea code>
+              background: linear-gradient(
+                45deg,
+                @stripe(
+                  #60569e 50%, #e6437d, #ebbf4d, #60569e
+                )
+              );
+            </textarea>
+            <css-doodle grid="1" click-to-update>
+              :doodle {
+                @size: 8em;
+              }
+              background: linear-gradient(
+                45deg,
+                @stripe(
+                  #60569e 50%, #e6437d, #ebbf4d, #60569e
+                )
+              );
+            </css-doodle>
+          </p>
+
+
+          <p class="has-preview">
+            <textarea code>
+              border-radius: 50%;
+              background: conic-gradient(
+                @stripe(
+                  #60569e 10%,
+                  #e6437d 20%,
+                  #ebbf4d 30%,
+                  #321f35
+                )
+              );
+            </textarea>
+            <css-doodle grid="1" click-to-update>
+              :doodle { @size: 8em; }
+              border-radius: 50%;
+              background: conic-gradient(
+                @stripe(
+                  #60569e 10%,
+                  #e6437d 20%,
+                  #ebbf4d 30%,
+                  #321f35
+                )
+              );
+            </css-doodle>
+          </p>
+
+
+        </section>
+
+
+        <section>
           <h4><a name="function-@svg"></a>@svg(svg)</h4>
           <p>
             Use SVG directly as background image.
@@ -1504,9 +1582,7 @@
 
           <p class="has-preview">
             <textarea code>
-              :doodle {
-                @grid: 60x1 / 8em 15em;
-              }
+              @grid: 60x1 / 8em 15em;
               @size: 75.8% 1px;
               justify-self: center;
               background: #e6437d;
@@ -1516,9 +1592,7 @@
                 translateX(calc(@sin(@i / 4) * π * 10px));
             </textarea>
             <css-doodle>
-              :doodle {
-                @grid: 60x1 / 8em 15em;
-              }
+              @grid: 60x1 / 8em 15em;
               @size: 75.8% 1px;
               justify-self: center;
               background: #60569e;
@@ -1542,9 +1616,7 @@
               }
             </textarea>
             <css-doodle>
-              :doodle {
-                @grid: 5 / 8em;
-              }
+              @grid: 5 / 8em;
               background: #60569e;
               :after {
                 content: @calc(@i * @i);
@@ -1665,7 +1737,7 @@
 
               /* update styles and refresh */
               doodle.update(`
-                :doodle { @grid: 6 / 8em }
+                @grid: 6 / 8em;
                 background: rebeccapurple;
                 margin: .5px;
               `);
