@@ -15,7 +15,7 @@
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.8.1/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.8.2/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -44,7 +44,9 @@
     <section class="intro wrap">
       <h2><a name="intro"></a>Introduction</h2>
       <div class="intro-body">
+      <!--
         <script async src="https://cdn.carbonads.com/carbon.js?serve=CE7DCKJM&placement=css-doodlecom" id="_carbonads_js"></script>
+      -->
         <article class="intro-content">
           <p>
             <em>&lt;css-doodle /&gt; </em> is based on
@@ -76,11 +78,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.8.1/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.8.2/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.8.1/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.8.2/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -912,7 +914,7 @@
             );
             transform:
               scale(@r(.2, 1.5))
-              translate(@m2(@r(±50%)));
+              translate(@m2.@r(±50%));
           </css-doodle>
         </div>
         <textarea code></textarea>
@@ -1687,7 +1689,7 @@
               font-family: sans-serif;
             }
             :after {
-              content: \@hex(@r(0x2500, 0x257f));
+              content: \@hex.@r(0x2500, 0x257f);
               color: hsla(@r360, 70%, 70%, @r.9);
               font-size: 5vmax;
             }
