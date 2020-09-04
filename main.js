@@ -1,5 +1,10 @@
 (function() {
 
+  function each(selector, fn) {
+    let elements = document.querySelectorAll(selector);
+    [].forEach.call(elements, fn);
+  }
+
   function removeSpaces(input) {
     return input.replace(/[\s\n\t]/g, '');
   }
@@ -13,24 +18,21 @@
     return result.join('\n');
   }
 
-  const nameLinks = document.querySelectorAll('a[name]');
-  [].forEach.call(nameLinks, link => {
+  each('a[name]', link => {
     let a = document.createElement('a');
     a.innerHTML = '#';
     a.href = '#' + link.name;
     link.parentNode.insertBefore(a, link);
   });
 
-  const examples = document.querySelectorAll('.example');
-  [].forEach.call(examples, example => {
+  each('.example', example => {
     let textarea = example.querySelector('textarea');
     if (textarea) {
       textarea.value = example.querySelector('.container').innerHTML;
     }
   });
 
-  const codeBlocks = document.querySelectorAll('textarea[code]');
-  [].forEach.call(codeBlocks, block => {
+  each('textarea[code]', block => {
     let content = indent(block.value).trim();
     let sample = document.createElement('div');
     sample.className = 'code-sample';
@@ -47,8 +49,6 @@
 
   const doodles = {
     tiled: indent(`
-      /* Tiled Lines */
-
       :doodle {
         @grid: 16 / 320px;
       }
@@ -112,9 +112,7 @@
       );
     `),
     dashed: indent(`
-      :doodle {
-        @grid: 1x10 / 85%;
-      }
+      @grid: 1x10 / 85%;
 
       @place-cell: center;
       @size: calc(@i * 10%);
