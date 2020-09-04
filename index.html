@@ -788,8 +788,11 @@
               @use: var(--rule-a), var(--rule-b);
             </css-doodle>
           </p>
-          <p>Or define it in the <code>use</code> attribute on the element.
-           <p class="no-preview">
+          <p>
+            Or define it in the <code>use</code> attribute on the element.
+            It's the recommanded way if you use <code>css-doodle</code> in your production website.
+          </p>
+          <p class="no-preview">
             <textarea code>
               <css-doodle use="var(--my-rule)"></css-doodle>
             </textarea>
@@ -815,7 +818,6 @@
             </textarea>
             <css-doodle>
               @grid: 1 / 8em;
-              @size: 10em;
               @size: 4em 5em;
               @min-size: 8em;
               @max-size: 8em;
