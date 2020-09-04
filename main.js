@@ -219,7 +219,7 @@
         background: linear-gradient(
           @p(#fff, tan, #5d81bc), @lp
         )
-        50% 50% / @r(60%) @lr
+        50% / @r(60%) @lr
         no-repeat;
       }
       @random {
