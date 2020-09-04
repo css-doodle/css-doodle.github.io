@@ -1,21 +1,33 @@
 (function() {
 
-  function each(selector, fn) {
-    let elements = document.querySelectorAll(selector);
-    [].forEach.call(elements, fn);
-  }
+  const shapes = [
+    'circle',        'triangle',      'rhombus',       'pentagon',
+    'hexagon',       'heptagon',      'octagon',       'cross',
+    'star',          'diamond',       'infinity',      'heart',
+    'fish',          'whale',         'drop',          'bean',
+    'hypocycloid:3', 'hypocycloid:4', 'hypocycloid:5', 'hypocycloid:6',
+    'bicorn',        'clover:3',      'clover:4',      'clover:5',
+    'bud:3',         'bud:4',         'bud:5',         'bud:10'
+  ];
 
-  function removeSpaces(input) {
-    return input.replace(/[\s\n\t]/g, '');
-  }
-
-  function indent(input) {
-    let temp = input.replace(/^\n+/g, '');
-    let len = temp.length - temp.replace(/^\s+/g, '').length;
-    let result = input.split('\n').map(n => (
-      n.replace(new RegExp(`^\\s{${len}}`, 'g'), '')
-    ));
-    return result.join('\n');
+  const allShapes = get('.basic-shapes .shapes');
+  if (allShapes) {
+    allShapes.innerHTML = shapes.map(shape => {
+      let [name, param] = shape.split(':').map(n => n.trim());
+      return `
+        <div class="shape">
+          <css-doodle>
+            :doodle {
+              @shape: ${ name } ${ param || 1};
+              background: #60569e;
+            }
+          </css-doodle>
+          <p class="title">
+            ${ param ? `(${ name }, ${ param })` : name }
+          </p>
+        </div>
+      `
+    }).join('');
   }
 
   each('a[name]', link => {
@@ -26,38 +38,98 @@
   });
 
   each('.example', example => {
-    let textarea = example.querySelector('textarea');
-    if (textarea) {
-      textarea.value = example.querySelector('.container').innerHTML;
+    let textarea = get(example, 'textarea');
+    let container = get(example, '.container');
+    if (textarea && container) {
+      textarea.value = indent(container.innerHTML);
     }
   });
 
   each('textarea[code]', block => {
-    let content = indent(block.value).trim();
+    let content = block.value = indent(block.value);
     let sample = document.createElement('div');
     sample.className = 'code-sample';
     block.parentNode.replaceChild(sample, block);
-    CodeMirror(sample, {
-      mode: block.getAttribute('code') || 'css',
-      value: content,
-      readOnly: ('ontouchstart' in window) ? 'nocursor' : true,
-      cursorBlinkRate: -1,
-      theme: '3024-day',
-      tabSize: 2
-    });
+    if (typeof CodeMirror !== "undefined") {
+      CodeMirror(sample, {
+        mode: block.getAttribute('code') || 'css',
+        value: content,
+        readOnly: ('ontouchstart' in window) ? 'nocursor' : true,
+        cursorBlinkRate: -1,
+        theme: '3024-day',
+        tabSize: 2
+      });
+    }
   });
 
-  const doodles = {
-    tiled: indent(`
-      :doodle {
-        @grid: 16 / 320px;
-      }
+  document.addEventListener('click', e => {
+    if (e.target.closest('.example')) {
+      e.target.update && e.target.update();
+    }
+  });
 
-      @size: 1px calc(141.4% + 1px);
-      transform: rotate(@p(±45deg));
-      background: #AEACFB;
-      margin: auto;
-    `),
+
+  /* live editor */
+
+  let editor = (() => {
+    let doodle = document.createElement('css-doodle');
+    doodle.addEventListener('click', e => doodle.update());
+
+    let playground = get('.playground');
+    let source = get('.playground .source');
+    let container = get('.playground .doodle')
+    container.appendChild(doodle);
+
+    if (typeof CodeMirror === 'undefined') {
+      return false;
+    }
+
+    CodeMirror.keyMap.default['Shift-Tab'] = 'indentLess';
+    CodeMirror.keyMap.default['Tab"'] = 'indentMore';
+
+    let editor = CodeMirror(source, {
+      value: '',
+      mode: 'css',
+      insertSoftTab: true,
+      theme: '3024-day',
+      matchBrackets: true,
+      smartIndent: true,
+      tabSize: 2
+    });
+
+    let lastEditorValue = removeSpaces(editor.getValue());
+    let timer = null;
+    let delay = 500;
+
+    editor.on('change', function(_, obj) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        let value = removeSpaces(editor.getValue());
+        if (lastEditorValue !== value) {
+          let current = editor.getValue();
+          if (doodle.update) {
+            doodle.innerHTML = current;
+            doodle.update(current);
+          }
+          lastEditorValue = removeSpaces(current);
+        }
+      }, delay);
+    });
+
+    return {
+      setValue(value) {
+        delay = 0;
+        editor.setValue(value);
+        editor.clearHistory();
+        delay = 500;
+      }
+    }
+  })();
+
+
+  /* build switcher */
+
+  const doodles = {
     leaves: indent(`
       :doodle {
         @grid: 8 / 90%;
@@ -76,9 +148,7 @@
       );
     `),
     lines: indent(`
-      :doodle {
-        @grid: 50x1 / 80%;
-      }
+      @grid: 50x1 / 80%;
 
       @place-cell: center;
       @size: calc(100% / @size * @i);
@@ -96,7 +166,6 @@
         @shape: circle;
       }
 
-      will-change: transform;
       transition: .4s @r(.6s);
       transform: rotate(@r(360deg));
       @shape: triangle;
@@ -126,7 +195,96 @@
       );
 
       transform: rotate(@r(360deg));
+    `),
+    tiled: indent(`
+      /* PRINT 10 */
+
+      @grid: 16 / 320px;
+
+      @size: 1px calc(141.4% + 1px);
+      transform: rotate(@p(±45deg));
+      background: #AEACFB;
+      margin: auto;
+    `),
+    border: indent(`
+      @grid: 20 / 80%;
+
+      @random {
+        border-left: 1px solid #5d81bc;
+      }
+      @random {
+        border-top: 1px solid #5d81bc;
+      }
+      @random(.25) {
+        background: linear-gradient(
+          @p(#fff, tan, #5d81bc), @lp
+        )
+        50% 50% / @r(60%) @lr
+        no-repeat;
+      }
+      @random {
+        filter: drop-shadow(0 0 10px #fff);
+      }
     `)
+  };
+
+  let switcher = get('.switcher');
+  if (switcher) {
+    let list = Object.keys(doodles).map(n => `<li data-name="${n}">`).join('');
+    switcher.innerHTML = list;
+    switcher.addEventListener('click', e => {
+      if (e.target.tagName.toLowerCase() == 'li') {
+        let last = get(switcher, '.active');
+        if (last == e.target) return false;
+        if (last) last.classList.remove('active');
+        e.target.classList.add('active');
+        let name = e.target.getAttribute('data-name');
+        if (name) {
+          let selected = doodles[name];
+          editor.setValue(selected);
+        }
+      }
+    });
+  }
+
+  let initial = getDoodleFromUrl();
+  if (initial) {
+    editor.setValue(initial);
+  } else {
+    let candidates = Object.keys(doodles);
+    let name = candidates[~~(Math.random() * candidates.length)];
+    let selected = get(switcher, `li[data-name="${ name }"]`);
+    if (selected) {
+      selected.classList.add('active');
+      editor.setValue(doodles[name]);
+    }
+  }
+
+  function get(root, selector) {
+    if (arguments.length == 1) {
+      return document.querySelector(root);
+    }
+    if (arguments.length == 2) {
+      return root.querySelector(selector);
+    }
+  }
+
+  function each(selector, fn) {
+    let elements = document.querySelectorAll(selector);
+    [].forEach.call(elements, fn);
+  }
+
+  function removeSpaces(input) {
+    return input.trim().replace(/[\n\t]/g, '');
+  }
+
+  function indent(input) {
+    let temp = input.replace(/^\n+/g, '');
+    let len = temp.length - temp.replace(/^\s+/g, '').length;
+    let result = input.split('\n').map(n => (
+      n.replace(new RegExp(`^\\s{${len}}`, 'g'), '')
+    ));
+    return result.join('\n').trim();
   }
 
   function getDoodleFromUrl() {
@@ -140,87 +298,6 @@
     } catch (e) {
       return '';
     }
-  }
-
-  function getDoodle() {
-    let candidates = Object.keys(doodles);
-    let name = candidates[~~(Math.random() * candidates.length)];
-    return getDoodleFromUrl() || doodles[name];
-  }
-
-  const config = {
-    value: getDoodle(),
-    mode: 'css',
-    insertSoftTab: true,
-    theme: '3024-day',
-    matchBrackets: true,
-    smartIndent: true,
-    tabSize: 2
-  }
-
-  let doodle = document.createElement('css-doodle');
-  doodle.title = 'Click to update';
-  doodle.setAttribute('click-to-update', true);
-  if (doodle.update) {
-    doodle.update(config.value);
-  }
-
-  let playground = document.querySelector('.playground');
-  let source = document.querySelector('.playground .source');
-
-  let container = document.querySelector('.playground .doodle')
-  container.appendChild(doodle);
-
-  let editor = CodeMirror(source, config);
-  let old = removeSpaces(editor.getValue());
-  let timer = null;
-  editor.on('change', function(_, obj) {
-    clearTimeout(timer);
-    timer = setTimeout(function() {
-      if (old != removeSpaces(editor.getValue())) {
-        if (doodle.update) {
-          doodle.innerHTML = editor.getValue();
-          doodle.update(editor.getValue());
-        }
-        old = removeSpaces(editor.getValue());
-      }
-    }, 500);
-  });
-
-  document.addEventListener('click', function(e) {
-    if (e.target.update && e.target.closest('.example')) {
-      e.target.update();
-    }
-  });
-
-  const allShapes = document.querySelector('.basic-shapes .shapes');
-  const shapes = [
-    'circle',        'triangle',      'rhombus',       'pentagon',
-    'hexagon',       'heptagon',      'octagon',       'cross',
-    'star',          'diamond',       'infinity',      'heart',
-    'fish',          'whale',         'drop',          'bean',
-    'hypocycloid:3', 'hypocycloid:4', 'hypocycloid:5', 'hypocycloid:6',
-    'bicorn',        'clover:3',      'clover:4',      'clover:5',
-    'bud:3',         'bud:4',         'bud:5',         'bud:10'
-  ];
-
-  if (allShapes) {
-    allShapes.innerHTML = shapes.map(shape => {
-      let [name, param] = shape.split(':').map(n => n.trim());
-      return `
-        <div class="shape">
-          <css-doodle>
-            :doodle {
-              @shape: ${ name } ${ param || 1};
-              background: #60569e;
-            }
-          </css-doodle>
-          <p class="title">
-            ${ param ? `(${ name }, ${ param })` : name }
-          </p>
-        </div>
-      `
-    }).join('');
   }
 
 }());
