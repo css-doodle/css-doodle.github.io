@@ -233,6 +233,7 @@
     let list = Object.keys(doodles).map(n => `<button data-name="${n}"></button>`).join('');
     switcher.innerHTML = list;
     switcher.addEventListener('click', e => {
+      console.log(e.target);
       if (e.target.tagName.toLowerCase() == 'button') {
         let last = get(switcher, '.active');
         if (last == e.target) return false;
