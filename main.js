@@ -301,4 +301,8 @@
     }
   }
 
+  each('textarea', el => {
+    el.setAttribute('tabindex', -1);
+  });
+
 }());
