@@ -230,10 +230,10 @@
 
   let switcher = get('.switcher');
   if (switcher) {
-    let list = Object.keys(doodles).map(n => `<li data-name="${n}">`).join('');
+    let list = Object.keys(doodles).map(n => `<button data-name="${n}"></button>`).join('');
     switcher.innerHTML = list;
     switcher.addEventListener('click', e => {
-      if (e.target.tagName.toLowerCase() == 'li') {
+      if (e.target.tagName.toLowerCase() == 'button') {
         let last = get(switcher, '.active');
         if (last == e.target) return false;
         if (last) last.classList.remove('active');
@@ -253,7 +253,7 @@
   } else {
     let candidates = Object.keys(doodles);
     let name = candidates[~~(Math.random() * candidates.length)];
-    let selected = get(switcher, `li[data-name="${ name }"]`);
+    let selected = get(switcher, `button[data-name="${ name }"]`);
     if (selected) {
       selected.classList.add('active');
       editor.setValue(doodles[name]);

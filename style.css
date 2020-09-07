@@ -329,7 +329,9 @@ textarea[code] {
     display: flex;
     justify-content: center;
   }
-    .playground .switcher li {
+    .playground .switcher button {
+      font-size: 1em;
+      border: 0;
       width: 1.5em;
       height: .5em;
       background: rgb(190, 97, 175, .27);
@@ -337,13 +339,30 @@ textarea[code] {
       border-radius: 2px;
       cursor: pointer;
       transition: background .1s;
+      line-height: 1.2;
+      position: relative;
     }
-    .playground .switcher li.active {
+    .playground .switcher button.active {
       background: rgb(190, 97, 175);
     }
-    .playground .switcher li:not(.active):hover {
+    .playground .switcher button:not(.active):hover {
       background: rgb(190, 97, 175, .5);
     }
+    .playground .switcher button:focus {
+      outline: none;
+      border: 1px dotted #6082BD;
+    }
+    .playground .switcher button:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 300%;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background: transparent;
+    }
+
 
   @media (max-width: 55.625em) {
     .playground  {
