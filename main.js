@@ -233,7 +233,6 @@
     let list = Object.keys(doodles).map(n => `<button data-name="${n}"></button>`).join('');
     switcher.innerHTML = list;
     switcher.addEventListener('click', e => {
-      console.log(e.target);
       if (e.target.tagName.toLowerCase() == 'button') {
         let last = get(switcher, '.active');
         if (last == e.target) return false;
@@ -260,6 +259,11 @@
       editor.setValue(doodles[name]);
     }
   }
+
+  /* Do not focus on textareas with Tab key */
+  each('textarea', el => {
+    el.setAttribute('tabindex', -1);
+  });
 
   function get(root, selector) {
     if (arguments.length == 1) {
@@ -300,9 +304,5 @@
       return '';
     }
   }
-
-  each('textarea', el => {
-    el.setAttribute('tabindex', -1);
-  });
 
 }());
