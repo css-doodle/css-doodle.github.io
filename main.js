@@ -197,7 +197,7 @@
       transform: rotate(@r(360deg));
     `),
     tiled: indent(`
-      /* PRINT 10 */
+      /* 10 PRINT */
 
       @grid: 16 / 320px;
 
