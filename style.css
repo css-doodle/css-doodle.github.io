@@ -99,7 +99,7 @@ body {
 
 css-doodle {
   --flags: (
-    :doodle { @grid: 1x28; }
+    :doodle { @grid: 28x1; }
     clip-path: polygon(0 0, 100% 0, 50% 1%);
     background-color: hsla(
       calc(3.5 * @i() + 180), 80%, 70%, @r(.8)

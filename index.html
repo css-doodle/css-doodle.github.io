@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?d6a495a514aca1a7d435eb3f9d24acd4">
+  <link rel="stylesheet" href="style.css?63b8beea4cfda74a0368ba7041bb0b69">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.8.5/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.9.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -77,11 +77,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.8.5/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.9.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.8.5/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.9.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -97,6 +97,18 @@
           import 'css-doodle';
         </textarea>
       </p>
+      <p>Or use ES modules:</p>
+      <p>
+        <textarea code>
+          <script type="module">
+            import CSSDoodle from "https://unpkg.com/css-doodle/src";
+
+            let doodle = CSSDoodle`
+              /* code here */
+            `
+          </script>
+        </textarea>
+      </p>
     </section>
 
     <!-- usage -->
@@ -109,7 +121,13 @@
         </p>
 
         <ul class="nav">
-          <li> <a href="#grid">Grid</a></li>
+          <li>
+            <a href="#attributes">Attributes</a>
+            <ul>
+              <li><a href="#grid">grid</a></li>
+              <li><a href="#seed">seed</a></li>
+            </ul>
+          </li>
           <li>
             <a href="#selectors">Selectors</a>
             <ul>
@@ -166,7 +184,8 @@
             <a href="#js-api">JS API</a>
             <ul>
               <li> <a href="#js-api-grid">grid</a></li>
-               <li> <a href="#js-api-use">use</a></li>
+              <li> <a href="#js-api-use">use</a></li>
+              <li> <a href="#js-api-seed">seed</a></li>
               <li> <a href="#js-api-update">update</a></li>
             </ul>
           </li>
@@ -197,92 +216,121 @@
       </section>
 
       <article class="wrap">
-        <h3><a name="grid"></a>Grid</h3>
+        <h3><a name="attributes"></a>Attributes</h3>
 
-        <p>
-          The number of rows and columns in the grid is defined by the <code>grid</code> attribute on the element,
-          ranged from <em>1</em> to <em>32</em>. It's default to be <em>1x1</em> when no value or 0 is given.
-        </p>
+        <section>
+          <h4><a name="grid"></a>Grid</h4>
 
-        <p class="has-preview">
-          <textarea code>
+          <p>
+            The number of rows and columns in the grid is defined by the <code>grid</code> attribute on the element,
+            ranged from <em>1</em> to <em>32</em>. It's default to be <em>1x1</em> when no value or 0 is given.
+          </p>
+
+          <p class="has-preview">
+            <textarea code>
+              <css-doodle grid="5">
+                :doodle {
+                  grid-gap: 1px;
+                  width: 8em; height: 8em;
+                }
+                background: #60569e;
+              </css-doodle>
+            </textarea>
             <css-doodle grid="5">
               :doodle {
                 grid-gap: 1px;
-                width: 8em; height: 8em;
+                @size: 8em;
               }
               background: #60569e;
             </css-doodle>
-          </textarea>
-          <css-doodle grid="5">
-            :doodle {
-              grid-gap: 1px;
-              @size: 8em;
-            }
-            background: #60569e;
-          </css-doodle>
-        </p>
+          </p>
 
-        <p>The row or column is limited up to <em>1024</em> only when the grid is 1-dimensional: </p>
-        <p class="has-preview">
-          <textarea code>
-            <css-doodle grid="35x1">
+          <p>The row or column is limited up to <em>1024</em> only when the grid is 1-dimensional: </p>
+          <p class="has-preview">
+            <textarea code>
+              <css-doodle grid="1x35">
+                :doodle {
+                  grid-row-gap: 1px;
+                  @size: 8em; /* width: 8em; height: 8em; */
+                }
+                background: #60569e;
+                width: @rand(5%, 100%); /* from 5% to 100% by random */
+              </css-doodle>
+            </textarea>
+            <css-doodle grid="1x35" click-to-update>
               :doodle {
                 grid-row-gap: 1px;
-                @size: 8em; /* width: 8em; height: 8em; */
+                @size: 8em 12em;
+              }
+              transition: .2s ease @rand(500ms);
+              background: #60569e;
+              will-change: width;
+              width: @rand(5%, 100%);
+            </css-doodle>
+          </p>
+
+          <p>
+             The following formats of <code>grid</code> value are recognizable:
+          </p>
+          <div class="list-items">
+            <ul>
+              <li><code>grid = "0"</code></li>
+              <li><code>grid = "5"</code></li>
+              <li><code>grid = "20"</code></li>
+              <li><code>grid = "5x7"</code></li>
+              <li><code>grid = "5 x 7"</code></li>
+              <li><code>grid = "5,7"</code></li>
+            </ul>
+          </div>
+
+          <p>
+            There's an alternative way to set up the <code>grid</code> by using the <a href="#property-@grid">@grid</a> property.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              <css-doodle>
+                :doodle {
+                  @grid: 5 / 8em;
+                }
+                background: #60569e;
+                transform: scale(@rand(.2, .9));
+              </css-doodle>
+            </textarea>
+            <css-doodle grid="5" click-to-update>
+              :doodle {
+                @grid: 5;
+                @size: 8em;
               }
               background: #60569e;
-              width: @rand(5%, 100%); /* from 5% to 100% by random */
+              transform: scale(@r(.2, .9));
             </css-doodle>
-          </textarea>
-          <css-doodle grid="35x1" click-to-update>
-            :doodle {
-              grid-row-gap: 1px;
-              @size: 8em 12em;
-            }
-            transition: .2s ease @rand(500ms);
-            background: #60569e;
-            will-change: width;
-            width: @rand(5%, 100%);
-          </css-doodle>
-        </p>
+          </p>
+        </section>
 
-        <p>
-           The following formats of <code>grid</code> value are recognizable:
-        </p>
-        <div class="list-items">
-          <ul>
-            <li><code>grid = "0"</code></li>
-            <li><code>grid = "5"</code></li>
-            <li><code>grid = "20"</code></li>
-            <li><code>grid = "5x7"</code></li>
-            <li><code>grid = "5 x 7"</code></li>
-            <li><code>grid = "5,7"</code></li>
-          </ul>
-        </div>
-
-        <p>
-          There's an alternative way to set up the <code>grid</code> by using the <a href="#property-@grid">@grid</a> property.
-        </p>
-        <p class="has-preview">
-          <textarea code>
-            <css-doodle>
-              :doodle {
-                @grid: 5 / 8em;
-              }
+        <section>
+          <h4><a name="seed"></a>seed</h4>
+          <p>
+            All random values will be regenerated to the same value as last time based on the <em>seed</em> value.
+            It's quite useful if you want to keep a snapshot.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              <css-doodle seed="2020">
+                :doodle {
+                  @grid: 5 / 8em;
+                }
+                background: #60569e;
+                transform: scale(@rand(.2, .9));
+              </css-doodle>
+            </textarea>
+            <css-doodle seed="2020" click-to-update>
+              @grid: 5 / 8em;
               background: #60569e;
               transform: scale(@rand(.2, .9));
             </css-doodle>
-          </textarea>
-          <css-doodle grid="5" click-to-update>
-            :doodle {
-              @grid: 5;
-              @size: 8em;
-            }
-            background: #60569e;
-            transform: scale(@r(.2, .9));
-          </css-doodle>
-        </p>
+          </p>
+        </section>
+
         <div class="sep"></div>
       </article>
 
@@ -418,7 +466,7 @@
         </section>
 
         <section>
-          <h4><a name="selector-@even"></a>@even</h4>
+          <h4><a name="selector-@even"></a>@even, @even(cross)</h4>
           <p> Select cells like <code> :nth-child(even)</code> but shorter.</p>
           <p class="has-preview">
             <textarea code>
@@ -440,10 +488,33 @@
               }
             </css-doodle>
           </p>
+
+          <p>The <code>cross</code> option makes sure the selections don't collapse to the same row or column.</p>
+          <p class="has-preview">
+            <textarea code>
+              @even(cross) {
+                background: #60569e;
+              }
+            </textarea>
+            <css-doodle grid="4">
+              :doodle {
+                @size: 8em;
+              }
+              @even(cross) {
+                background: #60569e;
+                :after {
+                  content: @index;
+                  font-size: .8em;
+                  color: #fff;
+                }
+              }
+            </css-doodle>
+          </p>
+
         </section>
 
         <section>
-          <h4><a name="selector-@odd"></a>@odd</h4>
+          <h4><a name="selector-@odd"></a>@odd, @odd(cross)</h4>
           <p> Select cells like <code> :nth-child(odd)</code>.</p>
           <p class="has-preview">
             <textarea code>
@@ -468,8 +539,8 @@
         </section>
 
         <section>
-          <h4><a name="selector-@at"></a>@at(row, col)</h4>
-          <p>Select cell at specific row and column.</p>
+          <h4><a name="selector-@at"></a>@at(col, row)</h4>
+          <p>Select cell at specific column and row.</p>
           <p class="has-preview">
             <textarea code>
               @at(4, 2) {
@@ -485,7 +556,7 @@
               @at(4, 2) {
                 background: #60569e;
                 :after {
-                  content: @row, @col;
+                  content: @x, @y;
                   font-size: .5em;
                   color: #fff;
                 }
@@ -1721,7 +1792,7 @@
             </textarea>
           </p>
         </section>
-         <section>
+        <section>
           <h4><a name="js-api-use"></a>use</h4>
           <p>Getter/setter for the <code>use</code> attribute on the element. </p>
           <p>
@@ -1731,6 +1802,19 @@
 
               console.log(doodle.use);
               /* var(--my-rule) */
+            </textarea>
+          </p>
+        </section>
+        <section>
+          <h4><a name="js-api-seed"></a>seed</h4>
+          <p>Getter/setter for the <code>seed</code> attribute on the element. </p>
+          <p>
+            <textarea code>
+              const doodle = document.querySelector('css-doodle');
+              doodle.sedd = 'my random seed';
+
+              console.log(doodle.seed);
+              /* my random seed */
             </textarea>
           </p>
         </section>
