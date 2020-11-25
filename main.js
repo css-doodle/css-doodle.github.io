@@ -241,7 +241,9 @@
         let name = e.target.getAttribute('data-name');
         if (name) {
           let selected = doodles[name];
-          editor.setValue(selected);
+          if (editor) {
+            editor.setValue(selected);
+          }
         }
       }
     });
@@ -254,7 +256,7 @@
     let candidates = Object.keys(doodles);
     let name = candidates[~~(Math.random() * candidates.length)];
     let selected = get(switcher, `button[data-name="${ name }"]`);
-    if (selected) {
+    if (selected && editor) {
       selected.classList.add('active');
       editor.setValue(doodles[name]);
     }
