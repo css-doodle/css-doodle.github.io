@@ -396,6 +396,7 @@ textarea[code] {
 .docs {
   padding: 5em 0 0;
   position: relative;
+  overflow: hidden;
 }
   .docs .wrap {
     position: relative;
@@ -925,6 +926,9 @@ footer {
 @supports (position: sticky) {
   .sticky {
     display: block;
+  }
+  .docs {
+    overflow: unset;
   }
 }
 
