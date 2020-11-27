@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?2f0a7390653e39f36290885b18b59621">
+  <link rel="stylesheet" href="style.css?375743b84d98c6ba94a640562e50d54e">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
@@ -56,6 +56,8 @@
           <p>
             The component will generate a grid of divs by the rules (plain CSS) inside it.
             You can easily manipulate those cells using CSS to come up with a graphic pattern or an animated graph.
+          </p>
+          <p>
             <strong>The limit is the limit of CSS itself</strong>.
           </p>
         </article>
@@ -63,12 +65,15 @@
       <div class="support">
         <h3>
           <css-doodle use="var(--heart)"></css-doodle>
-          <span>Donate</span>
+          <span>Thank you</span>
           <css-doodle use="var(--heart)"></css-doodle>
         </h3>
         <p>
           Support us by becoming a <a href="https://opencollective.com/css-doodle#backer">Backer</a>
           or <a href="https://opencollective.com/css-doodle#sponsors">Sponsor</a> on <a href="https://opencollective.com/css-doodle">open collective</a>.
+        </p>
+        <p class="backers">
+          <a href="https://opencollective.com/css-doodle#backers" target="_blank"><img src="https://opencollective.com/css-doodle/backers.svg?width=890"></a>
         </p>
       </div>
     </section>
@@ -108,6 +113,31 @@
             `);
           </script>
         </textarea>
+      </p>
+    </section>
+
+    <section class="production wrap">
+      <h2><a name="production"></a>For production</h2>
+      <p>
+        If you want to use &lt; <em>css-doodle</em> /&gt; in production websites,
+        it's recommended to write everything inside <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS custom properties</a>.
+        So it won't break when the network is slow or when the browser does not support Web Component.
+      </p>
+
+      <p>
+        <textarea code>
+          <style>
+            css-doodle {
+              --rule: (
+                /* your code here */
+              );
+            }
+          </style>
+          <css-doodle use="var(--rule)"></css-doodle>
+        </textarea>
+      </p>
+      <p>
+        See usage for the <a href="#property-@use">@use</a> property.
       </p>
     </section>
 
@@ -864,7 +894,7 @@
           </p>
           <p>
             Or define it in the <code>use</code> attribute on the element.
-            It's the recommanded way if you use <code>css-doodle</code> in your production website.
+            It's highly recommanded to use this way in production websites.
           </p>
           <p class="no-preview">
             <textarea code>

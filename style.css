@@ -48,7 +48,6 @@ table {
   border-spacing: 0;
 }
 
-
 html, body, h1, ul, li {
   box-sizing: border-box;
 }
@@ -696,6 +695,13 @@ textarea[code] {
       margin-bottom: 1em;
     }
 
+    .backers a:link, .backers a:visited {
+      border-bottom: none;
+    }
+    .backers a:hover, .backers a:active {
+      background: none;
+    }
+
 
 .example {
   width: 100vw;
@@ -758,7 +764,7 @@ textarea[code] {
     }
 
 footer {
-  padding: 9em 0 3em;
+  padding: 10em 0 3em;
   position: relative;
   overflow: hidden;
 }
