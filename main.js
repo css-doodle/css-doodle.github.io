@@ -267,6 +267,18 @@
     el.setAttribute('tabindex', -1);
   });
 
+  each('.usage .nav > li', el => {
+    let a = get(el, 'a');
+    let nav = get(el, 'ul').cloneNode(true);
+    let name = a.hash.substr(1);
+    let container = get('.usage .wrap.' + name);
+
+    let sticky = document.createElement('div');
+    sticky.className = 'sticky';
+    sticky.appendChild(nav);
+    container.appendChild(sticky);
+  });
+
   function get(root, selector) {
     if (arguments.length == 1) {
       return document.querySelector(root);

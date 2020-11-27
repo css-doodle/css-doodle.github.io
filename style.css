@@ -48,6 +48,7 @@ table {
   border-spacing: 0;
 }
 
+
 html, body, h1, ul, li {
   box-sizing: border-box;
 }
@@ -146,6 +147,7 @@ css-doodle[docs-bg] {
   z-index: 1;
   width: 100vw;
   height: 100%;
+  pointer-events: none;
 }
 [click-to-update] {
   cursor: pointer;
@@ -394,7 +396,6 @@ textarea[code] {
 .docs {
   padding: 5em 0 0;
   position: relative;
-  overflow: hidden;
 }
   .docs .wrap {
     position: relative;
@@ -876,5 +877,65 @@ footer {
     text-transform: uppercase;
     line-height: 1;
     letter-spacing: 1px;
+  }
+}
+
+.sticky {
+  position: absolute;;
+  top: 4.5em;
+  left: -10em;
+  height: 100%;
+  width: 8em;
+  display: none;
+}
+  .sticky ul {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 4.5em;
+    bottom: 3em;
+    margin-bottom: 3em;
+  }
+    .sticky ul li {
+      width: 100%;
+    }
+      .sticky ul a:link, sticky ul a:visited {
+        border-bottom: none;
+      }
+      .sticky a {
+        display: block;
+        width: 100%;
+        padding: 5px;
+        opacity: .5;
+        transition: .2s ease;
+      }
+      .sticky ul:hover a {
+        opacity: .7;
+      }
+     .sticky ul:hover a:hover {
+        opacity: 1;
+      }
+
+@supports (position: sticky) {
+  .sticky {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 81em) {
+  .sticky {
+    display: none;
+  }
+}
+
+h4 a:target ~ span {
+  animation: highlight 1.2s ease-in;
+}
+
+@keyframes highlight {
+  0% {
+    background: #ffeb3b;
+  }
+  100% {
+    background: transparent;
   }
 }
