@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?0f523f523d8b77db0b6ce7ab2cc3a8ca">
+  <link rel="stylesheet" href="style.css?63373d9cf5cfb4c0ea3d65363d7f34e7">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.9.3/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.10.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -65,15 +65,12 @@
       <div class="support">
         <h3>
           <css-doodle use="var(--heart)"></css-doodle>
-          <span>Thank you</span>
+          <span>Donate</span>
           <css-doodle use="var(--heart)"></css-doodle>
         </h3>
         <p>
           Support us by becoming a <a href="https://opencollective.com/css-doodle#backer">Backer</a>
           or <a href="https://opencollective.com/css-doodle#sponsors">Sponsor</a> on <a href="https://opencollective.com/css-doodle">open collective</a>.
-        </p>
-        <p class="backers">
-          <a href="https://opencollective.com/css-doodle#backers" target="_blank"><img src="https://opencollective.com/css-doodle/backers.svg?width=890"></a>
         </p>
       </div>
     </section>
@@ -82,11 +79,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.9.3/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.10.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.9.3/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.10.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -116,37 +113,13 @@
       </p>
     </section>
 
-    <section class="production wrap">
-      <h2><a name="production"></a>For production</h2>
-      <p>
-        If you want to use &lt; <em>css-doodle</em> /&gt; in production websites,
-        it's recommended to write everything inside <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS custom properties</a>.
-        So it won't break when the network is slow or when the browser does not support Web Component.
-      </p>
-
-      <p>
-        <textarea code>
-          <style>
-            css-doodle {
-              --rule: (
-                /* your code here */
-              );
-            }
-          </style>
-          <css-doodle use="var(--rule)"></css-doodle>
-        </textarea>
-      </p>
-      <p>
-        See usage for the <a href="#property-@use">@use</a> property.
-      </p>
-    </section>
-
     <!-- usage -->
     <section class="usage">
+
       <div class="wrap">
         <h2><a name="usage"></a>Usage</h2>
         <p>
-          The syntax of <em>&lt;css-doodle /&gt;</em> is based on CSS and provides several extra utility
+          The syntax of <em>css-doodle</em> is based on CSS and provides several extra utility
           functions and shorthand properties.
         </p>
 
@@ -154,8 +127,9 @@
           <li>
             <a href="#attributes">Attributes</a>
             <ul>
-              <li><a href="#grid">grid</a></li>
-              <li><a href="#seed">seed</a></li>
+              <li><a href="#attribute-grid">grid</a></li>
+              <li><a href="#attribute-use">use</a></li>
+              <li><a href="#attribute-seed">seed</a></li>
             </ul>
           </li>
           <li>
@@ -198,7 +172,7 @@
               <li> <a href="#function-@last">@last-*</a></li>
               <li> <a href="#function-@repeat">@repeat</a></li>
               <li> <a href="#function-@multiple">@multiple</a></li>
-              <li> <a href="#function-@n">@n,N</a></li>
+              <li> <a href="#function-@n">@n,nx,ny,N</a></li>
               <li> <a href="#function-@stripe">@stripe</a></li>
               <li> <a href="#function-@svg">@svg</a></li>
               <li> <a href="#function-@Math">@&lt;Math&gt;</a></li>
@@ -246,7 +220,7 @@
         <h3><a name="attributes"></a>Attributes</h3>
 
         <section>
-          <h4><a name="grid"></a><span>Grid</span></h4>
+          <h4><a name="attribute-grid"></a><span>Grid</span></h4>
 
           <p>
             The number of rows and columns in the grid is defined by the <code>grid</code> attribute on the element,
@@ -336,7 +310,50 @@
         </section>
 
         <section>
-          <h4><a name="seed"></a><span>seed</span></h4>
+          <h4><a name="attribute-use"></a><span>use</span></h4>
+          <p>
+            Import rules from <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS custom properties</a> (CSS variables).
+          </p>
+
+          <p class="has-preview">
+            <textarea code>
+              <style>
+                css-doodle {
+                  --rule: (
+                    @grid: 5 / 8em;
+                    --d: @p(45deg, -45deg, 135deg, -135deg);
+                    --lg: linear-gradient(@var(--d),#60569e 50%,transparent 0);
+                    background:
+                      @var(--lg) 0 0 / 100% 100%,
+                      @var(--lg) 0 0 / 50% 50%;
+                  );
+                }
+              </style>
+              <css-doodle use="var(--rule)"></css-doodle>
+            </textarea>
+            <style>
+              css-doodle {
+                --rule-use: (
+                  @grid: 5 / 8em;
+                  --deg: @p(45deg, -45deg, 135deg, -135deg);
+                  --lg: linear-gradient(@var(--deg), #60569e 50%, transparent 0);
+                  background:
+                    @var(--lg) 0 0 / 100% 100%,
+                    @var(--lg) 0 0 / 50% 50%;
+                );
+              }
+            </style>
+            <css-doodle click-to-update use="var(--rule-use)"></css-doodle>
+          </p>
+          <p>
+            It's highly recommended to write the rules this way if you want to use css-doodle in production websites.
+            So it won't break when the network is slow or when the browser does not support Web Component.
+          </p>
+
+        </section>
+
+        <section>
+          <h4><a name="attribute-seed"></a><span>seed</span></h4>
           <p>
             All random values will be regenerated to the same value as last time based on the <em>seed</em> value.
             It's quite useful if you want to keep a snapshot.
@@ -364,8 +381,31 @@
           </p>
         </section>
 
-        <div class="sep"></div>
       </article>
+
+      <!-- example -->
+      <section class="example">
+        <div class="container">
+          <css-doodle>
+            :doodle {
+              @grid: 32 / 100vmax;
+              background: #0a0c27;
+            }
+            @size: .3vmax;
+            font-size: .3vmax;
+            margin: 2em;
+            color: @p(#D98CC6, #8CB4D8, @m28(#32325a));
+            box-shadow: @m3x5((
+              calc(4em - @nx * 1em) calc(@ny * 1em)
+                @p(@m3(currentColor), @m2(transparent)),
+              calc(2em + @nx * 1em) calc(@ny * 1em)
+                @lp
+            ));
+          </css-doodle>
+        </div>
+        <textarea code></textarea>
+      </section>
+
 
       <article class="wrap selectors">
         <h3><a name="selectors"></a>Selectors</h3>
@@ -464,7 +504,6 @@
               @nth(3n + 8) {
                 background: #e6437d;
               }
-
               @nth(1, 5, 3n + 8) {
                 :after {
                   content: @index;
@@ -770,8 +809,31 @@
             </css-doodle>
           </p>
         </section>
-        <div class="sep"></div>
       </article>
+
+      <section class="example">
+        <div class="container">
+          <css-doodle>
+            :doodle {
+              @grid: 32 / 100vmax;
+              transform: translate(-10%, -10%) scale(1.5);
+              transform-origin: 0 0;
+            }
+            @shape: hexagon;
+            background: @p(#ebbf4d, #e6437d, @m20(#32325a));
+            opacity: @r1;
+            transform:
+              translate(
+                calc((@x - 1) * -10%),
+                calc((@y - 1) * -22%)
+              )
+              translateX(
+                calc(@calc(@y % 2) * 46%)
+              );
+          </css-doodle>
+        </div>
+        <textarea code></textarea>
+      </section>
 
       <article class="wrap properties">
         <h3><a name="properties"></a>Properties</h3>
@@ -830,15 +892,14 @@
 
          <section>
           <h4><a name="property-@use"></a><span>@use</span></h4>
-          <p>Import styles from custom properties. It lets you write styles from normal css files.</p>
-          <p class="no-preview">
+          <p>Like <a href="#attribute-use">@use</a> attribute but as part of the rule.</p>
+          <p class="has-preview">
             <textarea code>
               <style>
                 :root {
                   --rule-a: (
                     @grid: 5 / 8em;
                     clip-path: circle(100% at 0 0);
-                    background: #60569e;
                   );
                   --rule-b: (
                     background-image: radial-gradient(#fff 50%,transparent 0);
@@ -848,6 +909,16 @@
                   );
                 }
               </style>
+
+              <css-doodle>
+                @use: var(--rule-a), var(--rule-b);
+                /* or */
+                @use: var(--rule-a);
+                @use: var(--rule-b);
+
+                /* more rules */
+                background-color: #60569e;
+              </css-doodle>
             </textarea>
             <style>
               :root {
@@ -864,43 +935,9 @@
                 );
               }
             </style>
-          </p>
-
-          <p class="has-preview">
-            <textarea code>
-              <css-doodle>
-                @use: var(--rule-a);
-              </css-doodle>
-            </textarea>
-            <css-doodle>
-              @use: var(--rule-a);
-            </css-doodle>
-          </p>
-
-          <p>
-            You can add multiple rules in a natural way:
-          </p>
-           <p class="has-preview">
-            <textarea code>
-              <css-doodle>
-                @use: var(--rule-a), var(--rule-b);
-                /* or */
-                @use: var(--rule-a);
-                @use: var(--rule-b);
-              </css-doodle>
-            </textarea>
             <css-doodle>
               @use: var(--rule-a), var(--rule-b);
             </css-doodle>
-          </p>
-          <p>
-            Or define it in the <code>use</code> attribute on the element.
-            It's highly recommanded to use this way in production websites.
-          </p>
-          <p class="no-preview">
-            <textarea code>
-              <css-doodle use="var(--my-rule)"></css-doodle>
-            </textarea>
           </p>
         </section>
 
@@ -1051,7 +1088,7 @@
             </css-doodle>
           </p>
           <p>
-            The parentheses can be omitted if the function has no parameter (since <code>0.7.5</code>).
+            The parentheses can be omitted if the function has no parameters.
           </p>
           <p class="has-preview">
             <textarea code>
@@ -1090,6 +1127,7 @@
             <textarea code>
               :after {
                 content: @row;
+                color: #fff;
               }
             </textarea>
             <css-doodle grid="5">
@@ -1105,6 +1143,9 @@
               }
             </css-doodle>
           </p>
+          <p class="alias">
+            Alias: <code>@y</code>
+          </p>
         </section>
 
         <section>
@@ -1114,6 +1155,7 @@
             <textarea code>
               :after {
                 content: @col;
+                color: #fff;
               }
             </textarea>
             <css-doodle grid="5">
@@ -1127,6 +1169,9 @@
               }
             </css-doodle>
           </p>
+          <p class="alias">
+            Alias: <code>@x</code>
+          </p>
         </section>
 
         <section>
@@ -1134,21 +1179,24 @@
           <p> Returns the max row number of the grid.</p>
           <p class="has-preview">
             <textarea code>
-              @grid: 4x2 / 8em 9em;
+              @grid: 4x3 / 8em;
               :after {
                 content: @row / @size-row;
               }
             </textarea>
             <css-doodle>
-              @grid: 4x2 / 8em 9em;
+              @grid: 4x3 / 8em;
               background: #60569e;
               margin: .5px;
               :after {
-                content: @row / @size-row;
+                content: @row/@size-row;
                 color: #fff;
                 font-size: .8em;
               }
             </css-doodle>
+          </p>
+          <p class="alias">
+            Alias: <code>@Y</code>
           </p>
         </section>
 
@@ -1157,13 +1205,13 @@
           <p> Returns the max column number of the grid.</p>
           <p class="has-preview">
             <textarea code>
-              @grid: 2x4 / 8em 9em;
+              @grid: 4x3 / 8em;
               :after {
                 content: @col / @size-col;
               }
             </textarea>
             <css-doodle>
-              @grid: 2x4 / 8em 9em;
+              @grid: 4x3 / 8em;
               background: #60569e;
               margin: .5px;
               :after {
@@ -1172,6 +1220,9 @@
                 font-size: .8em;
               }
             </css-doodle>
+          </p>
+          <p class="alias">
+            Alias: <code>@X</code>
           </p>
         </section>
 
@@ -1216,6 +1267,9 @@
                 font-size: .8em;
               }
             </css-doodle>
+          </p>
+          <p class="alias">
+            Alias: <code>@I</code>
           </p>
         </section>
 
@@ -1350,24 +1404,6 @@
               );
             </css-doodle>
           </p>
-          <p>It also recognizes the letter range: </p>
-          <p class="has-preview">
-            <textarea code>
-              :after {
-                content: @rand(a, z);
-                font-size: @rand(.4em, 1.2em);
-              }
-            </textarea>
-            <css-doodle grid="5" click-to-update>
-              :doodle { @size: 8em; grid-gap: 1px }
-              background: #60569e;
-              :after {
-                font-size: @rand(.4em, 1.2em);
-                content: @rand(a, z);
-                color: #fff;
-              }
-            </css-doodle>
-          </p>
           <p class="alias">
             Alias: <code>@r</code>
           </p>
@@ -1388,7 +1424,7 @@
               );
             </textarea>
             <css-doodle grid="5" click-to-update>
-              :doodle { @size: 8em }
+              @grid: 5 / 8em;
               background: linear-gradient(
                 @pick-d(45deg, -45deg),
                 @pick(#60569e, #e6437d),
@@ -1443,13 +1479,14 @@
         <section>
           <h4><a name="function-@multiple"></a><span>@multiple(times, value)</span></h4>
           <p>
-            Same as <code>@repeat()</code>, but seperated with comma.
+            Same as <code>@repeat()</code>, but seperated with <em>commas</em>.
+            Use capitalized <code>@Multiple</code> to make the values seperated with <em>spaces</em>.
           </p>
           <p class="has-preview">
             <textarea code>
               background: linear-gradient(
                 @rand(360deg),
-                @multiple(3, (
+                @m(3, (
                   @pick-n(#60569e, #e6437d, #ebbf4d)
                     calc((@n - 1) * 100% / 3),
                   @lp
@@ -1471,49 +1508,13 @@
               );
             </css-doodle>
           </p>
-          <p class="alias">
-            Alias: <code>@m</code>
-          </p>
-        </section>
-
-        <section>
-          <h4><a name="function-@n"></a><span>@n, @N</span></h4>
           <p>
-            Used only inside <code>@repeat</code> and <code>@multiple</code> to indicate the
-            current repeating count: <code>@n</code> and the max count value: <code>@N</code>.
-          </p>
-
-          <p class="has-preview">
-            <textarea code>
-              background: radial-gradient(
-                circle at @r(100%) @r(100%),
-                @m(20, (
-                  @p(#60569e, #e6437d) calc((@n - 1) * 100% / @N),
-                  @lp calc(@n * 100% / @N)
-                ))
-              );
-            </textarea>
-            <css-doodle grid="1" click-to-update>
-              :doodle {
-                @size: 8em;
-              }
-              background: radial-gradient(
-                circle at @r(100%) @r(100%),
-                @m(20, (
-                  @p(#60569e, #ebbf4d)
-                    calc((@n - 1) * 100% / @N),
-                  @lp calc(@n * 100% / @N)
-                ))
-              );
-            </css-doodle>
-          </p>
-
-          <p>
-            Since <code>0.6.2</code>, the number that is followed the function name will be treated as the first
-            parameter to the function, which will make the code much cleaner:
+            The number closely after the function name will be regarded as the first parameter of the function,
+            which will make the code more concise.
           </p>
           <p class="has-preview">
             <textarea code>
+              background: #60569e;
               box-shadow: @m5(
                 calc(@n * 2px) calc(@n * 2px) 0 0 #e6437d
               );
@@ -1524,6 +1525,45 @@
               margin: 20%;
               box-shadow: @m5(
                 calc(@n() * 2px) calc(@n * 2px) 0 0 #e6437d
+              );
+            </css-doodle>
+          </p>
+          <p class="alias">
+            Alias: <code>@m</code>, <code>@M</code>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="function-@n"></a><span>@n, @nx, @ny, @N</span></h4>
+          <p>
+            Used only inside <code>@repeat</code> and <code>@m</code> function to indicate the
+            current repeating count: <code>@n</code>,
+            current column count: <code>@nx</code>,
+            current row count: <code>@ny</code>
+            and the max count value: <code>@N</code>.
+          </p>
+
+          <p class="has-preview">
+            <textarea code>
+              background: radial-gradient(
+                circle at @r(100%) @r(100%),
+                @m(20, (
+                  @p(#60569e, #ebbf4d) calc((@n - 1) * 100% / @N),
+                  @lp calc(@n * 100% / @N)
+                ))
+              );
+            </textarea>
+            <css-doodle grid="1" click-to-update>
+              :doodle {
+                @size: 8em;
+              }
+              background: radial-gradient(
+                circle at @r(100%) @r(100%),
+                @m20((
+                  @p(#60569e, #ebbf4d)
+                    calc((@n - 1) * 100% / @N),
+                  @lp calc(@n * 100% / @N)
+                ))
               );
             </css-doodle>
           </p>
@@ -1616,16 +1656,12 @@
 
         <section>
           <h4><a name="function-@svg"></a><span>@svg(svg)</span></h4>
-          <p>
-            Use SVG directly as background image.
-            The recommended way to use SVG is through with the <code>@use</code> property.
-          </p>
+          <p>Use SVG directly as background image. </p>
           <p class="has-preview">
             <textarea code>
               <style>
                 :root {
                   --svg-example: (
-                    /* ... */
                     background-image: @svg(
                       <svg viewBox="0 0 100 175">
                         @repeat50(<path
@@ -1743,15 +1779,40 @@
         <section>
           <h4><a name="function-@var"></a><span>@var(expr)</span></h4>
           <p>
-            Same as <code>var()</code>. Used to prevent the browser from evaluating the value inside nested vars.
+            Same as native <code>var()</code>. Used to prevent the browser from evaluating the value inside nested vars.
+            The example below won't work since the <code>var(--bg)</code> has no defnition outside.
+          </p>
+          <p>
+            <textarea code>
+              <style>
+                :root {
+                  --rule: (
+                    --bg: #60569e;
+                    background: linear-gradient(
+                      @rand(360deg),
+                      /* --bg is not recognizable */
+                      var(--bg) 50%, transparent 0
+                    );
+                  );
+                }
+              </style>
+              <css-doodle use="var(--rule)"></css-doodle>
+            </textarea>
+          </p>
+          <p>
+            Use <code>@var()</code> instead.
           </p>
           <p class="has-preview">
             <textarea code>
-              --bg: #60569e;
-              background: linear-gradient(
-                @rand(360deg),
-                @var(--bg) 50%, transparent 50%
-              );
+              <style>
+                --rule: (
+                  --bg: #60569e;
+                  background: linear-gradient(
+                    @rand(360deg),
+                    @var(--bg) 50%, transparent 0
+                  );
+                );
+              </style>
             </textarea>
             <css-doodle click-to-update>
               :doodle {
@@ -1760,10 +1821,11 @@
               --bg: #60569e;
               background: linear-gradient(
                 @r(360deg),
-                @var(--bg) 50%, transparent 50%
+                @var(--bg) 50%, transparent 0
               );
             </css-doodle>
           </p>
+
         </section>
 
         <section>

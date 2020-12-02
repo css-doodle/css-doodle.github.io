@@ -177,9 +177,6 @@ textarea[code] {
   height: auto;
   padding: 1em;
   cursor: default;
-  background: #f9fcfa;
-  border: 1px solid #dee8e2;
-  border-radius: 3px;
 }
   .code-sample .CodeMirror-scroll,
   .CodeMirror-scroll {
@@ -449,14 +446,14 @@ textarea[code] {
         }
       }
     .docs > section {
-      margin-bottom: 5em;
+      margin-bottom: 6em;
     }
     .docs article:not(.intro-content) {
       margin-bottom: 5em;
     }
 
     .docs article > section {
-      margin-bottom: 4em;
+      margin-bottom: 6em;
     }
   .docs .list-items {
     padding-left: 1em;
@@ -489,8 +486,8 @@ textarea[code] {
     position: relative;
   }
   .docs h3 {
-    font-size: 1.5em;
-    margin-bottom: 2em;
+    font-size: 1.7em;
+    margin-bottom: 1.7em;
     position: relative;
   }
     .docs h3 a[name] {
@@ -528,7 +525,7 @@ textarea[code] {
     .docs h4 a[name],
     .docs h5 a[name] {
       position: absolute;
-      top: -1.9em;
+      top: -2.4em;
     }
 
   .docs .nav {
@@ -567,12 +564,18 @@ textarea[code] {
       }
       .nav li ul {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: .5em;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 3px;
         list-style: none;
         padding: 1em 0;
         margin: 0;
       }
+
+    @media (max-width: 42em) {
+      .nav li ul {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
 
     @media (max-width: 35em) {
       .nav li ul {
@@ -590,7 +593,7 @@ textarea[code] {
     }
     .nav li ul a {
       display: block;
-      padding: .7em;
+      padding: .45em .6em;
       background: rgba(240, 240, 240, .6);
     }
     .nav li ul a:link, .nav li ul:visited {
@@ -598,13 +601,7 @@ textarea[code] {
     }
 
     .usage .example {
-      margin-bottom: 4em;
-    }
-    .docs .sep {
-      margin: 4em 0;
-      width: 40%;
-      height: 1px;
-      background: rgba(119, 165, 222, .4);
+      margin-bottom: 6em;
     }
     .docs h5 {
       color: #000;
