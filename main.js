@@ -207,7 +207,7 @@
       margin: auto;
     `),
     border: indent(`
-      @grid: 20 / 80%;
+      @grid: 14 / 80%;
 
       @random {
         border-left: 1px solid #5d81bc;
