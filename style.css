@@ -205,7 +205,9 @@ textarea[code] {
   .cm-s-3024-day span.cm-error {
     background: none;
   }
-  .cm-s-3024-day span.cm-attribute, .cm-s-3024-day span.cm-property {
+  .cm-s-3024-day span.cm-variable,
+  .cm-s-3024-day span.cm-attribute,
+  .cm-s-3024-day span.cm-property {
     color: #E91E63;
   }
 
@@ -764,6 +766,21 @@ textarea[code] {
       -webkit-clip-path: var(--polygon);
               clip-path: var(--polygon);
     }
+
+.option-list h6 {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.option-list ul {
+  margin-bottom: 2em;
+  margin-left: 1em;
+  padding-left: 1em;
+  list-style-type: disc;
+}
+.option-list p {
+  margin-bottom: .5em;
+}
 
 footer {
   padding: 10em 0 3em;

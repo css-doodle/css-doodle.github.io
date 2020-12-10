@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?63373d9cf5cfb4c0ea3d65363d7f34e7">
+  <link rel="stylesheet" href="style.css?7cf8404f585cbe1b00f7fdcb695e266d">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.10.0/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.11.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -79,11 +79,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.10.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.11.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.10.0/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.11.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -188,6 +188,7 @@
               <li> <a href="#js-api-use">use</a></li>
               <li> <a href="#js-api-seed">seed</a></li>
               <li> <a href="#js-api-update">update</a></li>
+              <li> <a href="#js-api-export">export</a></li>
             </ul>
           </li>
         </ul>
@@ -1926,6 +1927,75 @@
               /* just refresh */
               doodle.update();
             </textarea>
+          </p>
+        </section>
+        <section>
+          <h4><a name="js-api-export"></a><span>export([options])</span></h4>
+          <p>
+            Export <code>css-doodle</code> elment as an image.
+            Returns a <code>Promise</code> object which holds the infomation of the exported image.</p>
+          <div class="option-list">
+            <h6>Options</h6>
+            <ul>
+              <li>
+                <p>
+                  <code>scale: Integer</code> Scale factor of the exported image. Default <code>1</code>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <code>download: Boolean</code> Download the image or not. Default <code>false</code>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <code>name: String</code> Saved name for download. Defaults to be the current timestamp.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <p class="has-preview">
+            <textarea code>
+              /* click to export as an image and download it */
+              doodle.addEventListener('click', async e => {
+                let result = await doodle.export({
+                  scale: 4,
+                  download: true
+                });
+                /* open Devtools to see the result */
+                console.log(result);
+              });
+            </textarea>
+            <css-doodle id="example-export">
+              :doodle {
+                @grid: 10 / 160px;
+                background: #fff;
+                cursor: pointer;
+                overflow: hidden;
+              }
+              @size: 1px calc(141.4% + 2px);
+              transform: rotate(@p(-30deg, 120deg));
+              margin: auto;
+              background: linear-gradient(
+                #000 @r(20%, 100%), transparent 0
+              );
+
+              :after {
+                content: '';
+                @size: @r(2px, 4px);
+                @shape: circle;
+                background: #000;
+              }
+            </css-doodle>
+            <script>
+              let doodle = document.querySelector('#example-export');
+              if (doodle) {
+                doodle.addEventListener('click', e => {
+                  doodle.export({ download: true, scale: 4 }).then(console.log);
+                });
+              }
+            </script>
           </p>
         </section>
       </article>
