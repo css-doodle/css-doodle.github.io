@@ -15,7 +15,7 @@
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.11.0/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.11.1/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -79,11 +79,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.11.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.11.1/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.11.0/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.11.1/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -1933,13 +1933,19 @@
           <h4><a name="js-api-export"></a><span>export([options])</span></h4>
           <p>
             Export <code>css-doodle</code> elment as an image.
-            Returns a <code>Promise</code> object which holds the infomation of the exported image.</p>
+            Returns a <code>Promise</code> object which holds the information of the exported image.</p>
           <div class="option-list">
             <h6>Options</h6>
             <ul>
               <li>
                 <p>
                   <code>scale: Integer</code> Scale factor of the exported image. Default <code>1</code>.
+                  <span class="tip">(Safari has a bug with SVG viewBox so the scale option has no effect in Safari.)</span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <code>detail: Boolean</code> Returns detailed information the image, eg. blob size. Default <code>false</code>.
                 </p>
               </li>
               <li>
