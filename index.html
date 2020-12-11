@@ -1962,13 +1962,12 @@
 
           <div class="has-preview example-export">
             <textarea code>
-              /* click to export as an image and download it */
               button.addEventListener('click', async e => {
                 let result = await doodle.export({
                   scale: 4,
                   download: true
                 });
-                /* open Devtools to see the result */
+                /* open Dev tools to see the result */
                 console.log(result);
               });
             </textarea>
