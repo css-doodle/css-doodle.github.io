@@ -782,6 +782,20 @@ textarea[code] {
   margin-bottom: .5em;
 }
 
+.example-export {
+  line-height: 1.6;
+}
+  .example-export__preview {
+    margin-left: 1.4em;
+  }
+    .docs .example-export__preview css-doodle {
+      margin-left: 0;
+    }
+    .example-export__preview button {
+      margin-top: 1em;
+      cursor: pointer;
+    }
+
 footer {
   padding: 10em 0 3em;
   position: relative;

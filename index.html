@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?7cf8404f585cbe1b00f7fdcb695e266d">
+  <link rel="stylesheet" href="style.css?15ff48dd6bd72e42f092eb8adabcfa1c">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
@@ -1960,10 +1960,10 @@
             </ul>
           </div>
 
-          <p class="has-preview">
+          <div class="has-preview example-export">
             <textarea code>
               /* click to export as an image and download it */
-              doodle.addEventListener('click', async e => {
+              button.addEventListener('click', async e => {
                 let result = await doodle.export({
                   scale: 4,
                   download: true
@@ -1972,36 +1972,49 @@
                 console.log(result);
               });
             </textarea>
-            <css-doodle id="example-export">
-              :doodle {
-                @grid: 10 / 160px;
-                background: #fff;
-                cursor: pointer;
-                overflow: hidden;
-              }
-              @size: 1px calc(141.4% + 2px);
-              transform: rotate(@p(-30deg, 120deg));
-              margin: auto;
-              background: linear-gradient(
-                #000 @r(20%, 100%), transparent 0
-              );
-
-              :after {
-                content: '';
-                @size: @r(2px, 4px);
-                @shape: circle;
-                background: #000;
-              }
-            </css-doodle>
-            <script>
-              let doodle = document.querySelector('#example-export');
-              if (doodle) {
-                doodle.addEventListener('click', e => {
-                  doodle.export({ download: true, scale: 4 }).then(console.log);
-                });
-              }
-            </script>
-          </p>
+            <div class="example-export__preview">
+              <css-doodle click-to-update>
+								@grid: 7 / 8em;
+								background: @p(#FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C);
+								:after {
+									content: '';
+									@size: 100%;
+									position: absolute;
+									background:
+										@m(4, radial-gradient(
+											circle at @p(-40% -40%, 140% 140%, 140%  -40%, -40% 140%),
+											@p(#FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C) 50%,
+											transparent 50%
+										)),
+										radial-gradient(
+											@p(#FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C) @r(10%, 40%),
+											transparent 0
+										)
+								}
+              </css-doodle>
+              <button>Save to PNG</button>
+              <script>
+                let doodle = document.querySelector('.example-export css-doodle');
+                let button = document.querySelector('.example-export button');
+                if (button) {
+                  button.addEventListener('click', e => {
+                    button.disabled = true;
+                    doodle.export({ download: true, scale: 4 })
+                      .then(data => {
+                        console.log(data);
+                        setTimeout(() => {
+                          button.disabled = false;
+                        }, 800);
+                      })
+                      .catch(err => {
+                        console.error(err);
+                        button.disabled = false;
+                      });
+                  });
+                }
+              </script>
+            </div>
+          </div>
         </section>
       </article>
     </section>
