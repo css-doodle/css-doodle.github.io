@@ -122,6 +122,12 @@ css-doodle {
       }
     }
   );
+  --flags2: (
+    clip-path: polygon(@r(20%, 80%) @r(50%), 100% 100%, 0 100%);
+    background-color: hsla(
+      calc(3.5 * @i + 180), 80%, 70%, @r.8
+    );
+  );
   --heart: (
     :doodle {
       vertical-align: middle;
@@ -144,6 +150,13 @@ css-doodle[use*="flags"] {
   overflow: hidden;
   min-width: 900px;
   margin: 0 auto;
+  pointer-events: none;
+}
+css-doodle[use*="flags2"] {
+  position: absolute;
+  bottom: 0;
+  max-height: 5em;
+  pointer-events: none;
 }
 css-doodle[docs-bg] {
   position: absolute;
@@ -797,7 +810,8 @@ textarea[code] {
     }
 
 footer {
-  padding: 10em 0 3em;
+  background: #0a0c27;
+  padding: 4em 0 14em;
   position: relative;
   overflow: hidden;
 }
@@ -805,17 +819,71 @@ footer {
     color: #9ba2af;
     line-height: 1.8;
     position: relative;
-    text-align: center;
+    display: flex;
   }
-    .about a:link,
-    .about a:visited {
+    .info h2  {
+      font-size: 1.5em;
+      font-weight: normal;
+    }
+    .info__copyright a:link,
+    .info__copyright a:visited {
       text-decoration: none;
-      color: #3f51b5;
       border-bottom: 2px solid;
+      color: #fff;
     }
-    .about a:hover {
-      background: rgba(213, 231, 255, .7);
+    .info__copyright a:hover {
+      background: rgba(96, 86, 158, 1);
+      color: #fff;
     }
+    .info__donate {
+      border-bottom: none;
+      background: rgba(96, 86, 158, .85);
+      color: #FFF4DF;
+      padding: .2em 1.5em;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1em;
+      transition: .2s ease;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+      .info__donate:hover {
+        background: rgba(96, 86, 158, 1);
+      }
+
+    .social {
+      margin-left: auto;
+      margin-top: .5em;
+    }
+      .social a {
+        color: #9ba2af;
+        text-decoration: none;
+        transition: .2s ease;
+      }
+      .social a:hover {
+        color: #fff;
+      }
+      .social svg {
+        width: 1.4em;
+        height: 1.4em;
+        padding: 0 4px;
+      }
+      .social li {
+        display: inline;
+      }
+
+@media (max-width: 30.125em) {
+  footer {
+    padding-bottom: 10em;
+  }
+  .about {
+    display: block;
+  }
+
+  .social {
+    transform: translateY(1.5em);
+  }
+}
 
 #carbonads {
   display: block;
