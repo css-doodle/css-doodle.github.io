@@ -811,7 +811,7 @@ textarea[code] {
 
 footer {
   background: #0a0c27;
-  padding: 4em 0 14em;
+  padding: 5em 0 10em;
   position: relative;
   overflow: hidden;
 }
@@ -824,55 +824,55 @@ footer {
     .info h2  {
       font-size: 1.5em;
       font-weight: normal;
+      margin-bottom: .8em;
+      color: #b6c0f7;
     }
     .info__copyright a:link,
     .info__copyright a:visited {
       text-decoration: none;
       border-bottom: 2px solid;
-      color: #9587f7;
+      color: rgba(170, 158, 251, .73);
     }
     .info__copyright a:hover {
       background: rgba(96, 86, 158, 1);
       color: #fff;
     }
-    .info__donate {
-      border-bottom: none;
-      background: rgba(96, 86, 158, .85);
-      color: #FFF4DF;
-      padding: .2em 1.5em;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 1em;
-      transition: .2s ease;
-      border-radius: 3px;
-      font-weight: bold;
-    }
-      .info__donate:hover {
-        background: rgba(96, 86, 158, 1);
-      }
 
-    .social {
+    .info__social {
       margin-left: auto;
-      margin-top: .6em;
+      margin-top: .5em;
     }
-      .social a {
-        color: rgb(189 188 245 / 62%);
+      .info__social a {
+        color: rgba(189, 188, 245, .62);
         text-decoration: none;
         transition: .2s ease;
       }
-      .social a:hover {
-        color: #9687f7;
+      .info__social a:hover {
+        color: #cec6ff;
       }
-      .social svg {
+      .info__social svg {
         width: 1.4em;
         height: 1.4em;
-        padding: 0 4px;
+        margin-right: 5px;
       }
-      .social li {
+      .info__social li {
         display: inline;
       }
 
-@media (max-width: 30.125em) {
+    .donate {
+      margin-left: auto;
+    }
+      .donate a{
+        opacity: .85;
+        mix-blend-mode: screen;
+        transition: .2s;
+      }
+      .donate img {
+        max-height: 3em;
+      }
+
+
+@media (max-width: 40.625em) {
   footer {
     padding-bottom: 10em;
   }
@@ -880,8 +880,8 @@ footer {
     display: block;
   }
 
-  .social {
-    transform: translateY(1.5em);
+  .donate {
+    margin-top: 2em;
   }
 }
 
