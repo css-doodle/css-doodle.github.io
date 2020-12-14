@@ -816,7 +816,7 @@ footer {
   overflow: hidden;
 }
   .about {
-    color: #9ba2af;
+    color: rgb(189 188 245 / 62%);
     line-height: 1.8;
     position: relative;
     display: flex;
@@ -829,7 +829,7 @@ footer {
     .info__copyright a:visited {
       text-decoration: none;
       border-bottom: 2px solid;
-      color: #fff;
+      color: #9587f7;
     }
     .info__copyright a:hover {
       background: rgba(96, 86, 158, 1);
@@ -853,15 +853,15 @@ footer {
 
     .social {
       margin-left: auto;
-      margin-top: .5em;
+      margin-top: .6em;
     }
       .social a {
-        color: #76788c;
+        color: rgb(189 188 245 / 62%);
         text-decoration: none;
         transition: .2s ease;
       }
       .social a:hover {
-        color: #978fca;
+        color: #9687f7;
       }
       .social svg {
         width: 1.4em;
