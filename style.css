@@ -856,12 +856,12 @@ footer {
       margin-top: .5em;
     }
       .social a {
-        color: #9ba2af;
+        color: #76788c;
         text-decoration: none;
         transition: .2s ease;
       }
       .social a:hover {
-        color: #fff;
+        color: #978fca;
       }
       .social svg {
         width: 1.4em;
