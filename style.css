@@ -816,14 +816,14 @@ footer {
   overflow: hidden;
 }
   .about {
-    color: rgb(189 188 245 / 62%);
+    color: rgb(189, 188, 245, .62);
     line-height: 1.8;
     position: relative;
     display: flex;
   }
     .info h2  {
       font-size: 1.5em;
-      font-weight: normal;
+      font-weight: bold;
       margin-bottom: .8em;
       color: #b6c0f7;
     }
@@ -831,7 +831,7 @@ footer {
     .info__copyright a:visited {
       text-decoration: none;
       border-bottom: 2px solid;
-      color: rgba(170, 158, 251, .73);
+      color: rgb(189, 188, 245, .62);
     }
     .info__copyright a:hover {
       background: rgba(96, 86, 158, 1);
