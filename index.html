@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?cef46bc0feb5debada49b90bcfa5cbb1">
+  <link rel="stylesheet" href="style.css?cd497df64df77caf44b1325bb718eb36">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://cdn.jsdelivr.net/npm/css-doodle/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.12.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.11.3/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.12.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -388,25 +388,25 @@
       <section class="example">
         <div class="container">
           <css-doodle>
-            :doodle {
-              @grid: 32 / 100vmax;
-              background: #0a0c27;
-            }
-            @size: .3vmax;
-            font-size: .3vmax;
-            margin: 2em;
-            color: @p(#D98CC6, #8CB4D8, @m28(#32325a));
-            box-shadow: @m3x5((
-              calc(4em - @nx * 1em) calc(@ny * 1em)
-                @p(@m3(currentColor), @m2(transparent)),
-              calc(2em + @nx * 1em) calc(@ny * 1em)
-                @lp
-            ));
+            @grid: 1 / 100vw 100vh;
+            background-color: #0a0c27;
+            background-size: 200px 200px;
+            background-image: @doodle(
+              @grid: 6 / 100%;
+              @size: 4px;
+              font-size: 4px;
+              color: hsl(@r240, 30%, 50%);
+              box-shadow: @m3x5((
+                calc(4em - @nx * 1em) calc(@ny * 1em)
+                  @p(@m3(currentColor), @m2(transparent)),
+                calc(2em + @nx * 1em) calc(@ny * 1em)
+                  @lp
+              ));
+            );
           </css-doodle>
         </div>
         <textarea code></textarea>
       </section>
-
 
       <article class="wrap selectors">
         <h3><a name="selectors"></a>Selectors</h3>
@@ -815,18 +815,24 @@
       <section class="example">
         <div class="container">
           <css-doodle>
-            :doodle {
-              @grid: 32 / 100vmax;
-              transform: translate(-10%, -10%) scale(1.5);
-              transform-origin: 0 0;
-            }
-            @shape: hexagon;
-            background: @p(#ebbf4d, #e6437d, @m20(#32325a));
-            opacity: @r(.2, 1);
-            transform:
-              translateX(calc((@x - 1) * -10%))
-              translateY(calc((@y - 1) * -22%))
-              translateX(calc(@calc(@y % 2) * 46%));
+            @grid: 1 / 100vw 100vh;
+            background: @doodle(
+              :doodle {
+                @grid: 1 / 10000px;
+                transform: rotate(45deg) scale(2);
+              }
+              background-size: 30px 30px;
+              background-image: @doodle(
+                @grid: 5x1 / calc(100% + 1px);
+                @place-cell: center;
+                @size: calc(100% - 100% / @I * (@i - 1));
+                border-radius: calc(100% / @I * (@i - 1));
+                border: 1px solid #003049;
+                background: @pn(
+                  #d62828, #f77f00, #fcbf49, #eae2b7
+                );
+              );
+            );
           </css-doodle>
         </div>
         <textarea code></textarea>
