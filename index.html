@@ -1970,7 +1970,7 @@
             <textarea code>
               button.addEventListener('click', async e => {
                 let result = await doodle.export({
-                  scale: 4,
+                  scale: 6,
                   download: true
                 });
                 /* open Dev tools to see the result */
@@ -2004,7 +2004,7 @@
                 if (button) {
                   button.addEventListener('click', e => {
                     button.disabled = true;
-                    doodle.export({ download: true, scale: 4 })
+                    doodle.export({ download: true, scale: 6 })
                       .then(data => {
                         console.log(data);
                         setTimeout(() => {
