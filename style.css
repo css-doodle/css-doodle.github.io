@@ -1002,6 +1002,9 @@ footer {
     top: 4.5em;
     bottom: 3em;
     margin-bottom: 3em;
+    max-height: calc(100vh - 7em);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
     .sticky ul li {
       width: 100%;

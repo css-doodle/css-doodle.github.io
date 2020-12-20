@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?cd497df64df77caf44b1325bb718eb36">
+  <link rel="stylesheet" href="style.css?b09a87bdcb130ba625795b9ece2da85d">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
@@ -179,6 +179,8 @@
               <li> <a href="#function-@calc">@calc</a></li>
               <li> <a href="#function-@var">@var</a></li>
               <li> <a href="#function-@hex">@hex</a></li>
+              <li> <a href="#function-@doodle">@doodle</a></li>
+              <li> <a href="#function-@shape">@shape</a></li>
             </ul>
           </li>
           <li>
@@ -1851,6 +1853,71 @@
             </css-doodle>
           </p>
         </section>
+
+        <section>
+          <h4><a name="function-@doodle"></a><span>@doodle(code)</span></h4>
+          <p>
+            Generate <code>url()</code> image with css-doodle code. Like <code>-moz-element()</code>.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background-size: 2em 2em;
+              background-image: @doodle(
+                @grid: 3 / 100%;
+                background: #60569e;
+                @even(cross) {
+                  background: #e6437d;
+                  transform: scale(.5);
+                  border-radius: 50%;
+                }
+              );
+            </textarea>
+            <css-doodle>
+              @grid: 1 / 8em;
+              background-size: 2em 2em;
+              background-image: @doodle(
+                @grid: 3 / 100%;
+                background: #60569e;
+                @even {
+                  background: #e6437d;
+                  transform: scale(.5);
+                  border-radius: 50%;
+                }
+              );
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="function-@shape"></a><span>@shape(definition)</span></h4>
+          <p>
+            Customize shape with trigonometric functions.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              clip-path: @shape(
+                split: 800;
+                rotate: 90;
+                scale: .8;
+                x: sin(2t) * sin(2t) * cos(5t);
+                y: cos(5t) * cos(5t) * sin(t);
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: #60569e;
+              clip-path: @shape(
+                split: 800;
+                rotate: 90;
+                scale: .8;
+                x: sin(2t) * sin(2t) * cos(5t);
+                y: cos(5t) * cos(5t) * sin(t);
+              );
+            </css-doodle>
+          </p>
+        </section>
+        <section>
+
       </article>
 
       <section class="example">
