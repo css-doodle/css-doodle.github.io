@@ -633,6 +633,7 @@ textarea[code] {
     .basic-shapes .shapes {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      margin-bottom: 2em;
     }
     .basic-shapes .shape {
       display: flex;
