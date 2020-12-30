@@ -15,7 +15,7 @@
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.12.2/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.13.1/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.12.2/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.13.1/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -181,6 +181,7 @@
               <li> <a href="#function-@hex">@hex</a></li>
               <li> <a href="#function-@doodle">@doodle</a></li>
               <li> <a href="#function-@shape">@shape</a></li>
+              <li> <a href="#function-@shaders">@shaders</a></li>
             </ul>
           </li>
           <li>
@@ -1861,7 +1862,7 @@
         <section>
           <h4><a name="function-@doodle"></a><span>@doodle(code)</span></h4>
           <p>
-            Generate <code>url()</code> image with css-doodle code. Like <code>-moz-element()</code>.
+            Generate <code>url()</code> image with css-doodle code.
           </p>
           <p class="has-preview">
             <textarea code>
@@ -1893,18 +1894,191 @@
         </section>
 
         <section>
+          <h4><a name="function-@shaders"></a><span>@shaders(code)</span></h4>
+          <p>
+            Generate <code>url()</code> image with GLSL code. Currently only one uniform value is added: </code><code>u_resolution</code></code>.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: @shaders(
+                void main() {
+                  vec2 p = gl_FragCoord.xy / u_resolution.xy;
+                  gl_FragColor = vec4(p.yx, .8, 1.);
+                }
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: @shaders(
+                void main() {
+                  vec2 p = gl_FragCoord.xy / u_resolution.xy;
+                  gl_FragColor = vec4(p.yx, .8, 1.);
+                }
+              );
+            </css-doodle>
+          </p>
+
+          <p>
+            The function accepts three parts. If there's no explict <code>fragment</code> part,
+            all the code will be treated as fragment shader like the example above.
+          </p>
+          <p>
+            <textarea code>
+              background: @shaders(
+                fragment { /* fragment shader */ }
+                vertex   { /* vertex shader */ }
+                texture  { /* textures in css-doodle */ }
+              );
+            </textarea>
+          </p>
+
+          <p>
+            Multiple texture are accepted if they prefix with <code>texture</code> and
+            the texture uniform names will be injected automatically.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: @shaders(
+                texture_0 {
+                  @grid: 1 / 100%;
+                  background: linear-gradient(45deg, @stripe.@m20.@p(
+                    #FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C
+                  ));
+                }
+                fragment {
+                  void main() {
+                    /* ... */
+                    vec2 coords = vec2(r * cos(angle), r * sin(angle)) + c;
+                    gl_FragColor = texture2D(texture_0, coords);
+                  }
+                }
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: @shaders(
+                texture1 {
+                  @grid: 1 / 100%;
+                  background: linear-gradient(
+                    45deg,
+                    @stripe.@m20.@p(#FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C)
+                  );
+                }
+                fragment {
+                  void main() {
+                    vec2 p = gl_FragCoord.xy / u_resolution.xy;
+                    vec2 c = vec2(.5, .5);
+                    vec2 uv = p.xy - c;
+                    float R = 3.141593;
+                    float len = length(uv * vec2(u_resolution.x / u_resolution.y, 1.));
+                    float angle = atan(uv.y, uv.x) + R * smoothstep(.5, 0., len);
+                    float r = length(uv) + .1;
+                    vec2 coords = vec2(r * cos(angle), r * sin(angle)) + c;
+                    gl_FragColor = texture2D(texture1, coords);
+                  }
+                }
+              );
+            </css-doodle>
+          </p>
+
+        </section>
+
+
+        <section>
           <h4><a name="function-@shape"></a><span>@shape(definition)</span></h4>
           <p>
-            Customize shape with trigonometric functions.
+            Generate <code>polygon()</code> in string used by <code>clip-path</code>. For example, to make a hexagon:
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              clip-path: @shape(
+                split: 6;
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: #60569e;
+              clip-path: @shape(
+                split: 6;
+                scale: .75;
+              );
+            </css-doodle>
+          </p>
+
+          <p>
+            Rotate it by <code>30</code> degree and scale it down:
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              clip-path: @shape(
+                split: 6;
+                rotate: 30;
+                scale: .5;
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: #60569e;
+              clip-path: @shape(
+                split: 6;
+                rotate: 30;
+                scale: .5;
+              );
+            </css-doodle>
+          </p>
+
+          <p>
+            If the <code>split</code> value is big enough it approximately to be a circle.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              clip-path: @shape(
+                split: 100;
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: #60569e;
+              clip-path: @shape(
+                split: 100;
+                scale: .75;
+              );
+            </css-doodle>
+          </p>
+
+          <p>
+             The <code>x</code> and <code>y</code> are defined with trigonometric functions.
+             The <code>t</code> stands for Theta, each of them equals <code>360 / split</code> degree.
           </p>
           <p class="has-preview">
             <textarea code>
               clip-path: @shape(
                 split: 800;
-                rotate: 90;
-                scale: .8;
-                x: sin(2t) * sin(2t) * cos(5t);
-                y: cos(5t) * cos(5t) * sin(t);
+                x: cos(5t) * cos(5t) * sin(t);
+                y: sin(2t) * sin(2t) * cos(5t);
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: #60569e;
+              scale: .75;
+              clip-path: @shape(
+                split: 800;
+                x: cos(5t) * cos(5t) * sin(t);
+                y: sin(2t) * sin(2t) * cos(5t);
+              );
+            </css-doodle>
+          </p>
+          <p>
+            You can also define variables if the expressions are too long. and <code>π</code> can be used directly.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              clip-path: @shape(
+                split: 800;
+                k: π - 7t;
+                x: cos(2t) + cos(k);
+                y: sin(2t) + sin(k);
               );
             </textarea>
             <css-doodle click-to-update>
@@ -1912,15 +2086,14 @@
               background: #60569e;
               clip-path: @shape(
                 split: 800;
-                rotate: 90;
-                scale: .8;
-                x: sin(2t) * sin(2t) * cos(5t);
-                y: cos(5t) * cos(5t) * sin(t);
+                scale: .35;
+                k: π - 7t;
+                x: cos(2t) + cos(k);
+                y: sin(2t) + sin(k);
               );
             </css-doodle>
           </p>
         </section>
-        <section>
 
       </article>
 
