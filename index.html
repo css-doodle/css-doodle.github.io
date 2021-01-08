@@ -15,7 +15,7 @@
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.13.2/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.13.3/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.13.2/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.13.3/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -2053,6 +2053,7 @@
           <p class="has-preview">
             <textarea code>
               clip-path: @shape(
+                fill-rule: evenodd;
                 split: 800;
                 x: cos(5t) * cos(5t) * sin(t);
                 y: sin(2t) * sin(2t) * cos(5t);
@@ -2063,6 +2064,7 @@
               background: #60569e;
               scale: .75;
               clip-path: @shape(
+                fill-rule: evenodd;
                 split: 800;
                 x: cos(5t) * cos(5t) * sin(t);
                 y: sin(2t) * sin(2t) * cos(5t);
@@ -2075,6 +2077,7 @@
           <p class="has-preview">
             <textarea code>
               clip-path: @shape(
+                fill-rule: evenodd;
                 split: 800;
                 k: π - 7t;
                 x: cos(2t) + cos(k);
@@ -2085,6 +2088,7 @@
               @grid: 1 / 8em;
               background: #60569e;
               clip-path: @shape(
+                fill-rule: evenodd;
                 split: 800;
                 scale: .35;
                 k: π - 7t;
