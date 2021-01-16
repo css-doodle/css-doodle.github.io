@@ -15,7 +15,7 @@
   <link rel="dns-prefetch" href="https://srv.buysellads.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.13.4/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.13.8/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.13.4/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.13.8/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -1985,7 +1985,8 @@
 
 
         <section>
-          <h4><a name="function-@shape"></a><span>@shape(definition)</span></h4>
+          <h4><a name="function-@shape"></a><span>@shape(commands)</span></h4>
+
           <p>
             Generate <code>polygon()</code> in string used by <code>clip-path</code>. For example, to make a hexagon:
           </p>
@@ -2000,29 +2001,6 @@
               background: #60569e;
               clip-path: @shape(
                 split: 6;
-                scale: .75;
-              );
-            </css-doodle>
-          </p>
-
-          <p>
-            Rotate it by <code>30</code> degree and scale it down:
-          </p>
-          <p class="has-preview">
-            <textarea code>
-              clip-path: @shape(
-                split: 6;
-                rotate: 30;
-                scale: .5;
-              );
-            </textarea>
-            <css-doodle click-to-update>
-              @grid: 1 / 8em;
-              background: #60569e;
-              clip-path: @shape(
-                split: 6;
-                rotate: 30;
-                scale: .5;
               );
             </css-doodle>
           </p>
@@ -2041,62 +2019,64 @@
               background: #60569e;
               clip-path: @shape(
                 split: 100;
-                scale: .75;
+              );
+            </css-doodle>
+          </p>
+
+          <div class="option-list" style="margin-top: 2em;">
+            <h6>All commands</h6>
+            <ul>
+              <li><p><code>fill-rule</code> nonzero | evenodd; </p></li>
+              <li><p><code>frame</code> number for frame size; </p></li>
+              <li><p><code>split</code> number between 3 - 3600;   </p></li>
+              <li><p><code>degree</code> number in degree for rotation; </p></li>
+              <li><p><code>scale</code> number for scale factor; </p></li>
+              <li><p><code>origin</code> a pair of value for setting coordinate origin;</p></li>
+              <li><p><code>x</code> x coordinate for cartesian equation;</p></li>
+              <li><p><code>y</code> y coordinate for cartesian equation;  </p></li>
+              <li><p><code>r</code> polar equation;</p></li>
+            </ul>
+          </div>
+
+          <div class="option-list">
+            <h6>Operations in equations</h6>
+            <ul>
+              <li>
+                <p>
+                  Operations available:
+                  <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> <code>^</code>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  All JavaScript Math functions and constants are supported.
+                  Such as <code>sin</code>, <code>cos</code> <code>tan</code> <code>abs</code> <code>pow</code> <code>PI</code> or <code>π</code> etc.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <p class="has-preview">
+            <textarea code>
+              clip-path: @shape(
+                split: 300;
+                r: cos(4t);
+              );
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 1 / 8em;
+              background: #60569e;
+              clip-path: @shape(
+                split: 300;
+                r: cos(4t);
               );
             </css-doodle>
           </p>
 
           <p>
-             The <code>x</code> and <code>y</code> are defined with trigonometric functions.
-             The <code>t</code> stands for Theta, each of them equals <code>360 / split</code> degree.
+            See more example here: <a href="https://css-doodle.com/shapes/">https://css-doodle.com/shapes/</a>.
           </p>
-          <p class="has-preview">
-            <textarea code>
-              clip-path: @shape(
-                fill-rule: evenodd;
-                split: 800;
-                x: cos(5t) * cos(5t) * sin(t);
-                y: sin(2t) * sin(2t) * cos(5t);
-              );
-            </textarea>
-            <css-doodle click-to-update>
-              @grid: 1 / 8em;
-              background: #60569e;
-              scale: .75;
-              clip-path: @shape(
-                fill-rule: evenodd;
-                split: 800;
-                x: cos(5t) * cos(5t) * sin(t);
-                y: sin(2t) * sin(2t) * cos(5t);
-              );
-            </css-doodle>
-          </p>
-          <p>
-            You can also define variables if the expressions are too long. and <code>π</code> can be used directly.
-          </p>
-          <p class="has-preview">
-            <textarea code>
-              clip-path: @shape(
-                fill-rule: evenodd;
-                split: 800;
-                k: π - 7t;
-                x: cos(2t) + cos(k);
-                y: sin(2t) + sin(k);
-              );
-            </textarea>
-            <css-doodle click-to-update>
-              @grid: 1 / 8em;
-              background: #60569e;
-              clip-path: @shape(
-                fill-rule: evenodd;
-                split: 800;
-                scale: .35;
-                k: π - 7t;
-                x: cos(2t) + cos(k);
-                y: sin(2t) + sin(k);
-              );
-            </css-doodle>
-          </p>
+
         </section>
 
       </article>
