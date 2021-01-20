@@ -53,6 +53,8 @@
     link.className = 'example__link';
     link.text = 'Edit on CodePen';
     link.href = block.dataset.link;
+    link.target = '_blank';
+    link.rel = 'noreferrer';
     sample.appendChild(link);
     block.parentNode.replaceChild(sample, block);
     if (typeof CodeMirror !== "undefined") {
