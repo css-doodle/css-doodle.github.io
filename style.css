@@ -752,6 +752,7 @@ textarea[code] {
       .docs a.example__link:link,
       .docs a.example__link:visited {
         color: #fff;
+        border-bottom: none;
       }
       .docs a.example__link:hover {
         background: #968CD9;
