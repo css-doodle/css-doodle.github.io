@@ -160,26 +160,6 @@
         calc(10 + 4 * @i), 70%, 68%, @r.8
       );
     `),
-    triangles: indent(`
-      :doodle {
-        @grid: 9 / 85%;
-        @shape: circle;
-      }
-
-      transition: .4s @r(.6s);
-      transform: rotate(@r(360deg));
-      @shape: triangle;
-
-      --n: calc(
-          @abs(@abs(@row - 5)
-        + @abs(@col - 5) - 9) / 9
-      );
-
-      background: hsla(
-        calc(var(--n) * 360 + 120),
-        60%, 68%, var(--n)
-      );
-    `),
     dashed: indent(`
       @grid: 1x10 / 85%;
 
@@ -225,6 +205,22 @@
       @random {
         filter: drop-shadow(0 0 10px #fff);
       }
+    `
+    ),
+
+    bud: indent(`
+      @grid: 1 / 70%;
+
+      background: radial-gradient(
+        yellow, #E91F63, #fff
+      );
+
+      clip-path: @shape(
+        fill-rule: evenodd;
+        split: 200;
+        scale: .6;
+        r: cos(7t)^2 + sin(7t) + .3;
+      );
     `)
   };
 
