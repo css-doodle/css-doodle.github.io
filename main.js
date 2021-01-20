@@ -49,14 +49,18 @@
     let content = block.value = indent(block.value);
     let sample = document.createElement('div');
     sample.className = 'code-sample';
-    let link = document.createElement('a');
-    link.className = 'example__link';
-    link.text = 'Edit on CodePen';
-    link.href = block.dataset.link;
-    link.target = '_blank';
-    link.rel = 'noreferrer';
-    sample.appendChild(link);
     block.parentNode.replaceChild(sample, block);
+
+    if (block.dataset.link) {
+      let link = document.createElement('a');
+      link.className = 'example__link';
+      link.text = 'Edit on CodePen';
+      link.href = block.dataset.link;
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+      sample.appendChild(link);
+    }
+
     if (typeof CodeMirror !== "undefined") {
       CodeMirror(sample, {
         mode: block.getAttribute('code') || 'css',
