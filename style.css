@@ -183,7 +183,7 @@ textarea[code] {
 }
 
 .CodeMirror {
-  font-family: "Operator Mono SSm A","Operator Mono SSm B", monospace;
+  font-family: "PT Mono", monospace, sans-serif;
   font-size: 16px;
 }
 .code-sample .CodeMirror {
@@ -739,8 +739,25 @@ textarea[code] {
     line-height: 1.4;
     overflow: hidden;
   }
-    .source:after,
-    .code-sample:after  {
+    .example__link {
+      position: absolute;
+      right: 3px;
+      top: 3px;
+      font-size: .9em;
+      background: #968CD9;
+      color: #fff;
+      z-index: 9;
+      padding: 2px 5px;
+    }
+      .docs a.example__link:link,
+      .docs a.example__link:visited {
+        color: #fff;
+      }
+      .docs a.example__link:hover {
+        background: #968CD9;
+        opacity: .9;
+      }
+    .source:after {
       content: '';
       position: absolute;
       width: 50px;
@@ -751,14 +768,6 @@ textarea[code] {
       transform-origin: 0 0;
       transform: translate(12px) rotate(45deg);
       box-shadow:
-        0 -5px 0 0 rgba(255, 255, 255, .8),
-        0 -8px 0 0 rgba(255, 255, 255, .6),
-        0 -12px 0 0 rgba(255, 255, 255, .4),
-        0 -17px 0 0 rgba(255, 255, 255, .2),
-        0 -22px 0 0 rgba(255, 255, 255, .2);
-    }
-    .source:after {
-      box-shadow:
         0 -5px 0 0 rgba(231, 231, 252, .8),
         0 -8px 0 0 rgba(231, 231, 252, .6),
         0 -12px 0 0 rgba(231, 231, 252, .4),
@@ -767,9 +776,12 @@ textarea[code] {
     }
     .source .CodeMirror,
     .example .code-sample .CodeMirror {
-      background: rgba(255, 255, 255, .9);
+      background: #fff;
       border-radius: 0;
       border: 0;
+    }
+
+    .source .CodeMirror {
       --polygon: polygon(
         0 0,
         calc(100% - 35px) 0,

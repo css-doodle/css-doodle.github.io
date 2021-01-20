@@ -49,6 +49,11 @@
     let content = block.value = indent(block.value);
     let sample = document.createElement('div');
     sample.className = 'code-sample';
+    let link = document.createElement('a');
+    link.className = 'example__link';
+    link.text = 'Edit on CodePen';
+    link.href = block.dataset.link;
+    sample.appendChild(link);
     block.parentNode.replaceChild(sample, block);
     if (typeof CodeMirror !== "undefined") {
       CodeMirror(sample, {
