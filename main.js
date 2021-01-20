@@ -223,7 +223,7 @@
 
       clip-path: @shape(
         fill-rule: evenodd;
-        split: 200;
+        split: 400;
         scale: .6;
         r: cos(7t)^2 + sin(7t) + .3;
       );
