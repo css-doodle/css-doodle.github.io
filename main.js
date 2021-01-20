@@ -212,8 +212,7 @@
       @random {
         filter: drop-shadow(0 0 10px #fff);
       }
-    `
-    ),
+    `),
 
     bud: indent(`
       @grid: 1 / 70%;
@@ -261,7 +260,15 @@
     let selected = get(switcher, `button[data-name="${ name }"]`);
     if (selected && editor) {
       selected.classList.add('active');
-      editor.setValue(doodles[name]);
+      /* bug */
+      if (name == 'bud') {
+        editor.setValue('@grid: 2 / 100%');
+        setTimeout(() => {
+          editor.setValue(doodles[name]);
+        });
+      } else {
+        editor.setValue(doodles[name]);
+      }
     }
   }
 
