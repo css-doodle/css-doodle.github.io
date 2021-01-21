@@ -395,7 +395,7 @@ textarea[code] {
       height: 80vw;
       max-width: 400px;
       max-height: 400px;
-      margin: 3em auto;
+      margin: 3em auto 5em;
       box-shadow: none;
     }
     .playground {
@@ -406,9 +406,6 @@ textarea[code] {
     }
     .playground .doodle {
       background: none;
-    }
-    .playground .switcher {
-      display: none;
     }
   }
 

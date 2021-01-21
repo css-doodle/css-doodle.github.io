@@ -229,7 +229,7 @@
 
       clip-path: @shape(
         fill-rule: evenodd;
-        split: 400;
+        split: 3600;
         scale: .6;
         r: cos(7t)^2 + sin(7t) + .3;
       );
