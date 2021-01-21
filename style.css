@@ -451,6 +451,9 @@ textarea[code] {
       }
 
       @media (max-width: 34.0625em) {
+        .docs p  {
+          font-size: 1em;
+        }
         .docs .has-preview {
           display: block;
         }
