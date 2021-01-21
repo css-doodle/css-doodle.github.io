@@ -1,5 +1,7 @@
 (function() {
 
+  const touchScreen = isTouchScreen();
+
   const shapes = [
     'circle',        'triangle',      'rhombus',       'pentagon',
     'hexagon',       'heptagon',      'octagon',       'cross',
@@ -65,7 +67,7 @@
       CodeMirror(sample, {
         mode: block.getAttribute('code') || 'css',
         value: content,
-        readOnly: ('ontouchstart' in window) ? 'nocursor' : true,
+        readOnly: touchScreen ? 'nocursor' : true,
         cursorBlinkRate: -1,
         theme: '3024-day',
         tabSize: 2
@@ -293,6 +295,28 @@
     container.appendChild(sticky);
   });
 
+  function resize() {
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let size = Math.max(w, h);
+    each('.example css-doodle', doodle => {
+      doodle.parentNode.parentNode.style.height = h + 'px';
+      if (doodle.innerHTML.includes('vmax')) {
+        doodle.style.width = doodle.style.height = size + 'px';
+      } else {
+        doodle.style.width = w + 'px';
+        doodle.style.height = h + 'px';
+      }
+    });
+  }
+
+  if (touchScreen) {
+    resize();
+    window.addEventListener('orientationchange', e => {
+      setTimeout(resize, 200);
+    });
+  }
+
   function get(root, selector) {
     if (arguments.length == 1) {
       return document.querySelector(root);
@@ -333,4 +357,10 @@
     }
   }
 
+  function isTouchScreen() {
+    if (window.matchMedia) {
+      return window.matchMedia("(pointer: coarse)").matches;
+    }
+    return ('ontouchstart' in window);
+  }
 }());
