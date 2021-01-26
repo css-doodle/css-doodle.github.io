@@ -156,7 +156,7 @@
       transform: scale(@r(.25, 1.25));
 
       background: hsla(
-        calc(240 - 6 * @row * @col),
+        calc(240 - 6 * @x * @y),
         70%, 68%, @r.8
       );
     `),
@@ -164,7 +164,7 @@
       @grid: 50x1 / 80%;
 
       @place-cell: center;
-      @size: calc(100% / @size * @i);
+      @size: calc(100% / @I * @i);
 
       transform: rotate(calc(@i * 5deg));
 
