@@ -1653,23 +1653,19 @@
           <p>Use SVG directly as background image. </p>
           <p class="has-preview">
             <textarea code>
-              <style>
-                :root {
-                  --svg-example: (
-                    background-image: @svg(
-                      <svg viewBox="0 0 100 175">
-                        @repeat50(<path
-                          stroke-width="@r.5"
-                          stroke="@p(#60569e, #e6437d)"
-                          d="M0, 0 L@r100, @r175"
-                        />)
-                      </svg>
-                    );
-                  );
-                }
-              </style>
-
-              <css-doodle use="var(--svg-example)"></css-doodle>
+              <css-doodle>
+                @grid: 1 / 8em 14em;
+                background-size: 100%;
+                background-image: @svg(
+                  <svg viewBox="0 0 100 175">
+                    @rep50(<path
+                      stroke-width="@r.5"
+                      stroke="@p(#60569e, #e6437d)"
+                      d="M0, 0 L@r100, @r175"
+                    />)
+                  </svg>
+                );
+              </css-doodle>
             </textarea>
             <style>
               :root {
@@ -1677,10 +1673,9 @@
                 :doodle {
                   @grid: 1 / 8em 14em;
                   background-size: 100%;
-                  background-repeat: no-repeat;
                   background-image: @svg(
                     <svg viewBox="0 0 100 175">
-                      @repeat50(<path
+                      @rep50(<path
                         fill="none"
                         stroke-width="@r.5"
                         stroke="@pick(#60569e, #e6437d)"
