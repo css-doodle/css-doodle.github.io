@@ -809,22 +809,16 @@
         <div class="container">
           <css-doodle>
             @grid: 1 / 100vw 100vh;
-            background: @doodle(
-              :doodle {
-                @grid: 1 / 10000px;
-                transform: rotate(45deg) scale(2);
-              }
-              background-size: 30px 30px;
-              background-image: @doodle(
-                @grid: 5x1 / calc(100% + 1px);
-                @place-cell: center;
-                @size: calc(100% - 100% / @I * (@i - 1));
-                border-radius: calc(100% / @I * (@i - 1));
-                border: 1px solid #003049;
-                background: @pn(
-                  #d62828, #f77f00, #fcbf49, #eae2b7
-                );
-              );
+            background-size: 83px 135px;
+            background-color: #D24B45;
+            background-image: @doodle(
+              @grid: 2 / 100%;
+              background: @pn(#3C2B34, #F7F0E9, #F7F0E9);
+              transform-origin:
+                @pn(100% 100%, 0 100%, 100% 0, 0 0);
+              transform:
+                rotateX(45deg)
+                skewY(@pn(34deg, -34deg, -34deg));
             );
           </css-doodle>
         </div>
