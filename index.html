@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?d17b3ff74ff757e1d187773632259750">
+  <link rel="stylesheet" href="style.css?a94a614a9859f2a3e4da815072229291">
   <link rel="preconnect" href="https://s3.buysellads.com">
   <link rel="dns-prefetch" href="https://s3.buysellads.com">
   <link rel="preconnect" href="https://srv.buysellads.com">
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.15.3/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.16.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -81,11 +81,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.15.3/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.16.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.15.3/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.16.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -968,18 +968,21 @@
           <p>Place cells relative to the grid. </p>
           <p class="has-preview">
             <textarea code>
+              :doodle { contain: layout }
+
               @size: 1.6em;
-              @nth(1) { @place-cell: 0 top; }
-              @nth(2) { @place-cell: right 25%; }
-              @nth(3) { @place-cell: center; }
-              @nth(4) { @place-cell: .8em calc(100% - .8em); }
-              @nth(5) { @place-cell: 75% 80%; }
+              @nth(1) { @place-cell: 0 top }
+              @nth(2) { @place-cell: right 25% }
+              @nth(3) { @place-cell: center }
+              @nth(4) { @place-cell: .8em calc(100% - .8em) }
+              @nth(5) { @place-cell: 75% 80% }
             </textarea>
 
             <css-doodle>
               :doodle {
                 @grid: 1x5 / 8em;
                 border: 1px solid #60569e;
+                contain: layout;
               }
               @size: 1.6em;
               background: rgba(72, 74, 142, .8);
@@ -1452,6 +1455,7 @@
               :doodle { @size: 8em; grid-gap: 1px }
               background: #60569e;
               transition: .2s;
+              transform: scale(.95);
               border-radius: @repeat(4, @rand(40%, 60%));
               :after {
                 content: '';
@@ -1728,7 +1732,7 @@
             </textarea>
             <css-doodle>
               @grid: 1x60 / 8em 15em;
-              @size: 75.8% 1px;
+              @size: 65% 1px;
               justify-self: center;
               background: #60569e;
               opacity: calc(1 - @i / @size());
@@ -1979,32 +1983,34 @@
           <p class="has-preview">
             <textarea code>
               clip-path: @shape(
-                split: 6;
+                points: 6;
               );
             </textarea>
             <css-doodle click-to-update>
               @grid: 1 / 8em;
               background: #60569e;
               clip-path: @shape(
-                split: 6;
+                points: 6;
+                scale: .8;
               );
             </css-doodle>
           </p>
 
           <p>
-            If the <code>split</code> value is big enough it approximately to be a circle.
+            If the <code>points</code> value is big enough it approximately to be a circle.
           </p>
           <p class="has-preview">
             <textarea code>
               clip-path: @shape(
-                split: 100;
+                points: 100;
               );
             </textarea>
             <css-doodle click-to-update>
               @grid: 1 / 8em;
               background: #60569e;
               clip-path: @shape(
-                split: 100;
+                points: 100;
+                scale: .8;
               );
             </css-doodle>
           </p>
@@ -2014,7 +2020,7 @@
             <ul>
               <li><p><code>fill-rule</code> nonzero | evenodd; </p></li>
               <li><p><code>frame</code> number for frame size; </p></li>
-              <li><p><code>split</code> number between 3 - 3600;   </p></li>
+              <li><p><code>points</code> number between 3 - 3600;   </p></li>
               <li><p><code>rotate</code> number in degree for rotation; </p></li>
               <li><p><code>scale</code> number for scale factor; </p></li>
               <li><p><code>origin</code> a pair of value for setting coordinate origin;</p></li>
@@ -2056,7 +2062,7 @@
           <p class="has-preview">
             <textarea code>
               clip-path: @shape(
-                split: 300;
+                points: 300;
                 r: cos(4t);
               );
             </textarea>
@@ -2064,8 +2070,9 @@
               @grid: 1 / 8em;
               background: #60569e;
               clip-path: @shape(
-                split: 300;
+                points: 300;
                 r: cos(4t);
+                scale: .8;
               );
             </css-doodle>
           </p>
@@ -2294,7 +2301,7 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?2ffe422e243d5202dd86086157b91f0c"></script>
+  <script src="main.js?a6e92e90b0ca0e96966ce2e119e657ca"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119113443-1"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-119113443-1');</script>

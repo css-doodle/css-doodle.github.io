@@ -653,9 +653,6 @@ textarea[code] {
         .basic-shapes .shapes {
           grid-template-columns: repeat(3, 1fr);
         }
-        .basic-shapes .shape:last-child {
-          display: none;
-        }
       }
 
       @media (max-width: 568px) {
