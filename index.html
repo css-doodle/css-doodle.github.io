@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.16.1/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.17.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -81,11 +81,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.16.1/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.17.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.16.1/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.17.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -968,8 +968,6 @@
           <p>Place cells relative to the grid. </p>
           <p class="has-preview">
             <textarea code>
-              :doodle { contain: layout }
-
               @size: 1.6em;
               @nth(1) { @place-cell: 0 top }
               @nth(2) { @place-cell: right 25% }
@@ -982,7 +980,6 @@
               :doodle {
                 @grid: 1x5 / 8em;
                 border: 1px solid #60569e;
-                contain: layout;
               }
               @size: 1.6em;
               background: rgba(72, 74, 142, .8);
@@ -1662,7 +1659,7 @@
                 background-size: 100%;
                 background-image: @svg(
                   <svg viewBox="0 0 100 175">
-                    @rep50(<path
+                    @M50(<path
                       stroke-width="@r.5"
                       stroke="@p(#60569e, #e6437d)"
                       d="M0, 0 L@r100, @r175"
@@ -1679,7 +1676,7 @@
                   background-size: 100%;
                   background-image: @svg(
                     <svg viewBox="0 0 100 175">
-                      @rep50(<path
+                      @M50(<path
                         fill="none"
                         stroke-width="@r.5"
                         stroke="@pick(#60569e, #e6437d)"
@@ -1692,6 +1689,20 @@
             </style>
             <css-doodle click-to-update use="var(--svg-example)"></css-doodle>
           </p>
+          <p>There's another way to write the above SVG with the syntax of CSS.</p>
+          <p>
+            <textarea code>
+              <css-doodle>
+                background-image: @svg(
+                  viewBox: 0 0 100 175;
+                  @M50(path {
+                    stroke-width: @r.5;
+                    stroke: @p(#60569e, #e6437d);
+                    d: M0, 0 L@r100, @r175;
+                  })
+                );
+              </css-doodle>
+            </textarea>
         </section>
 
         <section>
