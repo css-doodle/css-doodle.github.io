@@ -1662,7 +1662,7 @@
                     @M50(<path
                       stroke-width="@r.5"
                       stroke="@p(#60569e, #e6437d)"
-                      d="M0, 0 L@r100, @r175"
+                      d="M0 0 L@r100 @r175"
                     />)
                   </svg>
                 );
@@ -1677,7 +1677,6 @@
                   background-image: @svg(
                     <svg viewBox="0 0 100 175">
                       @M50(<path
-                        fill="none"
                         stroke-width="@r.5"
                         stroke="@pick(#60569e, #e6437d)"
                         d="M 0 0 L@r100 @r175"
@@ -1692,17 +1691,14 @@
           <p>There's another way to write the above SVG with the syntax of CSS.</p>
           <p>
             <textarea code>
-              <css-doodle>
-                background-image: @svg(
-                  viewBox: 0 0 100 175;
-                  @M50((path {
-                    fill: none;
-                    stroke-width: @r.5;
-                    stroke: @p(#60569e, #e6437d);
-                    d: M0, 0 L@r100, @r175;
-                  }));
-                );
-              </css-doodle>
+              background-image: @svg(
+                viewBox: 0 0 100 175;
+                @M50(path {
+                  stroke-width: @r.5;
+                  stroke: @p(#60569e, #e6437d);
+                  d: M0 0 L@r100 @r175;
+                });
+              );
             </textarea>
         </section>
 
