@@ -171,8 +171,9 @@
               <li> <a href="#function-@var">@var</a></li>
               <li> <a href="#function-@hex">@hex</a></li>
               <li> <a href="#function-@doodle">@doodle</a></li>
-              <li> <a href="#function-@shape">@shape</a></li>
               <li> <a href="#function-@shaders">@shaders</a></li>
+              <li> <a href="#function-@shape">@shape</a></li>
+              <li> <a href="#function-@offset">@offset</a></li>
             </ul>
           </li>
           <li>
@@ -1708,37 +1709,37 @@
           <p>Apply SVG filters.</p>
           <p class="has-preview">
             <textarea code>
-							filter: @svg-filter(
-								feTurbulence {
-									type: fractalNoise;
-									baseFrequency: .01 .5;
-								}
-								feDisplacementMap {
-									in: SourceGraphic;
-									scale: 50;
-								}
-							);
+              filter: @svg-filter(
+                feTurbulence {
+                  type: fractalNoise;
+                  baseFrequency: .01 .5;
+                }
+                feDisplacementMap {
+                  in: SourceGraphic;
+                  scale: 50;
+                }
+              );
             </textarea>
             <style>
               :root {
                 --svg-filter-example: (
-									:doodle {
-										@grid: 1 / 8em;
+                  :doodle {
+                    @grid: 1 / 8em;
                     background: #60569e;
                     border-radius: 50%;
-										filter: @svg-filter(
-											feTurbulence {
-												type: fractalNoise;
-												baseFrequency: .01 .5;
-											}
-											feDisplacementMap {
-												in: SourceGraphic;
-												scale: 50;
-											}
-										);
-									}
-              	);
-							}
+                    filter: @svg-filter(
+                      feTurbulence {
+                        type: fractalNoise;
+                        baseFrequency: .01 .5;
+                      }
+                      feDisplacementMap {
+                        in: SourceGraphic;
+                        scale: 50;
+                      }
+                    );
+                  }
+                );
+              }
             </style>
             <css-doodle use="var(--svg-filter-example)"></css-doodle>
           </p>
@@ -2131,6 +2132,53 @@
             See more examples here: <a href="https://css-doodle.com/shapes/">https://css-doodle.com/shapes</a>.
           </p>
 
+        </section>
+
+        <section>
+          <h4><a name="function-@offset"></a><span>@offset(commands)</span></h4>
+
+          <p>
+            Generate two values in percent and seperated with space.
+            The syntax is the same with <a href="#function-@shape"#>@shape</a>.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              background: @m100(
+                radial-gradient(#60569e 50%, #0000 0)
+                @offset(r: .8) / 5px 5px
+                no-repeat
+              );
+            </textarea>
+            <css-doodle>
+              @grid: 1 / 8em;
+               background: @m50(
+                radial-gradient(#60569e 50%, transparent 0)
+                @offset(r: .8) / 5px 5px
+                no-repeat
+              );
+            </css-doodle>
+          </p>
+
+          <p>
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              @grid: 100x1 / 200px;
+              @size: @r(10px);
+              border-radius: 50%;
+              border: 1px solid #000;
+
+              @place-cell: @offset(r: 2^sin(2t); scale: .5);
+            </textarea>
+            <css-doodle click-to-update>
+              @grid: 100x1 / 8em;
+              @size: @r(10px);
+              border-radius: 50%;
+              border: 1px solid #60569e;
+
+              @place-cell: @offset(r: 2^sin(2t); scale: .5);
+            </css-doodle>
+          </p>
         </section>
 
       </article>
