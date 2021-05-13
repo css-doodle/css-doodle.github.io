@@ -165,6 +165,7 @@
               <li> <a href="#function-@n">@n,nx,ny,N</a></li>
               <li> <a href="#function-@stripe">@stripe</a></li>
               <li> <a href="#function-@svg">@svg</a></li>
+              <li> <a href="#function-@svg">@svg-filter</a></li>
               <li> <a href="#function-@Math">@&lt;Math&gt;</a></li>
               <li> <a href="#function-@calc">@calc</a></li>
               <li> <a href="#function-@var">@var</a></li>
@@ -1688,7 +1689,7 @@
             </style>
             <css-doodle click-to-update use="var(--svg-example)"></css-doodle>
           </p>
-          <p>There's another way to write the above SVG with the syntax of CSS.</p>
+          <p>You can also write SVG with the syntax of CSS.</p>
           <p>
             <textarea code>
               background-image: @svg(
@@ -1700,6 +1701,47 @@
                 });
               );
             </textarea>
+        </section>
+
+        <section>
+          <h4><a name="function-@svg-filter"></a><span>@svg-filter(filter)</span></h4>
+          <p>Apply SVG filter.</p>
+          <p class="has-preview">
+            <textarea code>
+							filter: @svg-filter(
+								feTurbulence {
+									type: fractalNoise;
+									baseFrequency: .01 .5;
+								}
+								feDisplacementMap {
+									in: SourceGraphic;
+									scale: 20;
+								}
+							);
+            </textarea>
+            <style>
+              :root {
+                --svg-filter-example: (
+									:doodle {
+										@grid: 1 / 8em;
+                    background: #60569e;
+                    border-radius: 50%;
+										filter: @svg-filter(
+											feTurbulence {
+												type: fractalNoise;
+												baseFrequency: .01 .5;
+											}
+											feDisplacementMap {
+												in: SourceGraphic;
+												scale: 20;
+											}
+										);
+									}
+              	);
+							}
+            </style>
+            <css-doodle use="var(--svg-filter-example)"></css-doodle>
+          </p>
         </section>
 
         <section>
