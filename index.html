@@ -2168,7 +2168,10 @@
               border-radius: 50%;
               border: 1px solid #000;
 
-              @place-cell: @offset(r: 2^sin(2t); scale: .5);
+              @place-cell: @offset(
+                r: 2^sin(2t);
+                scale: .5
+              );
             </textarea>
             <css-doodle click-to-update>
               @grid: 100x1 / 8em;
