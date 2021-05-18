@@ -2165,22 +2165,27 @@
           <p class="has-preview">
             <textarea code>
               @grid: 100x1 / 200px;
-              @size: @r(10px);
+              @size: 5px;
               border-radius: 50%;
               border: 1px solid #000;
 
               @place-cell: @offset(
-                r: 2^sin(2t);
-                scale: .5
+                r: sin(t/2);
+                origin: 0 -.3;
+                rotate: 90;
               );
             </textarea>
             <css-doodle click-to-update>
-              @grid: 100x1 / 8em;
-              @size: @r(10px);
+              @grid: 50x1 / 8em;
+              @size: 5px;
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @place-cell: @offset(r: 2^sin(2t); scale: .5);
+              @place-cell: @offset(
+                r: sin(t/2);
+                origin: 0 -.3;
+                rotate: 90;
+              );
             </css-doodle>
           </p>
         </section>
