@@ -1497,11 +1497,11 @@
               }
               background: linear-gradient(
                 @rand(360deg),
-                @multiple(3, (
+                @m3(
                   @pick-n(#60569e, #e6437d, #ebbf4d)
                     calc((@n - 1) * 100% / 3),
                   @lp calc(@n * 100% / 3)
-                ))
+                )
               );
             </css-doodle>
           </p>
@@ -1544,10 +1544,10 @@
             <textarea code>
               background: radial-gradient(
                 circle at @r(100%) @r(100%),
-                @m(20, (
+                @m20(
                   @p(#60569e, #ebbf4d) calc((@n - 1) * 100% / @N),
                   @lp calc(@n * 100% / @N)
-                ))
+                )
               );
             </textarea>
             <css-doodle grid="1" click-to-update>
@@ -1556,11 +1556,11 @@
               }
               background: radial-gradient(
                 circle at @r(100%) @r(100%),
-                @m20((
+                @m20(
                   @p(#60569e, #ebbf4d)
                     calc((@n - 1) * 100% / @N),
                   @lp calc(@n * 100% / @N)
-                ))
+                )
               );
             </css-doodle>
           </p>
