@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.17.3/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.17.4/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -81,11 +81,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.17.3/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.17.4/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.17.3/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.17.4/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -1485,7 +1485,7 @@
                 @rand(360deg),
                 @m(3, (
                   @pick-n(#60569e, #e6437d, #ebbf4d)
-                    calc((@n - 1) * 100% / 3),
+                    calc(@n(-1) * 100% / 3),
                   @lp
                     calc(@n * 100% / 3)
                 ))
@@ -1499,7 +1499,7 @@
                 @rand(360deg),
                 @m3(
                   @pick-n(#60569e, #e6437d, #ebbf4d)
-                    calc((@n - 1) * 100% / 3),
+                    calc(@n(-1) * 100% / 3),
                   @lp calc(@n * 100% / 3)
                 )
               );
@@ -1545,7 +1545,7 @@
               background: radial-gradient(
                 circle at @r(100%) @r(100%),
                 @m20(
-                  @p(#60569e, #ebbf4d) calc((@n - 1) * 100% / @N),
+                  @p(#60569e, #ebbf4d) calc(@n(-1) * 100% / @N),
                   @lp calc(@n * 100% / @N)
                 )
               );
@@ -1558,7 +1558,7 @@
                 circle at @r(100%) @r(100%),
                 @m20(
                   @p(#60569e, #ebbf4d)
-                    calc((@n - 1) * 100% / @N),
+                    calc(@n(-1) * 100% / @N),
                   @lp calc(@n * 100% / @N)
                 )
               );
