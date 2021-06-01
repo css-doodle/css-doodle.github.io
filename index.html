@@ -1900,28 +1900,35 @@
           </p>
           <p class="has-preview">
             <textarea code>
-              background-size: 2em 2em;
+              @grid: @p(2, 3) / 8em;
               background-image: @doodle(
-                @grid: 3 / 100%;
-                background: #60569e;
-                @even(cross) {
-                  background: #e6437d;
-                  transform: scale(.5);
-                  border-radius: 50%;
-                }
+                @grid: @r4 / 100%;
+                background: @doodle(
+                  @grid: @r4 / 100%;
+                  background: @svg(
+                    viewBox: 0 0 1 1;
+                    path {
+                      d: M 0 0 L 1 0 L 1 1;
+                      fill: #60569e;
+                    }
+                  );
+                );
               );
             </textarea>
-            <css-doodle>
-              @grid: 1 / 8em;
-              background-size: 2em 2em;
+            <css-doodle click-to-update>
+              @grid: @p(2, 3) / 8em;
               background-image: @doodle(
-                @grid: 3 / 100%;
-                background: #60569e;
-                @even {
-                  background: #e6437d;
-                  transform: scale(.5);
-                  border-radius: 50%;
-                }
+                @grid: @r4 / 100%;
+                background: @doodle(
+                  @grid: @r4 / 100%;
+                  background: @svg(
+                    viewBox: 0 0 1 1;
+                    path {
+                      d: M 0 0 L 1 0 L 1 1;
+                      fill: #60569e;
+                    }
+                  );
+                );
               );
             </css-doodle>
           </p>
