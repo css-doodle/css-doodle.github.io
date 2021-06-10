@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.18.0/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.19.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -81,11 +81,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.18.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.19.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.18.0/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.19.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -173,7 +173,7 @@
               <li> <a href="#function-@doodle">@doodle</a></li>
               <li> <a href="#function-@shaders">@shaders</a></li>
               <li> <a href="#function-@shape">@shape</a></li>
-              <li> <a href="#function-@offset">@offset</a></li>
+              <li> <a href="#function-@point">@point</a></li>
             </ul>
           </li>
           <li>
@@ -2143,7 +2143,7 @@
         </section>
 
         <section>
-          <h4><a name="function-@offset"></a><span>@offset(commands)</span></h4>
+          <h4><a name="function-@point"></a><span>@point(commands)</span></h4>
 
           <p>
             Generate two values in percent and seperated with space.
@@ -2153,7 +2153,7 @@
             <textarea code>
               background: @m50(
                 radial-gradient(#60569e 50%, #0000 0)
-                @offset(r: .8) / 5px 5px
+                @point(r: .8) / 5px 5px
                 no-repeat
               );
             </textarea>
@@ -2161,7 +2161,7 @@
               @grid: 1 / 8em;
                background: @m50(
                 radial-gradient(#60569e 50%, transparent 0)
-                @offset(r: .8) / 5px 5px
+                @point(r: .8) / 5px 5px
                 no-repeat
               );
             </css-doodle>
@@ -2176,7 +2176,7 @@
               border-radius: 50%;
               border: 1px solid #000;
 
-              @place-cell: @offset(
+              @place-cell: @point(
                 r: sin(t/2);
                 origin: 0 -.3;
                 rotate: 90;
@@ -2188,7 +2188,7 @@
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @place-cell: @offset(
+              @place-cell: @point(
                 r: sin(t/2);
                 origin: 0 -.3;
                 rotate: 90;
