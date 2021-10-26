@@ -134,6 +134,7 @@
               <li> <a href="#selector-@random">@random</a></li>
               <li> <a href="#selector-@row">@row</a></li>
               <li> <a href="#selector-@col">@col</a></li>
+              <li> <a href="#selector-@match">@match</a></li>
             </ul>
           </li>
           <li>
@@ -801,6 +802,91 @@
                   font-size: .8em;
                   color: #fff;
                 }
+              }
+            </css-doodle>
+          </p>
+        </section>
+
+        <section>
+          <h4><a name="selector-@match"></a><span>@match(expression)</span></h4>
+          <p>
+            Target the cells based on general Math expressions.
+            The variable
+            <code>i</code>, <code>I</code>,
+            <code>x</code>, <code>X</code>,
+            <code>y</code> and <code>Y</code> can be used without prefix @ Inside <code>match</code> calculation.
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              @match(i <= 8 || i >= 18) {
+                background: #60569e;
+              }
+            </textarea>
+            <css-doodle grid="5">
+              :doodle {
+                @size: 8em;
+              }
+              background: #f5f5f5;
+              margin: .5px;
+              @match(i <= 8 || i >= 18) {
+                background: #60569e;
+                :after {
+                  content: @i;
+                  font-size: .8em;
+                  color: #fff;
+                }
+              }
+            </css-doodle>
+          </p>
+          <p>Other examples</p>
+          <p class="has-preview">
+            <textarea code>
+              @match(x/y <= 1) {
+                background: #60569e;
+              }
+            </textarea>
+            <css-doodle grid="10">
+              :doodle {
+                @size: 8em;
+              }
+              background: #f5f5f5;
+              margin: .5px;
+              @match(x/y <= 1) {
+                background: #60569e;
+              }
+            </css-doodle>
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              @match(x/y=1 || (X-x+1)/y=1) {
+                background: #60569e;
+              }
+            </textarea>
+            <css-doodle grid="10">
+              :doodle {
+                @size: 8em;
+              }
+              background: #f5f5f5;
+              margin: .5px;
+              @match(x/y=1 || (X-x+1)/y=1) {
+                background: #60569e;
+              }
+            </css-doodle>
+          </p>
+          <p class="has-preview">
+            <textarea code>
+              @grid: 21 / 8em;
+              @match(tan.cos.sin(x*y) > 1) {
+                background: #60569e;
+              }
+            </textarea>
+            <css-doodle grid="21">
+              :doodle {
+                @size: 8em;
+              }
+              background: #f5f5f5;
+              @match(tan.cos.sin(x*y) > 1) {
+                background: #60569e;
               }
             </css-doodle>
           </p>
