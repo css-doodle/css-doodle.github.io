@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.21.4/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.21.5/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -174,7 +174,7 @@
               <li> <a href="#function-@doodle">@doodle</a></li>
               <li> <a href="#function-@shaders">@shaders</a></li>
               <li> <a href="#function-@shape">@shape</a></li>
-              <li> <a href="#function-@point">@point</a></li>
+              <li> <a href="#function-@plot">@plot</a></li>
             </ul>
           </li>
           <li>
@@ -2229,7 +2229,7 @@
         </section>
 
         <section>
-          <h4><a name="function-@point"></a><span>@point(commands)</span></h4>
+          <h4><a name="function-@plot"></a><span>@plot(commands)</span></h4>
 
           <p>
             Generate two values in percent and seperated with space.
@@ -2239,7 +2239,7 @@
             <textarea code>
               background: @m50(
                 radial-gradient(#60569e 50%, #0000 0)
-                @point(r: .8) / 5px 5px
+                @plot(r: .8) / 5px 5px
                 no-repeat
               );
             </textarea>
@@ -2247,7 +2247,7 @@
               @grid: 1 / 8em;
                background: @m50(
                 radial-gradient(#60569e 50%, transparent 0)
-                @point(r: .8) / 5px 5px
+                @plot(r: .8) / 5px 5px
                 no-repeat
               );
             </css-doodle>
@@ -2262,7 +2262,7 @@
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @place-cell: @point(
+              @place-cell: @plot(
                 r: sin(-t/2);
                 origin: 0 -.3;
                 rotate: 90;
@@ -2274,7 +2274,7 @@
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @place-cell: @point(
+              @place-cell: @plot(
                 r: sin(-t/2);
                 origin: 0 -.3;
                 rotate: 90;
