@@ -838,10 +838,13 @@
               }
             </css-doodle>
           </p>
-          <p>Other examples</p>
+          <p>
+            For convenience the symbols <code>≤</code> and <code>≥</code>
+            have the meanings of <code>&lt;=</code> and <code>&gt;=</code> respectively.
+          </p>
           <p class="has-preview">
             <textarea code>
-              @match(x/y <= 1) {
+              @match(x ≤ y) {
                 background: #60569e;
               }
             </textarea>
@@ -851,14 +854,18 @@
               }
               background: #f5f5f5;
               margin: .5px;
-              @match(x/y <= 1) {
+              @match(x ≤ y) {
                 background: #60569e;
               }
             </css-doodle>
           </p>
+          <p>The equal sign can be both <code>=</code> and <code>==</code>.</p>
           <p class="has-preview">
             <textarea code>
-              @match(x/y=1 || (X-x+1)/y=1) {
+              @match(x = y) {
+                background: #60569e;
+              }
+              @match(X-x+1 == y) {
                 background: #60569e;
               }
             </textarea>
@@ -868,11 +875,15 @@
               }
               background: #f5f5f5;
               margin: .5px;
-              @match(x/y=1 || (X-x+1)/y=1) {
+              @match(x = y) {
+                background: #60569e;
+              }
+              @match(X-x+1 == y) {
                 background: #60569e;
               }
             </css-doodle>
           </p>
+          <p>A more complex example.</p>
           <p class="has-preview">
             <textarea code>
               @grid: 21 / 8em;
