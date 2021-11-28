@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.21.6/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.22.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -81,11 +81,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.21.6/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.22.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.21.6/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.22.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -2043,7 +2043,7 @@
               background: @shaders(
                 void main() {
                   vec2 p = gl_FragCoord.xy / u_resolution.xy;
-                  gl_FragColor = vec4(p.yx, .8, 1.);
+                  FragColor = vec4(p.yx, .8, 1.);
                 }
               );
             </textarea>
@@ -2052,7 +2052,7 @@
               background: @shaders(
                 void main() {
                   vec2 p = gl_FragCoord.xy / u_resolution.xy;
-                  gl_FragColor = vec4(p.yx, .8, 1.);
+                  FragColor = vec4(p.yx, .8, 1.);
                 }
               );
             </css-doodle>
@@ -2089,7 +2089,7 @@
                   void main() {
                     /* ... */
                     vec2 coords = vec2(r * cos(angle), r * sin(angle)) + c;
-                    gl_FragColor = texture2D(texture_0, coords);
+                    FragColor = texture(texture_0, coords);
                   }
                 }
               );
@@ -2114,7 +2114,7 @@
                     float angle = atan(uv.y, uv.x) + R * smoothstep(.5, 0., len);
                     float r = length(uv) + .1;
                     vec2 coords = vec2(r * cos(angle), r * sin(angle)) + c;
-                    gl_FragColor = texture2D(texture1, coords);
+                    FragColor = texture(texture1, coords);
                   }
                 }
               );
