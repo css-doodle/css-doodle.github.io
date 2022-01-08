@@ -319,7 +319,7 @@
                   --rule: (
                     @grid: 5 / 8em;
                     --d: @p(45deg, -45deg, 135deg, -135deg);
-                    --lg: linear-gradient(@var(--d),#60569e 50%,transparent 0);
+                    --lg: linear-gradient(@var(--d),#60569e 50%,#0000 0);
                     background:
                       @var(--lg) 0 0 / 100% 100%,
                       @var(--lg) 0 0 / 50% 50%;
@@ -333,7 +333,7 @@
                 --rule-use: (
                   @grid: 5 / 8em;
                   --deg: @p(45deg, -45deg, 135deg, -135deg);
-                  --lg: linear-gradient(@var(--deg), #60569e 50%, transparent 0);
+                  --lg: linear-gradient(@var(--deg), #60569e 50%, #0000 0);
                   background:
                     @var(--lg) 0 0 / 100% 100%,
                     @var(--lg) 0 0 / 50% 50%;
@@ -394,7 +394,7 @@
               color: hsl(@r240, 30%, 50%);
               box-shadow: @m3x5(
                 calc(4em - @nx * 1em) calc(@ny * 1em)
-                  @p(@m3(currentColor), @m2(transparent)),
+                  @p(@m3(currentColor), @m2(#0000)),
                 calc(2em + @nx * 1em) calc(@ny * 1em)
                   @lp
               );
@@ -990,7 +990,7 @@
                     clip-path: circle(100% at 0 0);
                   );
                   --rule-b: (
-                    background-image: radial-gradient(#fff 50%,transparent 0);
+                    background-image: radial-gradient(#fff 50%, #0000 0);
                     background-position: -25% -25%;
                     background-size: @r(40%, 80%) @lr();
                     background-repeat: no-repeat;
@@ -1016,7 +1016,7 @@
                   background: #60569e;
                 );
                 --rule-b: (
-                  background-image: radial-gradient(#fff 50%, transparent 0);
+                  background-image: radial-gradient(#fff 50%, #0000 0);
                   background-position: -25% -25%;
                   background-size: @r(40%, 80%) @lr();
                   background-repeat: no-repeat;
@@ -1931,7 +1931,7 @@
                     background: linear-gradient(
                       @rand(360deg),
                       /* --bg is not recognizable */
-                      var(--bg) 50%, transparent 0
+                      var(--bg) 50%, #0000 0
                     );
                   );
                 }
@@ -1949,7 +1949,7 @@
                   --bg: #60569e;
                   background: linear-gradient(
                     @rand(360deg),
-                    @var(--bg) 50%, transparent 0
+                    @var(--bg) 50%, #0000 0
                   );
                 );
               </style>
@@ -1961,7 +1961,7 @@
               --bg: #60569e;
               background: linear-gradient(
                 @r(360deg),
-                @var(--bg) 50%, transparent 0
+                @var(--bg) 50%, #0000 0
               );
             </css-doodle>
           </p>
@@ -2256,7 +2256,7 @@
             <css-doodle>
               @grid: 1 / 8em;
                background: @m50(
-                radial-gradient(#60569e 50%, transparent 0)
+                radial-gradient(#60569e 50%, #0000 0)
                 @plot(r: .8) / 5px 5px
                 no-repeat
               );
@@ -2432,11 +2432,11 @@
                     @m(4, radial-gradient(
                       circle at @p(-40% -40%, 140% 140%, 140%  -40%, -40% 140%),
                       @p(#FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C) 50%,
-                      transparent 50%
+                      #0000 50%
                     )),
                     radial-gradient(
                       @p(#FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C) @r(10%, 40%),
-                      transparent 0
+                      #0000 0
                     )
                 }
               </css-doodle>
