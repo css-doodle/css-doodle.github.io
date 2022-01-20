@@ -162,7 +162,7 @@
     lines: indent(`
       @grid: 50x1 / 100%;
 
-      @place-cell: center;
+      @offset: center;
       @size: calc(75% / @I * @i);
 
       transform: rotate(calc(@i * 5deg));
@@ -175,7 +175,7 @@
     dashed: indent(`
       @grid: 1x10 / 85%;
 
-      @place-cell: center;
+      @offset: center;
       @size: calc(@i * 10%);
 
       border-radius: 50%;
