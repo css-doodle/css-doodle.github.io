@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.24.0/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.24.1/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -81,11 +81,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.24.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.24.1/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.24.0/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.24.1/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -534,8 +534,8 @@
         </section>
 
         <section>
-          <h4><a name="selector-@even"></a><span>@even, @even(cross)</span></h4>
-          <p> Select cells like <code> :nth-child(even)</code> but shorter.</p>
+          <h4><a name="selector-@even"></a><span>@even</span></h4>
+          <p>Select cells like <code> :nth-child(even)</code> but shorter.</p>
           <p class="has-preview">
             <textarea code>
               @even {
@@ -556,34 +556,11 @@
               }
             </css-doodle>
           </p>
-
-          <p>The <code>cross</code> option makes sure the selections don't collapse to the same row or column.</p>
-          <p class="has-preview">
-            <textarea code>
-              @even(cross) {
-                background: #60569e;
-              }
-            </textarea>
-            <css-doodle grid="4">
-              :doodle {
-                @size: 8em;
-              }
-              @even(cross) {
-                background: #60569e;
-                :after {
-                  content: @index;
-                  font-size: .8em;
-                  color: #fff;
-                }
-              }
-            </css-doodle>
-          </p>
-
         </section>
 
         <section>
-          <h4><a name="selector-@odd"></a><span>@odd, @odd(cross)</span></h4>
-          <p> Select cells like <code> :nth-child(odd)</code>.</p>
+          <h4><a name="selector-@odd"></a><span>@odd</span></h4>
+          <p>Select cells like <code> :nth-child(odd)</code>.</p>
           <p class="has-preview">
             <textarea code>
               @odd {
