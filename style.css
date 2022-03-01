@@ -106,12 +106,7 @@ body {
 
 css-doodle {
   --flags: (
-    :doodle {
-      @grid: 32x1;
-      filter:
-        drop-shadow(0 10px 50px #0158B5)
-        drop-shadow(0 20px 100px #0158B5);
-    }
+    @grid: 32x1;
     background-color: @pn(#0158B5, #F5CF02);
     animation: ani 1s cubic-bezier(.175, .885, .32, 1.275);
     animation-delay: @r(.1s, 1.5s);
