@@ -106,19 +106,25 @@ body {
 
 css-doodle {
   --flags: (
-    :doodle { @grid: 28x1; }
-    clip-path: polygon(0 0, 100% 0, 50% 1%);
-    background-color: hsla(
-      calc(3.5 * @i() + 180), 80%, 70%, @r(.8)
-    );
+    :doodle {
+      @grid: 32x1;
+      filter:
+        drop-shadow(0 10px 50px #0158B5)
+        drop-shadow(0 20px 100px #0158B5);
+    }
+    background-color: @pn(#0158B5, #F5CF02);
     animation: ani 1s cubic-bezier(.175, .885, .32, 1.275);
     animation-delay: @r(.1s, 1.5s);
     animation-fill-mode: forwards;
+    clip-path: polygon(0 0, 100% 0, 50% 0);
+    transform: skewX(@r(-10deg, 10deg));
+    transform-origin: 50% 0;
     @keyframes ani {
       to {
         clip-path: polygon(
           0 0, 100% 0,
-          @repeat(2, @r(20%, 80%, .1))
+          @rn(0%, 100%, 5)
+          @rn(0%, 100%, 5)
         );
       }
     }
