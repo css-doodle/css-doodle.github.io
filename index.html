@@ -143,7 +143,7 @@
               <li> <a href="#property-@grid">@grid</a></li>
               <li> <a href="#property-@use">@use</a></li>
               <li> <a href="#property-@size">@size</a></li>
-              <li> <a href="#property-@offset">@offset</a></li>
+              <li> <a href="#property-@position">@position</a></li>
               <li> <a href="#property-@shape">@shape</a></li>
             </ul>
           </li>
@@ -1032,16 +1032,16 @@
         </section>
 
         <section>
-          <h4><a name="property-@offset"></a><span>@offset</span></h4>
+          <h4><a name="property-@position"></a><span>@position</span></h4>
           <p>Place cells relative to the grid. </p>
           <p class="has-preview">
             <textarea code>
               @size: 1.6em;
-              @nth(1) { @offset: 0 top }
-              @nth(2) { @offset: right 25% }
-              @nth(3) { @offset: center }
-              @nth(4) { @offset: .8em calc(100% - .8em) }
-              @nth(5) { @offset: 75% 80% }
+              @nth(1) { @position: 0 top }
+              @nth(2) { @position: right 25% }
+              @nth(3) { @position: center }
+              @nth(4) { @position: .8em calc(100% - .8em) }
+              @nth(5) { @position: 75% 80% }
             </textarea>
 
             <css-doodle>
@@ -1051,11 +1051,11 @@
               }
               @size: 1.6em;
               background: rgba(72, 74, 142, .8);
-              @nth(1) { @offset: 0 top; }
-              @nth(2) { @offset: right 25%; }
-              @nth(3) { @offset: center; }
-              @nth(4) { @offset: .8em calc(100% - .8em); }
-              @nth(5) { @offset: 75% 80%; }
+              @nth(1) { @position: 0 top; }
+              @nth(2) { @position: right 25%; }
+              @nth(3) { @position: center; }
+              @nth(4) { @position: .8em calc(100% - .8em); }
+              @nth(5) { @position: 75% 80%; }
               :after {
                 content: @index;
                 color: #fff;
@@ -1155,7 +1155,7 @@
           <p class="has-preview">
             <textarea code>
               @grid: 5x1 / 8em;
-              @offset: center;
+              @position: center;
               @size: calc(100% / 5 * @index);
               opacity: calc(1.1 - 1 / 5 * @index);
               z-index: calc(5 - @index);
@@ -1163,7 +1163,7 @@
             </textarea>
             <css-doodle grid="5">
               @grid: 5x1 / 8em;
-              @offset: center;
+              @position: center;
               @size: calc(100% / @size() * @i);
               z-index: calc(@size - @i);
               opacity: calc(1.1 - 1 / @size * @i);
@@ -2242,7 +2242,7 @@
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @offset: @plot(
+              @position: @plot(
                 r: sin(-t/2);
                 move: 0 -.3;
                 rotate: 90;
@@ -2254,7 +2254,7 @@
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @offset: @plot(
+              @position: @plot(
                 r: sin(-t/2);
                 move: 0 -.3;
                 rotate: 90;
