@@ -150,8 +150,6 @@
 
       transition: .2s @r(.6s);
       border-radius: @pick(100% 0, 0 100%);
-
-      will-change: transform;
       transform: scale(@r(.25, 1.25));
 
       background: hsla(
