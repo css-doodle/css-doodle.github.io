@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.27.4/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.28.0/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -81,11 +81,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.27.4/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.28.0/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.27.4/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.28.0/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -221,7 +221,7 @@
 
           <p>
             The number of rows and columns in the grid is defined by the <code>grid</code> attribute on the element,
-            ranged from <em>1</em> to <em>256</em>. It's default to be <em>1x1</em> when no value or 0 is given.
+            ranged from <em>1</em> to <em>64</em>. It's default to be <em>1x1</em> when no value or 0 is given.
           </p>
 
           <p class="has-preview">
@@ -243,7 +243,7 @@
             </css-doodle>
           </p>
 
-          <p>The row or column is limited up to <em>65535</em> only when the grid is 1-dimensional: </p>
+          <p>The row or column is limited up to <em>4096</em> only when the grid is 1-dimensional: </p>
           <p class="has-preview">
             <textarea code>
               <css-doodle grid="1x35">
