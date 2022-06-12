@@ -245,6 +245,9 @@ textarea[code] {
     font-weight: normal;
     line-height: 1;
   }
+  .cover .title {
+    position: relative;
+  }
   .cover em {
     color: rgba(53, 149, 251, 1);
     font-style: normal;
@@ -255,6 +258,21 @@ textarea[code] {
     padding: 0 2em;
     line-height: 1.4;
   }
+  .cover .version {
+    position: absolute;
+    left: 100%;
+    bottom: 100%;
+    transform: translate(-20px, 20px);
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: rgba(245, 245, 245, .2);
+    color: #ebf5ff;
+    font-size: 14px;
+  }
+    .cover .version:hover {
+      text-decoration: underline;
+    }
   .cover nav {
     padding: 1em 0 0;
     margin-top: 1em;
