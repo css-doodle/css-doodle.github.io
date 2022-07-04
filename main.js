@@ -239,8 +239,8 @@
       @size: 50%;
 
       border-radius: 50%;
-      box-shadow: hsl(calc(360/@I*@i) 90% 60%)
-        50px 0 0 -10px;
+      box-shadow: 50px 0 0 -10px
+        hsl(calc(360/@I*@i) 90% 60%);
     `)
   };
 
