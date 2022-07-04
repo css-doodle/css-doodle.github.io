@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.28.1/css-doodle.min.js"></script>
+  <script src="https://unpkg.com/css-doodle@0.28.2/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
       <h1>
         <span class="title">
           &lt; <em>css-doodle</em> /&gt;
-          <a class="version" href="https://unpkg.com/css-doodle@0.28.1/css-doodle.min.js">v0.28.1</a>
+          <a class="version" href="https://unpkg.com/css-doodle@0.28.2/css-doodle.min.js">v0.28.2</a>
         </span>
       </h1>
       <p>A web component for drawing patterns with CSS</p>
@@ -86,11 +86,11 @@
     <section class="gettting-started wrap">
       <h2><a name="getting-started"></a>Getting Started</h2>
       <p>
-        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.28.1/css-doodle.min.js">latest version</a> or include it directly from a CDN:
+        Download the <a href="https://cdn.jsdelivr.net/npm/css-doodle@0.28.2/css-doodle.min.js">latest version</a> or include it directly from a CDN:
       </p>
       <p class="first-code-sample">
         <textarea code>
-          <script src="https://unpkg.com/css-doodle@0.28.1/css-doodle.min.js"></script>
+          <script src="https://unpkg.com/css-doodle@0.28.2/css-doodle.min.js"></script>
 
           <css-doodle>
             /* put your code here */
@@ -148,7 +148,7 @@
               <li> <a href="#property-@grid">@grid</a></li>
               <li> <a href="#property-@use">@use</a></li>
               <li> <a href="#property-@size">@size</a></li>
-              <li> <a href="#property-@position">@position</a></li>
+              <li> <a href="#property-@place">@place</a></li>
               <li> <a href="#property-@shape">@shape</a></li>
             </ul>
           </li>
@@ -1037,16 +1037,16 @@
         </section>
 
         <section>
-          <h4><a name="property-@position"></a><span>@position</span></h4>
+          <h4><a name="property-@place"></a><span>@place</span></h4>
           <p>Place cells relative to the grid. </p>
           <p class="has-preview">
             <textarea code>
               @size: 1.6em;
-              @nth(1) { @position: 0 top }
-              @nth(2) { @position: right 25% }
-              @nth(3) { @position: center }
-              @nth(4) { @position: .8em calc(100% - .8em) }
-              @nth(5) { @position: 75% 80% }
+              @nth(1) { @place: 0 top }
+              @nth(2) { @place: right 25% }
+              @nth(3) { @place: center }
+              @nth(4) { @place: .8em calc(100% - .8em) }
+              @nth(5) { @place: 75% 80% }
             </textarea>
 
             <css-doodle>
@@ -1056,11 +1056,11 @@
               }
               @size: 1.6em;
               background: rgba(72, 74, 142, .8);
-              @nth(1) { @position: 0 top; }
-              @nth(2) { @position: right 25%; }
-              @nth(3) { @position: center; }
-              @nth(4) { @position: .8em calc(100% - .8em); }
-              @nth(5) { @position: 75% 80%; }
+              @nth(1) { @place: 0 top; }
+              @nth(2) { @place: right 25%; }
+              @nth(3) { @place: center; }
+              @nth(4) { @place: .8em calc(100% - .8em); }
+              @nth(5) { @place: 75% 80%; }
               :after {
                 content: @index;
                 color: #fff;
@@ -1160,7 +1160,7 @@
           <p class="has-preview">
             <textarea code>
               @grid: 5x1 / 8em;
-              @position: center;
+              @place: center;
               @size: calc(100% / 5 * @index);
               opacity: calc(1.1 - 1 / 5 * @index);
               z-index: calc(5 - @index);
@@ -1168,7 +1168,7 @@
             </textarea>
             <css-doodle grid="5">
               @grid: 5x1 / 8em;
-              @position: center;
+              @place: center;
               @size: calc(100% / @size() * @i);
               z-index: calc(@size - @i);
               opacity: calc(1.1 - 1 / @size * @i);
@@ -2247,7 +2247,7 @@
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @position: @plot(
+              @place: @plot(
                 r: sin(-t/2);
                 move: 0 -.3;
                 rotate: 90;
@@ -2259,7 +2259,7 @@
               border-radius: 50%;
               border: 1px solid #60569e;
 
-              @position: @plot(
+              @place: @plot(
                 r: sin(-t/2);
                 move: 0 -.3;
                 rotate: 90;
@@ -2485,7 +2485,7 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?9395e038362e99ca91622262079c5525"></script>
+  <script src="main.js?eb0e0f78a8a291f8ba415fa236e4c0e8"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCH0MLY1M2"></script>
   <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TCH0MLY1M2'); </script>
