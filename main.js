@@ -230,6 +230,17 @@
         scale: .6;
         r: cos(7t)^2 + sin(7t) + .3;
       );
+    `),
+
+    logo: indent(`
+      @grid: 6x1 / 320px;
+
+      @place: @plot(r: .3; dir: auto -120);
+      @size: 50%;
+
+      border-radius: 50%;
+      box-shadow: hsl(calc(360/@I*@i) 90% 60%)
+        50px 0 0 -10px;
     `)
   };
 
