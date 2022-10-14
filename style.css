@@ -790,6 +790,7 @@ textarea[code] {
 .option-list h5 {
   font-weight: bold;
   margin-bottom: 1em;
+  font-size: 1em;
 }
 
 .option-list ul {
