@@ -246,7 +246,7 @@
 
   let switcher = get('.switcher');
   if (switcher) {
-    let list = Object.keys(doodles).map(n => `<button type="button" aria-label="switch example ${n + 1}" data-name="${n}"></button>`).join('');
+    let list = Object.keys(doodles).map(n => `<button type="button" aria-label="switch example ${n}" data-name="${n}"></button>`).join('');
     switcher.innerHTML = list;
     switcher.addEventListener('click', e => {
       if (e.target.tagName.toLowerCase() == 'button') {
