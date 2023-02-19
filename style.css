@@ -138,7 +138,8 @@ css-doodle {
       @shape: heart;
       background: #e91e63;
     }
-  )
+  );
+  --hack: ();
 }
 
 css-doodle:not(:defined) {
@@ -834,7 +835,11 @@ footer {
       font-weight: bold;
       margin-bottom: .8em;
       color: #b6c0f7;
+      line-height: 1.4;
     }
+      .info h2 span {
+        display: inline-block;
+      }
     .info__copyright a:link,
     .info__copyright a:visited {
       text-decoration: none;
