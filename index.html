@@ -1765,13 +1765,17 @@
             <textarea code>
               background-image: @svg(
                 viewBox: 0 0 100 175;
-                @M50(path {
+                path*50 {
                   stroke-width: @r.5;
                   stroke: @p(#60569e, #e6437d);
                   d: M0 0 L@r100 @r175;
-                });
+                };
               );
             </textarea>
+          </p>
+          <p>
+            See <a href="https://yuanchuan.dev/experimenting-a-new-syntax-to-write-svg">https://yuanchuan.dev/experimenting-a-new-syntax-to-write-svg</a>.
+          </p>
         </section>
 
         <section>
