@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script src="https://unpkg.com/css-doodle@0.34.8/css-doodle.min.js"></script>
+  <script async src="https://unpkg.com/css-doodle@0.34.8/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -2372,7 +2372,7 @@
             <textarea code>
               button.addEventListener('click', async e => {
                 let result = await doodle.export({
-                  scale: 6,
+                  scale: 8,
                   download: true
                 });
                 /* open Dev tools to see the result */
@@ -2383,20 +2383,19 @@
               <css-doodle click-to-update>
                 @grid: 7 / 8em;
                 --c: #FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C;
-                --pos: -40% -40%, 140% 140%, 140%  -40%, -40% 140%;
                 background: @p(--c);
-                :after {
-                  content: '';
-                  @size: 100%;
-                  position: absolute;
-                  background:
-                    @m4(radial-gradient(
-                      circle at @p(--pos), @stripe(@p(--c), #0000)
-                    )),
-                    radial-gradient(
-                      @stripe(@p(--c) @r(10%, 40%), #0000)
-                    );
-                }
+                @content: @Svg(
+                  viewBox: -5 -5 10 10;
+                  circle {
+                    r: @r(1, 2);
+                    fill: @p(--c);
+                  }
+                  circle*4 {
+                    r: 6;
+                    cx, cy: @pd(-6 -6, 6 6, 6 -6, -6 6);
+                    fill: @p(--c);
+                  }
+                );
               </css-doodle>
               <button type="button" aria-label="save to png">Save to PNG</button>
               <script>
@@ -2405,7 +2404,7 @@
                 if (button) {
                   button.addEventListener('click', e => {
                     button.disabled = true;
-                    doodle.export({ download: true, scale: 6 })
+                    doodle.export({ download: true, scale: 8 })
                       .then(data => {
                         console.log(data);
                         setTimeout(() => {
