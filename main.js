@@ -40,9 +40,9 @@
 
   each('.example', example => {
     let textarea = get(example, 'textarea');
-    let container = get(example, '.container');
-    if (textarea && container) {
-      textarea.value = indent(container.querySelector('css-doodle')._innerHTML)
+    let doodle = get(example, '.container css-doodle');
+    if (textarea && doodle) {
+      textarea.value = indent(doodle._innerHTML || '');
     }
   });
 
