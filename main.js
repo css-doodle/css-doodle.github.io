@@ -121,6 +121,8 @@
           let current = editor.getValue();
           if (doodle.update) {
             doodle.update(current);
+          } else {
+            doodle.innerHTML = current;
           }
           lastEditorValue = removeSpaces(current);
         }
