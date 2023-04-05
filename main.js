@@ -42,7 +42,7 @@
     let textarea = get(example, 'textarea');
     let container = get(example, '.container');
     if (textarea && container) {
-      textarea.value = indent(container.innerHTML);
+      textarea.value = indent(container.querySelector('css-doodle')._innerHTML)
     }
   });
 
@@ -55,7 +55,7 @@
     if (block.dataset.link) {
       let link = document.createElement('a');
       link.className = 'example__link';
-      link.text = 'Edit on CodePen';
+      link.text = 'CodePen';
       link.href = block.dataset.link;
       link.target = '_blank';
       link.rel = 'noreferrer';

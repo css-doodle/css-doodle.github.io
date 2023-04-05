@@ -8,16 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href=favicon.png type="image/png">
   <link rel="stylesheet" href="lib/codemirror/style.css">
-  <link rel="stylesheet" href="style.css?0aff95e0d0f52d07cbef4db3fe2f55c8">
-  <link rel="preconnect" href="https://s3.buysellads.com">
-  <link rel="dns-prefetch" href="https://s3.buysellads.com">
-  <link rel="preconnect" href="https://srv.buysellads.com">
-  <link rel="dns-prefetch" href="https://srv.buysellads.com">
+  <link rel="stylesheet" href="style.css?e771007382b978b1b73fb7abb8fa609d">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script async src="https://cdn.jsdelivr.net/npm/css-doodle@0.34.7/css-doodle.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/css-doodle@0.34.8/css-doodle.min.js"></script>
 </head>
 <body>
 
@@ -199,11 +195,8 @@
       <section class="example">
         <div class="container">
           <css-doodle>
-            :doodle {
-              @grid: 18 / 100vmax;
-              background: #0a0c27;
-            }
-            --hue: calc(180 + 1.5 * @row * @col);
+            @grid: 18 / 100vmax / #0a0c27;
+            --hue: calc(180 + 1.5 * @x * @y);
             background: hsl(var(--hue), 50%, 70%);
             margin: -.5px;
             transition: @r(.5s) ease;
@@ -389,8 +382,7 @@
       <section class="example">
         <div class="container">
           <css-doodle>
-            @grid: 1 / 100vw 100vh;
-            background-color: #0a0c27;
+            @grid: 1 / 100vw 100vh / #0a0c27;
             background-size: 200px 200px;
             background-image: @doodle(
               @grid: 6 / 100%;
@@ -398,9 +390,9 @@
               font-size: 4px;
               color: hsl(@r240, 30%, 50%);
               box-shadow: @m3x5(
-                calc(4em - @nx * 1em) calc(@ny * 1em)
+                calc(4em - @nx*1em) @ny(*1em)
                   @p(@m3(currentColor), @m2(#0000)),
-                calc(2em + @nx * 1em) calc(@ny * 1em)
+                calc(2em + @nx*1em) @ny(*1em)
                   @lp
               );
             );
@@ -887,18 +879,19 @@
       <section class="example">
         <div class="container">
           <css-doodle>
-            @grid: 1 / 100vw 100vh;
-            background-size: 83px 135px;
-            background-color: #D24B45;
-            background-image: @doodle(
-              @grid: 2 / 100%;
-              background: @pn(#3C2B34, #F7F0E9, #F7F0E9);
-              transform-origin:
-                @pn(100% 100%, 0 100%, 100% 0, 0 0);
-              transform:
-                rotateX(45deg)
-                skewY(@pn(34deg, -34deg, -34deg));
+            /* Fibonacci spiral */
+
+            @grid: 1 / 100vw 100vh / #125cde;
+            @content: @Svg(
+              viewBox: -50 -50 100 100 padding -20;
+              circle*500 {
+                fill: hsl(@calc(120-90*@sin.n), 80%, 50%);
+                r: @sqrt(@n/60);
+                cx: @calc(@n*.618^4 * cos(2π*@n*.618));
+                cy: @calc(@n*.618^4 * sin(2π*@n*.618));
+              }
             );
+
           </css-doodle>
         </div>
         <textarea code data-link="https://codepen.io/yuanchuan/pen/KKgEYBb"></textarea>
@@ -1112,14 +1105,9 @@
       <section class="example">
         <div class="container">
           <css-doodle>
-            :doodle {
-              @grid: 7 / 100vmax;
-              background: #0a0c27;
-            }
+            @grid: 7 / 100vmax / #0a0c27;
             @shape: clover 5;
-            background: hsla(
-              calc(360 - @i * 4), 70%, 68%, @r.8
-            );
+            background: hsla(-@i(*4), 70%, 68%, @r.8);
             transform:
               scale(@r(.2, 1.5))
               translate(@m2.@r(±50%));
@@ -2276,17 +2264,11 @@
       <section class="example">
         <div class="container">
           <css-doodle>
-            :doodle {
-              @grid: 20 / 100vmax;
-              background: #0a0c27;
-              font-family: sans-serif;
-              overflow: hidden;
-            }
-            :after {
-              content: \@hex.@r(0x2500, 0x257f);
-              color: hsla(@r360, 70%, 70%, @r.9);
-              font-size: 8vmin;
-            }
+            @grid: 20 / 100vmax / #0a0c27;
+            @content: @unicode.r(0x2500, 0x257f);
+            color: hsla(@r360, 70%, 70%, @r.9);
+            font-size: 8vmin;
+            font-family: sans-serif;
           </css-doodle>
         </div>
         <textarea code data-link="https://codepen.io/yuanchuan/pen/dyprLgO"></textarea>
@@ -2488,7 +2470,7 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/css/css.min.js"></script>
-  <script src="main.js?a569f5453d36c73cbfec4c94f35106d1"></script>
+  <script src="main.js?0c82265cd9ad3e403ef2da64d0a502b0"></script>
   <!-- google analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCH0MLY1M2"></script>
   <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TCH0MLY1M2'); </script>

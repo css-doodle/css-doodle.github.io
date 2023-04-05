@@ -781,6 +781,9 @@ textarea[code] {
         background: #968CD9;
         opacity: .9;
       }
+    .example .code-sample .CodeMirror {
+      padding: 1.8em;
+    }
     .source .CodeMirror,
     .example .code-sample .CodeMirror {
       background: #fff;
