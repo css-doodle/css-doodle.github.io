@@ -42,7 +42,7 @@
     let textarea = get(example, 'textarea');
     let doodle = get(example, '.container css-doodle');
     if (textarea && doodle) {
-      textarea.value = indent(doodle._innerHTML || '');
+      textarea.value = indent(doodle._innerHTML || doodle.parentNode.innerHTML || '');
     }
   });
 
