@@ -120,7 +120,6 @@
         if (lastEditorValue !== value) {
           let current = editor.getValue();
           if (doodle.update) {
-            doodle.innerHTML = current;
             doodle.update(current);
           }
           lastEditorValue = removeSpaces(current);
@@ -309,7 +308,7 @@
     let size = Math.max(w, h);
     each('.example css-doodle', doodle => {
       doodle.parentNode.parentNode.style.height = h + 'px';
-      if (doodle.innerHTML.includes('vmax')) {
+      if ((doodle._innerHTML || doodle.innerHTML || '').includes('vmax')) {
         doodle.style.width = doodle.style.height = size + 'px';
       } else {
         doodle.style.width = w + 'px';
