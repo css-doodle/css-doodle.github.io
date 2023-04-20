@@ -790,6 +790,23 @@ textarea[code] {
       border-radius: 0;
       border: 0;
     }
+  .example.hide-code .CodeMirror {
+    display: none;
+  }
+  .example.hide-code .code-sample {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+  }
+  .example.hide-code .example__link {
+    font-size: 1em;
+    padding: 1em 2em;
+    background: #000a;
+    color: #fff;
+  }
+  .example.hide-code .example__link:hover {
+    background: #000;
+  }
 
 .option-list h5 {
   font-weight: bold;
