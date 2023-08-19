@@ -895,10 +895,17 @@ footer {
     .donate {
       margin-left: auto;
     }
-      .donate a{
+      .donate a {
         opacity: .85;
         mix-blend-mode: screen;
         transition: .2s;
+      }
+      .donate a:link,
+      .donate a:visited {
+        border-bottom: none;
+      }
+      .donate a:hover {
+        background: none;
       }
       .donate img {
         max-height: 3em;
