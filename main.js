@@ -188,14 +188,22 @@
       transform: rotate(@r(360deg));
     `),
     tiled: indent(`
-      /* 10 PRINT */
+      @grid: 1 / 90%;
 
-      @grid: 16 / 320px;
-
-      @size: 1px calc(141.4% + 1px);
-      transform: rotate(@p(±45deg));
-      background: #AEACFB;
-      margin: auto;
+      @content: @svg(
+        viewBox: 0 0 16 16 p 1;
+        stroke: #aeacfb;
+        stroke-width: .1;
+        stroke-linecap: round;
+        line*16x16 {
+          draw: @r(2s);
+          x1, y1, x2, y2: @p(
+            @nx(-1) @ny(-1) @nx @ny,
+            @nx @ny(-1) @nx(-1) @ny,
+            @nx @ny(-1) @nx @ny
+          );
+        }
+      );
     `),
     border: indent(`
       @grid: 14 / 80%;
@@ -219,17 +227,16 @@
     `),
 
     bud: indent(`
-      @grid: 1 / 70%;
+      @grid: 1 / 70% auto;
 
       background: radial-gradient(
-        yellow, #E91F63, #fff
+        pink, yellow, red, red
       );
 
-      clip-path: @shape(
-        fill-rule: evenodd;
-        split: 500;
-        scale: .6;
-        r: cos(7t)^2 + sin(7t) + .3;
+      mask: @svg-polygon(
+        split: 400;
+        scale: .7;
+        r: cos(7t)^4 + sin(7t) +.3;
       );
     `),
 
