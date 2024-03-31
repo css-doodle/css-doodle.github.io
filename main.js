@@ -42,7 +42,7 @@
     let textarea = get(example, 'textarea');
     let doodle = get(example, '.container css-doodle');
     if (textarea && doodle) {
-      textarea.value = indent(doodle._innerHTML || doodle.parentNode.innerHTML || '');
+      textarea.value = indent(doodle._code || doodle.parentNode.innerHTML || '');
     }
   });
 
@@ -317,7 +317,7 @@
     let size = Math.max(w, h);
     each('.example css-doodle', doodle => {
       doodle.parentNode.parentNode.style.height = h + 'px';
-      if ((doodle._innerHTML || doodle.innerHTML || '').includes('vmax')) {
+      if ((doodle._code || doodle.innerHTML || '').includes('vmax')) {
         doodle.style.width = doodle.style.height = size + 'px';
       } else {
         doodle.style.width = w + 'px';
