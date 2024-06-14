@@ -241,7 +241,7 @@
     `),
 
     logo: indent(`
-      @grid: 6x1 / 320px;
+      @grid: 6x1 / 320px auto 1;
 
       @place: @plot(r: .3; dir: auto -120);
       @size: 50%;
