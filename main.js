@@ -172,10 +172,10 @@
       );
     `),
     dashed: indent(`
-      @grid: 9 / 90%;
+      @grid: 15 / 90%;
       border-radius: 50%;
       background: hsl(@t(/20), 70%, 60%);
-      scale: sin(@atan2(@dx, @dy) + @t(/1000));
+      scale: sin(@atan2(@dx, @dy) + @ts);
     `),
     tiled: indent(`
       @grid: 1 / 90%;
