@@ -162,30 +162,20 @@
       @grid: 50x1 / 100%;
 
       @place: center;
-      @size: calc(75% / @I * @i);
+      @size: @iI(*75%);;
 
-      transform: rotate(calc(@i * 5deg));
+      transform: rotate(@i(*5deg));
 
       border-radius: 30%;
       border: 1px solid hsla(
-        calc(10 + 4 * @i), 70%, 68%, @r.8
+        @i(*4, 10), 70%, 68%, @r.8
       );
     `),
     dashed: indent(`
-      @grid: 1x10 / 85%;
-
-      @place: center;
-      @size: calc(@i * 10%);
-
+      @grid: 9 / 90%;
       border-radius: 50%;
-      border-style: dashed;
-      border-width: calc(@i * 4px);
-      border-color: hsla(
-        calc(20 * @i), 70%, 68%,
-        calc(3 / @i * .8)
-      );
-
-      transform: rotate(@r(360deg));
+      background: hsl(@t(/20), 70%, 60%);
+      scale: sin(@atan2(@dx, @dy) + @t(/1000));
     `),
     tiled: indent(`
       @grid: 1 / 90%;
@@ -249,6 +239,17 @@
       border-radius: 50%;
       box-shadow: 50px 0 0 -10px
         hsl(calc(360/@I*@i) 90% 60%);
+    `),
+
+    pattern: indent(`
+      @grid: 1 / 90% / #101935;
+
+      background-image: @pattern(
+        grid: 71;
+        match(((int(x*y*x*y*7.)>>4)&2) == 2) {
+          fill: #F2FDFF;
+        }
+      );
     `)
   };
 
