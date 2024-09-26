@@ -171,7 +171,7 @@
         @i(*4, 10), 70%, 68%, @r.8
       );
     `),
-    dashed: indent(`
+    rotate: indent(`
       @grid: 15 / 90%;
       border-radius: 50%;
       background: hsl(@t(/20), 70%, 60%);
