@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <script>(window.customElements && document.head.attachShadow) || (document.querySelector('html').className += ' oldie')</script>
-  <script type="module">import 'https://esm.sh/css-doodle@0.42.4'</script>
+  <script type="module">import 'https://esm.sh/css-doodle@0.42.5'</script>
 </head>
 <body>
 
@@ -22,7 +22,7 @@
       <h1>
         <span class="title">
           &lt; <em>css-doodle</em> /&gt;
-          <a class="version" href="https://esm.sh/css-doodle@0.42.4/css-doodle.min.js?raw">v0.42.4</a>
+          <a class="version" href="https://esm.sh/css-doodle@0.42.5/css-doodle.min.js?raw">v0.42.5</a>
         </span>
         </span>
       </h1>
@@ -811,7 +811,7 @@
                 background: #60569e;
               }
             </textarea>
-            <css-doodle grid="5">
+            <css-doodle grid="5"><style>
               :doodle {
                 @size: 8em;
               }
@@ -825,7 +825,7 @@
                   color: #fff;
                 }
               }
-            </css-doodle>
+            </style></css-doodle>
           </p>
           <p>
             For convenience the symbols <code>≤</code> and <code>≥</code>
@@ -2225,7 +2225,7 @@
 
           <p>
             Generate two values in percent and seperated with space.
-            The syntax is the same with <a href="#function-@shape"#>@shape</a>.
+            The syntax is the same with <a href="#function-@shape">@shape</a>.
           </p>
           <p class="has-preview">
             <textarea code>
